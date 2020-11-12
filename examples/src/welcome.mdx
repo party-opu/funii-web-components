@@ -1,29 +1,55 @@
 import styled from 'styled-components'
 import Layout, { ComponentArea, Spacer, Heading } from './layout'
-import Hello from '../../src/hello'
+import { carouselSections, missionSections } from './consts/sampleSections'
+import Carousel from '../../src/components/carousel'
+import Mission from '../../src/components/mission'
 
-<Heading>Hello</Heading>
+<Heading>Carousel</Heading>
 
 <Spacer size='l' />
 
 <ComponentArea>
-  <Hello />
+  <Carousel sections={carouselSections} />
 </ComponentArea>
 
 <Spacer size='l' />
 
 ```jsx
 import React from 'react'
-import { Hello } from '@kousaku-maron/react-component-ts-template'
+import { Carousel } from '@party-opu/funii-web-components'
 
-const HelloComponent = () => (
+const Page = () => (
   <React.Fragment>
-    <Hello />
+    <Carousel sections={sections} />
   </React.Fragment>
 )
 
-export default HelloComponent
+export default Page
+```
 
+<Spacer size='xxl' />
+
+<Heading>Mission</Heading>
+
+<Spacer size='l' />
+
+<ComponentArea>
+  <Mission sections={missionSections} />
+</ComponentArea>
+
+<Spacer size='l' />
+
+```jsx
+import React from 'react'
+import { Mission } from '@party-opu/funii-web-components'
+
+const Page = () => (
+  <React.Fragment>
+    <Mission sections={sections} />
+  </React.Fragment>
+)
+
+export default Page
 ```
 
 export default ({ children }) => <Layout>{children}</Layout>
