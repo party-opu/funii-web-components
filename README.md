@@ -1,21 +1,19 @@
-# react-component-ts-temnplate
+# funii-web-components
 
-コンポーネントライブラリを作成するボイラーテンプレートです。
-
-**[github-pages](https://kousaku-maron.github.io/react-component-ts-template/)**
+**[github-pages](https://party-opu.github.io/funii-web-components/)**
 
 ## Installation
 
 GitHub Packagesで公開する場合、レジストリを登録する必要があります。
 
 ```
-@kousaku-maron:registry="https://npm.pkg.github.com"
+@party-opu:registry="https://npm.pkg.github.com"
 ```
 
 ```
 // with npm
-npm install @kousaku-maron/react-component-ts-temnplate
+npm install @party-opu/funii-web-components
 
 // with yarn
-yarn add @kousaku-maron/react-component-ts-temnplate
+yarn add @party-opu/funii-web-components
 ```
