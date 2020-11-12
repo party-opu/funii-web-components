@@ -1,0 +1,29 @@
+import styled from 'styled-components'
+import Layout, { ComponentArea, Spacer, Heading } from './layout'
+import Hello from '../../src/hello'
+
+<Heading>Hello</Heading>
+
+<Spacer size='l' />
+
+<ComponentArea>
+  <Hello />
+</ComponentArea>
+
+<Spacer size='l' />
+
+```jsx
+import React from 'react'
+import { Hello } from '@kousaku-maron/react-component-ts-template'
+
+const HelloComponent = () => (
+  <React.Fragment>
+    <Hello />
+  </React.Fragment>
+)
+
+export default HelloComponent
+
+```
+
+export default ({ children }) => <Layout>{children}</Layout>
