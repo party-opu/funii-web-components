@@ -41,6 +41,10 @@ module.exports = {
         use: ['babel-loader', '@mdx-js/loader']
       },
       {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'file-loader?name=/fonts/[name].[ext]'
+      },
+      {
         test: /\.(png|jpg|gif)$/i,
         use: [
           {
