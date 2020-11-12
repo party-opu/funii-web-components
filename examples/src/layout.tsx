@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Layout: React.FC = ({ children }) => (
   <Root>
     <Header>
-      <Heading>funii-web-components</Heading>
+      <HeaderTitle>funii-web-components</HeaderTitle>
     </Header>
     <Container>{children}</Container>
   </Root>
@@ -14,13 +14,13 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
   background-color: #f8f8f8;
   color: #202020;
 `
 
 const Header = styled.div`
   position: sticky;
+  z-index: 999;
   top: 0;
   display: flex;
   align-items: center;
@@ -31,8 +31,13 @@ const Header = styled.div`
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 `
 
-export const Heading = styled.h1`
+export const HeaderTitle = styled.h1`
   font-size: 18px;
+  font-weight: bold;
+`
+
+export const Heading = styled.h2`
+  font-size: 24px;
   font-weight: bold;
 `
 
@@ -49,7 +54,7 @@ export const ComponentArea = styled.div`
   border-radius: 4px;
 `
 
-const sizeHandler = (size: 's' | 'm' | 'l') => {
+const sizeHandler = (size: 's' | 'm' | 'l' | 'xl' | 'xxl') => {
   switch (size) {
     case 's':
       return '12px'
@@ -57,6 +62,10 @@ const sizeHandler = (size: 's' | 'm' | 'l') => {
       return '18px'
     case 'l':
       return '20px'
+    case 'xl':
+      return '40px'
+    case 'xxl':
+      return '60px'
   }
 }
 

@@ -1,3 +1,4 @@
-import Hello from './hello'
+import Carousel from './components/carousel'
+import Mission from './components/mission'
 
-export { Hello }
+export { Carousel, Mission }
