@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Layout: React.FC = ({ children }) => (
   <Root>
     <Header>
-      <Heading>react-component-ts-template</Heading>
+      <Heading>funii-web-components</Heading>
     </Header>
     <Container>{children}</Container>
   </Root>
