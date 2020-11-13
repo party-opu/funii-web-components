@@ -20,3 +20,12 @@ export type SectionGroup = {
   type: string
   sections: Section[]
 }
+
+export type ComponentProps = {
+  sections: Section[]
+}
+
+export type WrappedComponentProps = {
+  type: string // section group type
+  sections: Section[]
+}
