@@ -1,16 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Section } from '../../entities/sectionGroup'
+import { ComponentProps } from '../props'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
 import GroupTitle from '../../core/groupTitle'
 
-export type MissionProps = {
-  sections: Section[]
-}
-
-const Mission = ({ sections }: MissionProps) => {
+const Mission = ({ sections }: ComponentProps) => {
   return (
     <GroupContainer>
       <GroupInner>

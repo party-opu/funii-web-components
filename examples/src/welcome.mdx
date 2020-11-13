@@ -1,26 +1,25 @@
 import styled from 'styled-components'
 import Layout, { ComponentArea, Spacer, Heading } from './layout'
-import { carouselSections, missionSections } from './consts/sampleSections'
-import Carousel from '../../src/components/carousel'
-import Mission from '../../src/components/mission'
+import { carouselSections, missionSections, serviceSections, companySections, memberSections } from './consts/sampleSections'
+import Component from '../../src'
 
 <Heading>Carousel</Heading>
 
 <Spacer size='l' />
 
 <ComponentArea>
-  <Carousel sections={carouselSections} />
+  <Component type='carousel' sections={carouselSections} />
 </ComponentArea>
 
 <Spacer size='l' />
 
 ```jsx
 import React from 'react'
-import { Carousel } from '@party-opu/funii-web-components'
+import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Carousel sections={sections} />
+    <Component type='carousel' sections={sections} />
   </React.Fragment>
 )
 
@@ -34,18 +33,118 @@ export default Page
 <Spacer size='l' />
 
 <ComponentArea>
-  <Mission sections={missionSections} />
+  <Component type='mission' sections={missionSections} />
 </ComponentArea>
 
 <Spacer size='l' />
 
 ```jsx
 import React from 'react'
-import { Mission } from '@party-opu/funii-web-components'
+import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Mission sections={sections} />
+    <Component type='mission' sections={sections} />
+  </React.Fragment>
+)
+
+export default Page
+```
+
+<Spacer size='xxl' />
+
+<Heading>Service</Heading>
+
+<Spacer size='l' />
+
+<ComponentArea>
+  <Component type='service' sections={serviceSections} />
+</ComponentArea>
+
+<Spacer size='l' />
+
+```jsx
+import React from 'react'
+import Component from '@party-opu/funii-web-components'
+
+const Page = () => (
+  <React.Fragment>
+    <Component type='service' sections={sections} />
+  </React.Fragment>
+)
+
+export default Page
+```
+
+<Spacer size='xxl' />
+
+<Heading>Company</Heading>
+
+<Spacer size='l' />
+
+<ComponentArea>
+  <Component type='company' sections={companySections} />
+</ComponentArea>
+
+<Spacer size='l' />
+
+```jsx
+import React from 'react'
+import Component from '@party-opu/funii-web-components'
+
+const Page = () => (
+  <React.Fragment>
+    <Component type='company' sections={sections} />
+  </React.Fragment>
+)
+
+export default Page
+```
+
+<Spacer size='xxl' />
+
+<Heading>Member</Heading>
+
+<Spacer size='l' />
+
+<ComponentArea>
+  <Component type='member' sections={memberSections} />
+</ComponentArea>
+
+<Spacer size='l' />
+
+```jsx
+import React from 'react'
+import Component from '@party-opu/funii-web-components'
+
+const Page = () => (
+  <React.Fragment>
+    <Component type='member' sections={sections} />
+  </React.Fragment>
+)
+
+export default Page
+```
+
+<Spacer size='xxl' />
+
+<Heading>Contact</Heading>
+
+<Spacer size='l' />
+
+<ComponentArea>
+  <Component type='contact' sections={[]} />
+</ComponentArea>
+
+<Spacer size='l' />
+
+```jsx
+import React from 'react'
+import Component from '@party-opu/funii-web-components'
+
+const Page = () => (
+  <React.Fragment>
+    <Component type='contact' sections={[]} />
   </React.Fragment>
 )
 

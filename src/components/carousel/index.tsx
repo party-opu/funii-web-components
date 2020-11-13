@@ -2,7 +2,7 @@ import 'react-multi-carousel/lib/styles.css'
 import React from 'react'
 import ReactCarousel from 'react-multi-carousel'
 import styled from 'styled-components'
-import { Section } from '../../entities/sectionGroup'
+import { ComponentProps } from '../props'
 
 const responsive = {
   desktop: {
@@ -17,11 +17,7 @@ const responsive = {
   },
 }
 
-export type CarouselProps = {
-  sections: Section[]
-}
-
-const Carousel = ({ sections }: CarouselProps) => {
+const Carousel = ({ sections }: ComponentProps) => {
   return (
     <ReactCarousel
       swipeable={false}
