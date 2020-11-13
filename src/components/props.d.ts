@@ -18,5 +18,12 @@ export declare type SectionGroup = {
     type: string;
     sections: Section[];
 };
+export declare type ComponentProps = {
+    sections: Section[];
+};
+export declare type WrappedComponentProps = {
+    type: string;
+    sections: Section[];
+};
 export {};
-//# sourceMappingURL=sectionGroup.d.ts.map
+//# sourceMappingURL=props.d.ts.map
