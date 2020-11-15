@@ -1,4 +1,3 @@
-import 'react-multi-carousel/lib/styles.css'
 import React from 'react'
 import ReactCarousel from 'react-multi-carousel'
 import styled from 'styled-components'

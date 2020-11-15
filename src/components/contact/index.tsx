@@ -13,7 +13,7 @@ import ContactList from './contactList'
 import ContactListItem from './contactListItem'
 import ContactFetchModal from './contactFetchModal'
 
-const Contact = () => {
+const Contact = ({ preview }: { preview?: boolean }) => {
   const [companyName, setCompanyName] = useState<string>('')
   const [department, setDepartment] = useState<string>('')
   const [name, setName] = useState<string>('')
@@ -56,6 +56,7 @@ const Contact = () => {
   const onSubmit = useCallback(
     async ({ companyName, department, email, message, name, phoneNumber }) => {
       try {
+        if (preview) return
         setFetching(true)
         setOpenModal(true)
         setErrorMessage('')
@@ -89,7 +90,7 @@ const Contact = () => {
         setFetching(false)
       }
     },
-    [validate]
+    [preview, validate]
   )
 
   return (
@@ -98,12 +99,20 @@ const Contact = () => {
         <GroupTitle>お問い合わせ</GroupTitle>
         <Spacer size="xl" />
         <ContactList>
-          <ContactListItem label="会社名" value={companyName} onChangeText={setCompanyName} disabled={fetching} />
-          <ContactListItem label="部署" value={department} onChangeText={setDepartment} disabled={fetching} />
-          <ContactListItem label="名前" required={true} value={name} onChangeText={setName} disabled={fetching} />
-          <ContactListItem label="メールアドレス" required={true} value={email} onChangeText={setEmail} disabled={fetching} />
-          <ContactListItem label="電話番号" required={true} value={phoneNumber} onChangeText={setPhoneNumber} disabled={fetching} />
-          <ContactListItem label="メッセージ" required={true} value={message} onChangeText={setMessage} multiple={true} rows={6} disabled={fetching} />
+          <ContactListItem label="会社名" value={companyName} onChangeText={setCompanyName} disabled={fetching || preview} />
+          <ContactListItem label="部署" value={department} onChangeText={setDepartment} disabled={fetching || preview} />
+          <ContactListItem label="名前" required={true} value={name} onChangeText={setName} disabled={fetching || preview} />
+          <ContactListItem label="メールアドレス" required={true} value={email} onChangeText={setEmail} disabled={fetching || preview} />
+          <ContactListItem label="電話番号" required={true} value={phoneNumber} onChangeText={setPhoneNumber} disabled={fetching || preview} />
+          <ContactListItem
+            label="メッセージ"
+            required={true}
+            value={message}
+            onChangeText={setMessage}
+            multiple={true}
+            rows={6}
+            disabled={fetching || preview}
+          />
         </ContactList>
         <Spacer size="xl" />
 
