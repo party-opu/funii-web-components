@@ -20,10 +20,12 @@ export declare type SectionGroup = {
 };
 export declare type ComponentProps = {
     sections: Section[];
+    preview?: boolean;
 };
 export declare type WrappedComponentProps = {
     type: string;
     sections: Section[];
+    preview?: boolean;
 };
 export {};
 //# sourceMappingURL=props.d.ts.map
