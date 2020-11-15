@@ -23,9 +23,11 @@ export type SectionGroup = {
 
 export type ComponentProps = {
   sections: Section[]
+  preview?: boolean
 }
 
 export type WrappedComponentProps = {
   type: string // section group type
   sections: Section[]
+  preview?: boolean
 }
