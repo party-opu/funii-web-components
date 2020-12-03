@@ -25,10 +25,12 @@ export type SectionGroup = {
 export type ComponentProps = {
   sections: Section[]
   push?: (internal: boolean, href: string) => void
+  preview?: boolean
 }
 
 export type WrappedComponentProps = {
   type: string // section group type
   sections: Section[]
   push?: (internal: boolean, href: string) => void // routing
+  preview?: boolean
 }

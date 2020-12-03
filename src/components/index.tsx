@@ -9,32 +9,31 @@ import Company from './company'
 import Member from './member'
 import Contact from './contact'
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const Component = ({ type, sections, push }: WrappedComponentProps) => {
+const Component = ({ type, sections, push, preview = false }: WrappedComponentProps) => {
   switch (type) {
     case 'text': {
-      return <Text sections={sections} push={push} />
+      return <Text sections={sections} push={push} preview={preview} />
     }
     case 'image': {
-      return <Image sections={sections} push={push} />
+      return <Image sections={sections} push={push} preview={preview} />
     }
     case 'carousel': {
-      return <Carousel sections={sections} push={push} />
+      return <Carousel sections={sections} push={push} preview={preview} />
     }
     case 'mission': {
-      return <Mission sections={sections} push={push} />
+      return <Mission sections={sections} push={push} preview={preview} />
     }
     case 'service': {
-      return <Service sections={sections} push={push} />
+      return <Service sections={sections} push={push} preview={preview} />
     }
     case 'company': {
-      return <Company sections={sections} push={push} />
+      return <Company sections={sections} push={push} preview={preview} />
     }
     case 'member': {
-      return <Member sections={sections} push={push} />
+      return <Member sections={sections} push={push} preview={preview} />
     }
     case 'contact': {
-      return <Contact />
+      return <Contact preview={preview} />
     }
     default: {
       return null
