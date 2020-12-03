@@ -1,9 +1,81 @@
 import styled from 'styled-components'
-import Layout, { ComponentArea, Spacer, Heading } from './layout'
-import { carouselSections, missionSections, serviceSections, companySections, memberSections } from './consts/sampleSections'
+import Layout, { ComponentArea, Spacer, Heading, SubHeading } from './layout'
+import {
+  textSections,
+  textSections2,
+  textSections3,
+  imageSections,
+  imageSections2,
+  carouselSections,
+  missionSections,
+  serviceSections,
+  companySections,
+  memberSections
+} from './consts/sampleSections'
 import Component from '../../src'
 
-<Heading>Carousel</Heading>
+<Heading>BaseComponent</Heading>
+
+<Spacer size='xxl' />
+
+<SubHeading>Text</SubHeading>
+
+<Spacer size='l' />
+
+<ComponentArea>
+  <Component type='text' sections={textSections} />
+  <Component type='text' sections={textSections2} />
+  <Component type='text' sections={textSections3} />
+</ComponentArea>
+
+<Spacer size='l' />
+
+```jsx
+import React from 'react'
+import Component from '@party-opu/funii-web-components'
+
+const Page = () => (
+  <React.Fragment>
+    <Component type='text' sections={sections} />
+    <Component type='text' sections={sections2} /> // link text
+    <Component type='text' sections={sections3} /> // custom styling text
+  </React.Fragment>
+)
+
+export default Page
+```
+
+<Spacer size='xxl' />
+
+<SubHeading>Image</SubHeading>
+
+<Spacer size='l' />
+
+<ComponentArea>
+  <Component type='image' sections={imageSections} />
+  <Spacer size='s' />
+  <Component type='image' sections={imageSections2} />
+</ComponentArea>
+
+<Spacer size='l' />
+
+```jsx
+import React from 'react'
+import Component from '@party-opu/funii-web-components'
+
+const Page = () => (
+  <React.Fragment>
+    <Component type='text' sections={sections} />
+    <Component type='text' sections={sections2} /> // link and custom styling image
+  </React.Fragment>
+)
+
+export default Page
+```
+
+<Spacer size='xxl' />
+
+<SubHeading>Carousel</SubHeading>
 
 <Spacer size='l' />
 
@@ -27,8 +99,13 @@ export default Page
 ```
 
 <Spacer size='xxl' />
+<Spacer size='xxl' />
 
-<Heading>Mission</Heading>
+<Heading>TemplateComponent</Heading>
+
+<Spacer size='xxl' />
+
+<SubHeading>Mission</SubHeading>
 
 <Spacer size='l' />
 
@@ -53,7 +130,7 @@ export default Page
 
 <Spacer size='xxl' />
 
-<Heading>Service</Heading>
+<SubHeading>Service</SubHeading>
 
 <Spacer size='l' />
 
@@ -78,7 +155,7 @@ export default Page
 
 <Spacer size='xxl' />
 
-<Heading>Company</Heading>
+<SubHeading>Company</SubHeading>
 
 <Spacer size='l' />
 
@@ -103,7 +180,7 @@ export default Page
 
 <Spacer size='xxl' />
 
-<Heading>Member</Heading>
+<SubHeading>Member</SubHeading>
 
 <Spacer size='l' />
 
@@ -128,7 +205,7 @@ export default Page
 
 <Spacer size='xxl' />
 
-<Heading>Contact</Heading>
+<SubHeading>Contact</SubHeading>
 
 <Spacer size='l' />
 

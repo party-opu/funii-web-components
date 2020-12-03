@@ -36,9 +36,16 @@ export const HeaderTitle = styled.h1`
   font-weight: bold;
 `
 
-export const Heading = styled.h2`
+export const Heading = styled.h1`
+  font-size: 40px;
+  font-weight: bold;
+  color: #202020;
+`
+
+export const SubHeading = styled.h2`
   font-size: 24px;
   font-weight: bold;
+  color: #404040;
 `
 
 const Container = styled.div`
