@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ComponentProps } from '../props'
+import { useRouting } from '../hooks'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
@@ -8,7 +9,9 @@ import GroupTitle from '../../core/groupTitle'
 import ResponsiveList from '../../core/responsiveList'
 import ResponsiveListItem from '../../core/responsiveListItem'
 
-const Service = ({ sections }: ComponentProps) => {
+const Service = ({ sections, push }: ComponentProps) => {
+  const onClick = useRouting(push)
+
   return (
     <GroupContainer>
       <GroupInner>
@@ -18,12 +21,12 @@ const Service = ({ sections }: ComponentProps) => {
           {sections.map((section, index) => (
             <ResponsiveListItem key={`service-${index}`}>
               <ServiceRoot>
-                <Image src={section.fields.imageURL.value} />
+                <Image src={section.fields.imageURL.value} onClick={() => onClick(section.fields.imageURL)} />
                 <Spacer />
                 <ServiceBody>
-                  <ServiceTitleText>{section.fields.title.value}</ServiceTitleText>
+                  <ServiceTitleText onClick={() => onClick(section.fields.title)}>{section.fields.title.value}</ServiceTitleText>
                   <Spacer />
-                  <ServiceDetailText>{section.fields.description.value}</ServiceDetailText>
+                  <ServiceDetailText onClick={() => onClick(section.fields.description)}>{section.fields.description.value}</ServiceDetailText>
                 </ServiceBody>
               </ServiceRoot>
             </ResponsiveListItem>

@@ -1,8 +1,9 @@
-import 'react-multi-carousel/lib/styles.css'
+// import 'react-multi-carousel/lib/styles.css'
 import React from 'react'
 import ReactCarousel from 'react-multi-carousel'
 import styled from 'styled-components'
 import { ComponentProps } from '../props'
+import { useRouting } from '../hooks'
 
 const responsive = {
   desktop: {
@@ -17,7 +18,9 @@ const responsive = {
   },
 }
 
-const Carousel = ({ sections }: ComponentProps) => {
+const Carousel = ({ sections, push }: ComponentProps) => {
+  const onClick = useRouting(push)
+
   return (
     <ReactCarousel
       swipeable={false}
@@ -34,7 +37,13 @@ const Carousel = ({ sections }: ComponentProps) => {
       itemClass="image-item"
     >
       {sections.map((section, index) => (
-        <Image key={index} draggable={false} src={section.fields.imageURL.value} alt={section.fields.imageURL.label} />
+        <Image
+          key={index}
+          draggable={false}
+          src={section.fields.imageURL.value}
+          alt={section.fields.imageURL.label}
+          onClick={() => onClick(section.fields.imageURL)}
+        />
       ))}
     </ReactCarousel>
   )
