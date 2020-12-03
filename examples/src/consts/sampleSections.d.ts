@@ -1,105 +1,12 @@
-export declare const carouselSections: {
-    fields: {
-        imageURL: {
-            label: string;
-            order: number;
-            type: string;
-            value: string;
-        };
-    };
-}[];
-export declare const missionSections: {
-    fields: {
-        title: {
-            label: string;
-            order: number;
-            type: string;
-            value: string;
-        };
-        description: {
-            label: string;
-            order: number;
-            type: string;
-            value: string;
-        };
-    };
-}[];
-export declare const serviceSections: {
-    fields: {
-        imageURL: {
-            label: string;
-            order: number;
-            type: string;
-            value: string;
-        };
-        title: {
-            label: string;
-            order: number;
-            type: string;
-            value: string;
-        };
-        description: {
-            label: string;
-            order: number;
-            type: string;
-            value: string;
-        };
-    };
-}[];
-export declare const companySections: {
-    fields: {
-        title: {
-            label: string;
-            order: number;
-            type: string;
-            value: string;
-        };
-        ceoName: {
-            label: string;
-            order: number;
-            type: string;
-            value: string;
-        };
-        foundationDate: {
-            label: string;
-            order: number;
-            type: string;
-            value: string;
-        };
-        address: {
-            label: string;
-            order: number;
-            type: string;
-            value: string;
-        };
-    };
-}[];
-export declare const memberSections: {
-    fields: {
-        imageURL: {
-            label: string;
-            order: number;
-            type: string;
-            value: string;
-        };
-        name: {
-            label: string;
-            order: number;
-            type: string;
-            value: string;
-        };
-        role: {
-            label: string;
-            order: number;
-            type: string;
-            value: string;
-        };
-        description: {
-            label: string;
-            order: number;
-            type: string;
-            value: string;
-        };
-    };
-}[];
+import { Section } from '../../../src/components/props';
+export declare const textSections: Section[];
+export declare const textSections2: Section[];
+export declare const textSections3: Section[];
+export declare const imageSections: Section[];
+export declare const imageSections2: Section[];
+export declare const carouselSections: Section[];
+export declare const missionSections: Section[];
+export declare const serviceSections: Section[];
+export declare const companySections: Section[];
+export declare const memberSections: Section[];
 //# sourceMappingURL=sampleSections.d.ts.map

@@ -1,1 +1,1 @@
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../../../src/components/company/index.tsx"],"names":[],"mappings":";AACA,OAAO,EAAE,cAAc,EAAE,MAAM,UAAU,CAAA;AAQzC,QAAA,MAAM,OAAO,iBAAkB,cAAc,gBAgB5C,CAAA;AAED,eAAe,OAAO,CAAA"}
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../../../src/components/company/index.tsx"],"names":[],"mappings":";AACA,OAAO,EAAE,cAAc,EAAE,MAAM,UAAU,CAAA;AASzC,QAAA,MAAM,OAAO,uBAAwB,cAAc,gBAkBlD,CAAA;AAED,eAAe,OAAO,CAAA"}
