@@ -4,11 +4,12 @@ import styled from 'styled-components'
 type BorderListItemProps = {
   label?: string
   value?: string
+  onClick?: (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => void
 }
 
-const BorderListItem: React.FC<BorderListItemProps> = ({ label, value, children }) => {
+const BorderListItem: React.FC<BorderListItemProps> = ({ label, value, children, onClick }) => {
   return (
-    <ListItem>
+    <ListItem onClick={onClick}>
       <Inner>
         {label && (
           <LabelWrapper>

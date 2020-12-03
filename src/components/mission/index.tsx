@@ -1,12 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ComponentProps } from '../props'
+import { useRouting } from '../hooks'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
 import GroupTitle from '../../core/groupTitle'
 
-const Mission = ({ sections }: ComponentProps) => {
+const Mission = ({ sections, push }: ComponentProps) => {
+  const onClick = useRouting(push)
+
   return (
     <GroupContainer>
       <GroupInner>
@@ -14,9 +17,9 @@ const Mission = ({ sections }: ComponentProps) => {
         <Spacer size="xl" />
         {sections.map((section, index) => (
           <React.Fragment key={`mission-${index}`}>
-            <MissionText>{section.fields.title.value}</MissionText>
+            <MissionText onClick={() => onClick(section.fields.title)}>{section.fields.title.value}</MissionText>
             <Spacer size="xl" />
-            <MissionDetailText>{section.fields.description.value}</MissionDetailText>
+            <MissionDetailText onClick={() => onClick(section.fields.description)}>{section.fields.description.value}</MissionDetailText>
           </React.Fragment>
         ))}
       </GroupInner>

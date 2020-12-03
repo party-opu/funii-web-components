@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ComponentProps } from '../props'
+import { useRouting } from '../hooks'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
@@ -9,7 +10,9 @@ import ResponsiveList from '../../core/responsiveList'
 import ResponsiveListItem from '../../core/responsiveListItem'
 import Avatar from '../../core/avatar'
 
-const Member = ({ sections }: ComponentProps) => {
+const Member = ({ sections, push }: ComponentProps) => {
+  const onClick = useRouting(push)
+
   return (
     <GroupContainer>
       <GroupInner>
@@ -19,14 +22,14 @@ const Member = ({ sections }: ComponentProps) => {
           {sections.map((section, index) => (
             <ResponsiveListItem key={`service-${index}`}>
               <MemberRoot>
-                <Avatar uri={section.fields.imageURL ? section.fields.imageURL.value : undefined} size="l" />
+                <Avatar uri={section.fields.imageURL ? section.fields.imageURL.value : undefined} size="l" onClick={() => onClick(section.fields.imageURL)} />
                 <Spacer />
                 <MemberBody>
-                  <MemberNameText>{section.fields.name.value}</MemberNameText>
+                  <MemberNameText onClick={() => onClick(section.fields.name)}>{section.fields.name.value}</MemberNameText>
                   <Spacer size="s" />
-                  <MemberPositionText>{section.fields.role.value}</MemberPositionText>
+                  <MemberPositionText onClick={() => onClick(section.fields.role)}>{section.fields.role.value}</MemberPositionText>
                   <Spacer />
-                  <MemberProfileText>{section.fields.description.value}</MemberProfileText>
+                  <MemberProfileText onClick={() => onClick(section.fields.description)}>{section.fields.description.value}</MemberProfileText>
                 </MemberBody>
               </MemberRoot>
             </ResponsiveListItem>
