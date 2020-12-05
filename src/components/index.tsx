@@ -15,22 +15,22 @@ const Component = ({ type, sections, push, paths, preview = false }: WrappedComp
       return <Text sections={sections} push={push} paths={paths} preview={preview} />
     }
     case 'image': {
-      return <Image sections={sections} push={push} preview={preview} />
+      return <Image sections={sections} push={push} paths={paths} preview={preview} />
     }
     case 'carousel': {
-      return <Carousel sections={sections} push={push} preview={preview} />
+      return <Carousel sections={sections} push={push} paths={paths} preview={preview} />
     }
     case 'mission': {
-      return <Mission sections={sections} push={push} preview={preview} />
+      return <Mission sections={sections} push={push} paths={paths} preview={preview} />
     }
     case 'service': {
-      return <Service sections={sections} push={push} preview={preview} />
+      return <Service sections={sections} push={push} paths={paths} preview={preview} />
     }
     case 'company': {
-      return <Company sections={sections} push={push} preview={preview} />
+      return <Company sections={sections} push={push} paths={paths} preview={preview} />
     }
     case 'member': {
-      return <Member sections={sections} push={push} preview={preview} />
+      return <Member sections={sections} push={push} paths={paths} preview={preview} />
     }
     case 'contact': {
       return <Contact preview={preview} />
