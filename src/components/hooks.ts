@@ -9,7 +9,7 @@ export const useRouting = (push?: (internal: boolean, href: string) => void) => 
       const externalLink = fieldItem.externalLink
 
       if (push && linkType === 'external' && externalLink) {
-        push(true, externalLink)
+        push(false, externalLink)
         return
       }
 
