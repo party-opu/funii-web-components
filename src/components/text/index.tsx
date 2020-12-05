@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { ComponentProps } from '../props'
 import { useRouting, useExistLink } from '../hooks'
 
-const Text = ({ sections, push }: ComponentProps) => {
+const Text = ({ sections, push, paths = [] }: ComponentProps) => {
   const onClick = useRouting(push)
   const onCheckExistLink = useExistLink()
 
@@ -12,9 +12,9 @@ const Text = ({ sections, push }: ComponentProps) => {
       {sections.map((section, index) => (
         <Wrapper key={`text-${index}`}>
           <BaseText
-            data-existlink={onCheckExistLink(section.fields.text)}
+            data-existlink={onCheckExistLink(section.fields.text, paths)}
             style={section.fields.text.style ? { ...section.fields.text.style } : {}}
-            onClick={() => onClick(section.fields.text)}
+            onClick={() => onClick(section.fields.text, paths)}
           >
             {section.fields.text.value}
           </BaseText>

@@ -5,6 +5,7 @@ export type FieldItem = {
   order: number
   externalLink: string | null
   internalLink: string | null
+  linkType: 'internal' | 'external'
   style?: React.CSSProperties
 }
 
@@ -25,6 +26,7 @@ export type SectionGroup = {
 export type ComponentProps = {
   sections: Section[]
   push?: (internal: boolean, href: string) => void
+  paths?: string[]
   preview?: boolean
 }
 
@@ -32,5 +34,6 @@ export type WrappedComponentProps = {
   type: string // section group type
   sections: Section[]
   push?: (internal: boolean, href: string) => void // routing
+  paths?: string[] // enabled routing paths
   preview?: boolean
 }

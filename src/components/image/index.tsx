@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { ComponentProps } from '../props'
 import { useRouting, useExistLink } from '../hooks'
 
-const Image = ({ sections, push }: ComponentProps) => {
+const Image = ({ sections, push, paths = [] }: ComponentProps) => {
   const onClick = useRouting(push)
   const onCheckExistLink = useExistLink()
 
@@ -13,9 +13,9 @@ const Image = ({ sections, push }: ComponentProps) => {
         <Wrapper key={`text-${index}`}>
           <BaseImage
             src={section.fields.imageURL.value}
-            data-existlink={onCheckExistLink(section.fields.imageURL)}
+            data-existlink={onCheckExistLink(section.fields.imageURL, paths)}
             style={section.fields.imageURL.style ? { ...section.fields.imageURL.style } : {}}
-            onClick={() => onClick(section.fields.imageURL)}
+            onClick={() => onClick(section.fields.imageURL, paths)}
           ></BaseImage>
         </Wrapper>
       ))}
