@@ -6,6 +6,7 @@ export declare type FieldItem = {
     order: number;
     externalLink: string | null;
     internalLink: string | null;
+    linkType: 'internal' | 'external';
     style?: React.CSSProperties;
 };
 export declare type Section = {
@@ -23,12 +24,14 @@ export declare type SectionGroup = {
 export declare type ComponentProps = {
     sections: Section[];
     push?: (internal: boolean, href: string) => void;
+    paths?: string[];
     preview?: boolean;
 };
 export declare type WrappedComponentProps = {
     type: string;
     sections: Section[];
     push?: (internal: boolean, href: string) => void;
+    paths?: string[];
     preview?: boolean;
 };
 //# sourceMappingURL=props.d.ts.map
