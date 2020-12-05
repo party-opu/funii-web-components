@@ -7,7 +7,7 @@ import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
 import GroupTitle from '../../core/groupTitle'
 
-const Mission = ({ sections, push }: ComponentProps) => {
+const Mission = ({ sections, push, paths = [] }: ComponentProps) => {
   const onClick = useRouting(push)
 
   return (
@@ -17,9 +17,9 @@ const Mission = ({ sections, push }: ComponentProps) => {
         <Spacer size="xl" />
         {sections.map((section, index) => (
           <React.Fragment key={`mission-${index}`}>
-            <MissionText onClick={() => onClick(section.fields.title)}>{section.fields.title.value}</MissionText>
+            <MissionText onClick={() => onClick(section.fields.title, paths)}>{section.fields.title.value}</MissionText>
             <Spacer size="xl" />
-            <MissionDetailText onClick={() => onClick(section.fields.description)}>{section.fields.description.value}</MissionDetailText>
+            <MissionDetailText onClick={() => onClick(section.fields.description, paths)}>{section.fields.description.value}</MissionDetailText>
           </React.Fragment>
         ))}
       </GroupInner>

@@ -3,15 +3,18 @@ import { FieldItem } from './props'
 
 export const useRouting = (push?: (internal: boolean, href: string) => void) => {
   const onClick = useCallback(
-    (fieldItem: FieldItem) => {
+    (fieldItem: FieldItem, paths: string[]) => {
+      const linkType = fieldItem.linkType
       const internalLink = fieldItem.internalLink
       const externalLink = fieldItem.externalLink
-      if (push && internalLink) {
-        push(true, internalLink)
+
+      if (push && linkType === 'external' && externalLink) {
+        push(true, externalLink)
         return
       }
-      if (push && externalLink) {
-        push(false, externalLink)
+
+      if (push && linkType === 'internal' && internalLink && paths.includes(internalLink)) {
+        push(true, internalLink)
         return
       }
     },
@@ -22,14 +25,20 @@ export const useRouting = (push?: (internal: boolean, href: string) => void) => 
 }
 
 export const useExistLink = () => {
-  const exist = useCallback((fieldItem: FieldItem) => {
+  const exist = useCallback((fieldItem: FieldItem, paths: string[]) => {
+    const linkType = fieldItem.linkType
     const internalLink = fieldItem.internalLink
     const externalLink = fieldItem.externalLink
-    if (internalLink || externalLink) {
+
+    if (linkType === 'external' && externalLink) {
       return true
-    } else {
-      false
     }
+
+    if (linkType === 'internal' && internalLink && paths.includes(internalLink)) {
+      return true
+    }
+
+    return false
   }, [])
 
   return exist

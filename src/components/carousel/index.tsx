@@ -18,7 +18,7 @@ const responsive = {
   },
 }
 
-const Carousel = ({ sections, push }: ComponentProps) => {
+const Carousel = ({ sections, push, paths = [] }: ComponentProps) => {
   const onClick = useRouting(push)
 
   return (
@@ -42,7 +42,7 @@ const Carousel = ({ sections, push }: ComponentProps) => {
           draggable={false}
           src={section.fields.imageURL.value}
           alt={section.fields.imageURL.label}
-          onClick={() => onClick(section.fields.imageURL)}
+          onClick={() => onClick(section.fields.imageURL, paths)}
         />
       ))}
     </ReactCarousel>

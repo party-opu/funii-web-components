@@ -10,7 +10,7 @@ import ResponsiveList from '../../core/responsiveList'
 import ResponsiveListItem from '../../core/responsiveListItem'
 import Avatar from '../../core/avatar'
 
-const Member = ({ sections, push }: ComponentProps) => {
+const Member = ({ sections, push, paths = [] }: ComponentProps) => {
   const onClick = useRouting(push)
 
   return (
@@ -22,14 +22,18 @@ const Member = ({ sections, push }: ComponentProps) => {
           {sections.map((section, index) => (
             <ResponsiveListItem key={`service-${index}`}>
               <MemberRoot>
-                <Avatar uri={section.fields.imageURL ? section.fields.imageURL.value : undefined} size="l" onClick={() => onClick(section.fields.imageURL)} />
+                <Avatar
+                  uri={section.fields.imageURL ? section.fields.imageURL.value : undefined}
+                  size="l"
+                  onClick={() => onClick(section.fields.imageURL, paths)}
+                />
                 <Spacer />
                 <MemberBody>
-                  <MemberNameText onClick={() => onClick(section.fields.name)}>{section.fields.name.value}</MemberNameText>
+                  <MemberNameText onClick={() => onClick(section.fields.name, paths)}>{section.fields.name.value}</MemberNameText>
                   <Spacer size="s" />
-                  <MemberPositionText onClick={() => onClick(section.fields.role)}>{section.fields.role.value}</MemberPositionText>
+                  <MemberPositionText onClick={() => onClick(section.fields.role, paths)}>{section.fields.role.value}</MemberPositionText>
                   <Spacer />
-                  <MemberProfileText onClick={() => onClick(section.fields.description)}>{section.fields.description.value}</MemberProfileText>
+                  <MemberProfileText onClick={() => onClick(section.fields.description, paths)}>{section.fields.description.value}</MemberProfileText>
                 </MemberBody>
               </MemberRoot>
             </ResponsiveListItem>

@@ -9,7 +9,7 @@ import GroupTitle from '../../core/groupTitle'
 import ResponsiveList from '../../core/responsiveList'
 import ResponsiveListItem from '../../core/responsiveListItem'
 
-const Service = ({ sections, push }: ComponentProps) => {
+const Service = ({ sections, push, paths = [] }: ComponentProps) => {
   const onClick = useRouting(push)
 
   return (
@@ -21,12 +21,12 @@ const Service = ({ sections, push }: ComponentProps) => {
           {sections.map((section, index) => (
             <ResponsiveListItem key={`service-${index}`}>
               <ServiceRoot>
-                <Image src={section.fields.imageURL.value} onClick={() => onClick(section.fields.imageURL)} />
+                <Image src={section.fields.imageURL.value} onClick={() => onClick(section.fields.imageURL, paths)} />
                 <Spacer />
                 <ServiceBody>
-                  <ServiceTitleText onClick={() => onClick(section.fields.title)}>{section.fields.title.value}</ServiceTitleText>
+                  <ServiceTitleText onClick={() => onClick(section.fields.title, paths)}>{section.fields.title.value}</ServiceTitleText>
                   <Spacer />
-                  <ServiceDetailText onClick={() => onClick(section.fields.description)}>{section.fields.description.value}</ServiceDetailText>
+                  <ServiceDetailText onClick={() => onClick(section.fields.description, paths)}>{section.fields.description.value}</ServiceDetailText>
                 </ServiceBody>
               </ServiceRoot>
             </ResponsiveListItem>

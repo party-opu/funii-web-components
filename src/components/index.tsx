@@ -9,10 +9,10 @@ import Company from './company'
 import Member from './member'
 import Contact from './contact'
 
-const Component = ({ type, sections, push, preview = false }: WrappedComponentProps) => {
+const Component = ({ type, sections, push, paths, preview = false }: WrappedComponentProps) => {
   switch (type) {
     case 'text': {
-      return <Text sections={sections} push={push} preview={preview} />
+      return <Text sections={sections} push={push} paths={paths} preview={preview} />
     }
     case 'image': {
       return <Image sections={sections} push={push} preview={preview} />
