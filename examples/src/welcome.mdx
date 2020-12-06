@@ -6,6 +6,8 @@ import {
   textSections3,
   imageSections,
   imageSections2,
+  headerSections,
+  footerSections,
   carouselSections,
   missionSections,
   serviceSections,
@@ -67,6 +69,56 @@ const Page = () => (
   <React.Fragment>
     <Component type='text' sections={sections} />
     <Component type='text' sections={sections2} /> // link and custom styling image
+  </React.Fragment>
+)
+
+export default Page
+```
+
+<Spacer size='xxl' />
+
+<SubHeading>Header</SubHeading>
+
+<Spacer size='l' />
+
+<ComponentArea>
+  <Component type='header' sections={headerSections} />
+</ComponentArea>
+
+<Spacer size='l' />
+
+```jsx
+import React from 'react'
+import Component from '@party-opu/funii-web-components'
+
+const Page = () => (
+  <React.Fragment>
+    <Component type='header' sections={sections} />
+  </React.Fragment>
+)
+
+export default Page
+```
+
+<Spacer size='xxl' />
+
+<SubHeading>Footer</SubHeading>
+
+<Spacer size='l' />
+
+<ComponentArea>
+  <Component type='footer' sections={footerSections} />
+</ComponentArea>
+
+<Spacer size='l' />
+
+```jsx
+import React from 'react'
+import Component from '@party-opu/funii-web-components'
+
+const Page = () => (
+  <React.Fragment>
+    <Component type='footer' sections={sections} />
   </React.Fragment>
 )
 
