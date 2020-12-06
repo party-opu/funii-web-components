@@ -3,6 +3,8 @@ import { WrappedComponentProps } from './props'
 import Text from './text'
 import Image from './image'
 import Carousel from './carousel'
+import Header from './header'
+import Footer from './footer'
 import Mission from './mission'
 import Service from './service'
 import Company from './company'
@@ -16,6 +18,12 @@ const Component = ({ type, sections, push, paths, preview = false }: WrappedComp
     }
     case 'image': {
       return <Image sections={sections} push={push} paths={paths} preview={preview} />
+    }
+    case 'header': {
+      return <Header sections={sections} push={push} paths={paths} preview={preview} />
+    }
+    case 'footer': {
+      return <Footer sections={sections} push={push} paths={paths} preview={preview} />
     }
     case 'carousel': {
       return <Carousel sections={sections} push={push} paths={paths} preview={preview} />

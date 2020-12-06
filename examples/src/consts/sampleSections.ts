@@ -90,6 +90,90 @@ export const imageSections2: Section[] = [
   },
 ]
 
+export const headerSections: Section[] = [
+  {
+    fields: {
+      text: {
+        label: 'テキスト',
+        order: 10,
+        type: 'text',
+        value: 'ホーム',
+        linkType: 'internal',
+        internalLink: null,
+        externalLink: null,
+      },
+    },
+  },
+  {
+    fields: {
+      text: {
+        label: 'テキスト',
+        order: 10,
+        type: 'text',
+        value: 'サービス',
+        linkType: 'internal',
+        internalLink: null,
+        externalLink: null,
+      },
+    },
+  },
+  {
+    fields: {
+      text: {
+        label: 'テキスト',
+        order: 10,
+        type: 'text',
+        value: '会社概要',
+        linkType: 'internal',
+        internalLink: null,
+        externalLink: null,
+      },
+    },
+  },
+]
+
+export const footerSections: Section[] = [
+  {
+    fields: {
+      text: {
+        label: 'テキスト',
+        order: 10,
+        type: 'text',
+        value: 'ホーム',
+        linkType: 'internal',
+        internalLink: null,
+        externalLink: null,
+      },
+    },
+  },
+  {
+    fields: {
+      text: {
+        label: 'テキスト',
+        order: 10,
+        type: 'text',
+        value: 'サービス',
+        linkType: 'internal',
+        internalLink: null,
+        externalLink: null,
+      },
+    },
+  },
+  {
+    fields: {
+      text: {
+        label: 'テキスト',
+        order: 10,
+        type: 'text',
+        value: '会社概要',
+        linkType: 'internal',
+        internalLink: null,
+        externalLink: null,
+      },
+    },
+  },
+]
+
 export const carouselSections: Section[] = [
   {
     fields: {
