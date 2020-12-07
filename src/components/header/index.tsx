@@ -161,7 +161,7 @@ const ListItem = styled.li`
 const ListItemText = styled.p`
   text-decoration: none;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px;
   color: ${(props) => props.theme.foregrounds.primary};
 
   @media (min-width: 400px) {
