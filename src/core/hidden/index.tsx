@@ -7,20 +7,20 @@ type Props = {
 }
 
 const Hidden: React.FC<Props> = ({ smUp = true, children }) => {
-  return <BaseHidden data-smUp={smUp}>{children}</BaseHidden>
+  return <BaseHidden data-smup={smUp}>{children}</BaseHidden>
 }
 
 const BaseHidden = styled.div`
   width: 100%;
   height: 100%;
   display: none;
-  &[data-smUp='true'] {
+  &[data-smup='true'] {
     display: block;
   }
 
   @media (min-width: 400px) {
     display: block;
-    &[data-smUp='true'] {
+    &[data-smup='true'] {
       display: none;
     }
   }
