@@ -1,34 +1,89 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import { BiMenu } from 'react-icons/bi'
 import Spacer from '../../core/spacer'
+import Hidden from '../../core/hidden'
+import IconButton from '../../core/iconButton'
+import Drawer from '../../core/drawer'
 import { ComponentProps } from '../props'
 import { useRouting, useExistLink } from '../hooks'
 
+const PCMenu = ({ sections, push, paths = [] }: ComponentProps) => {
+  const onClick = useRouting(push)
+  const onCheckExistLink = useExistLink()
+
+  return (
+    <Nav>
+      {/* <LogoWrapper>
+        <Logo src="/funii.svg" />
+      </LogoWrapper>
+      <Spacer layout="vertical" size="l" /> */}
+      <ListWrapper>
+        <List>
+          {sections.map((section, index) => (
+            <React.Fragment key={index}>
+              <ListItem data-existlink={onCheckExistLink(section.fields.text, paths)} onClick={() => onClick(section.fields.text, paths)}>
+                <ListItemText>{section.fields.text.value}</ListItemText>
+              </ListItem>
+              <Spacer layout="vertical" size="l" />
+            </React.Fragment>
+          ))}
+        </List>
+      </ListWrapper>
+    </Nav>
+  )
+}
+
+type SMMenuProps = {
+  onOpen: () => void
+}
+
+const SMMenu = ({ onOpen }: SMMenuProps) => {
+  return (
+    <Nav>
+      <IconButton onClick={onOpen}>
+        <BiMenu size={20} />
+      </IconButton>
+    </Nav>
+  )
+}
+
 // TODO: Logoデータをどうするか考えないといけない。
 const Header = ({ sections, push, paths = [] }: ComponentProps) => {
+  const [openDrawer, setOpenDrawer] = useState<boolean>(false)
   const onClick = useRouting(push)
   const onCheckExistLink = useExistLink()
 
   return (
     <Root>
-      <Nav>
-        {/* <LogoWrapper>
-          <Logo src="/funii.svg" />
-        </LogoWrapper>
-        <Spacer layout="vertical" size="l" /> */}
-        <ListWrapper>
-          <List>
-            {sections.map((section, index) => (
-              <React.Fragment key={index}>
-                <ListItem data-existlink={onCheckExistLink(section.fields.text, paths)} onClick={() => onClick(section.fields.text, paths)}>
-                  <ListItemText>{section.fields.text.value}</ListItemText>
-                </ListItem>
-                <Spacer layout="vertical" size="l" />
-              </React.Fragment>
-            ))}
-          </List>
-        </ListWrapper>
-      </Nav>
+      <Hidden smUp={false}>
+        <PCMenu sections={sections} push={push} paths={paths} />
+      </Hidden>
+      <Hidden smUp={true}>
+        <SMMenu onOpen={() => setOpenDrawer(true)} />
+        <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
+          <DrawerInner>
+            <List>
+              {sections.map((section, index) => (
+                <React.Fragment key={index}>
+                  <ListItem
+                    data-existlink={onCheckExistLink(section.fields.text, paths)}
+                    onClick={() => {
+                      if (onCheckExistLink(section.fields.text, paths)) {
+                        onClick(section.fields.text, paths)
+                        setOpenDrawer(false)
+                      }
+                    }}
+                  >
+                    <ListItemText>{section.fields.text.value}</ListItemText>
+                  </ListItem>
+                  <Spacer size="l" />
+                </React.Fragment>
+              ))}
+            </List>
+          </DrawerInner>
+        </Drawer>
+      </Hidden>
     </Root>
   )
 }
@@ -53,9 +108,16 @@ Root.defaultProps = {
 
 const Nav = styled.nav`
   display: flex;
+  align-items: center;
   width: 100%;
   height: 100%;
   max-width: 1080px;
+  padding-right: 12px;
+  padding-left: 12px;
+`
+
+const DrawerInner = styled.div`
+  padding: 24px;
 `
 
 // const Logo = styled.img`
@@ -75,19 +137,18 @@ const ListWrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  padding-right: 12px;
-  padding-left: 12px;
 `
 
 const List = styled.ul`
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   width: 100%;
+  list-style-type: none;
 
   @media (min-width: 400px) {
     justify-content: start;
+    flex-direction: row;
+    align-items: center;
   }
 `
 
@@ -100,7 +161,7 @@ const ListItem = styled.li`
 const ListItemText = styled.p`
   text-decoration: none;
   font-weight: bold;
-  font-size: 9px;
+  font-size: 14px;
   color: ${(props) => props.theme.foregrounds.primary};
 
   @media (min-width: 400px) {
