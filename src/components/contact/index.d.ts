@@ -1,6 +1,5 @@
 /// <reference types="react" />
-declare const Contact: ({ preview }: {
-    preview?: boolean | undefined;
-}) => JSX.Element;
+import { ComponentProps } from '../props';
+declare const Contact: ({ preview, onSend }: ComponentProps) => JSX.Element;
 export default Contact;
 //# sourceMappingURL=index.d.ts.map

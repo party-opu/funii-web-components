@@ -26,6 +26,7 @@ export declare type ComponentProps = {
     push?: (internal: boolean, href: string) => void;
     paths?: string[];
     preview?: boolean;
+    onSend?: (value: CreateContact) => Promise<void>;
 };
 export declare type WrappedComponentProps = {
     type: string;
@@ -33,6 +34,7 @@ export declare type WrappedComponentProps = {
     push?: (internal: boolean, href: string) => void;
     paths?: string[];
     preview?: boolean;
+    onSend?: (value: CreateContact) => Promise<void>;
 };
 export declare type Contact = {
     id: string;
