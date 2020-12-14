@@ -1,10 +1,9 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { CreateContact } from '../props'
+import { CreateContact, ComponentProps } from '../props'
 import isEmpty from 'validator/lib/isEmpty'
 import isNumeric from 'validator/lib/isNumeric'
 import isEmail from 'validator/lib/isEmail'
-// import { ComponentProps } from '../props'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
@@ -13,9 +12,12 @@ import FilledButton from '../../core/filledButton'
 import ContactList from './contactList'
 import ContactListItem from './contactListItem'
 import ContactFetchModal from './contactFetchModal'
-import { createContact } from '../repositories'
 
-const Contact = ({ preview }: { preview?: boolean }) => {
+type ContactProps = {
+  onSend: (value: CreateContact) => Promise<void>
+}
+
+const Contact = ({ preview = false, onSend }: ComponentProps & ContactProps) => {
   const [companyName, setCompanyName] = useState<string>('')
   const [department, setDepartment] = useState<string>('')
   const [name, setName] = useState<string>('')
@@ -79,7 +81,7 @@ const Contact = ({ preview }: { preview?: boolean }) => {
           phoneNumber,
           message,
         }
-        await createContact(value)
+        await onSend(value)
 
         setSuccess(true)
         setFetching(false)
