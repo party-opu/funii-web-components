@@ -11,7 +11,7 @@ import Company from './company'
 import Member from './member'
 import Contact from './contact'
 
-const Component = ({ type, sections, push, paths, preview = false }: WrappedComponentProps) => {
+const Component = ({ type, sections, push, paths, preview = false, onSend }: WrappedComponentProps) => {
   switch (type) {
     case 'text': {
       return <Text sections={sections} push={push} paths={paths} preview={preview} />
@@ -41,7 +41,7 @@ const Component = ({ type, sections, push, paths, preview = false }: WrappedComp
       return <Member sections={sections} push={push} paths={paths} preview={preview} />
     }
     case 'contact': {
-      return <Contact preview={preview} />
+      return <Contact sections={sections} preview={preview} onSend={onSend} />
     }
     default: {
       return null

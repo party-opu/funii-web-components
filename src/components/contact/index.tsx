@@ -13,11 +13,7 @@ import ContactList from './contactList'
 import ContactListItem from './contactListItem'
 import ContactFetchModal from './contactFetchModal'
 
-type ContactProps = {
-  onSend: (value: CreateContact) => Promise<void>
-}
-
-const Contact = ({ preview = false, onSend }: ComponentProps & ContactProps) => {
+const Contact = ({ preview = false, onSend }: ComponentProps) => {
   const [companyName, setCompanyName] = useState<string>('')
   const [department, setDepartment] = useState<string>('')
   const [name, setName] = useState<string>('')
@@ -60,7 +56,7 @@ const Contact = ({ preview = false, onSend }: ComponentProps & ContactProps) => 
   const onSubmit = useCallback(
     async ({ companyName, department, email, message, name, phoneNumber }) => {
       try {
-        if (preview) return
+        if (preview || !onSend) return
         setFetching(true)
         setOpenModal(true)
         setErrorMessage('')
@@ -92,7 +88,7 @@ const Contact = ({ preview = false, onSend }: ComponentProps & ContactProps) => 
         setFetching(false)
       }
     },
-    [preview, validate]
+    [preview, validate, onSend]
   )
 
   return (

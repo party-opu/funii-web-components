@@ -28,6 +28,7 @@ export type ComponentProps = {
   push?: (internal: boolean, href: string) => void
   paths?: string[]
   preview?: boolean
+  onSend?: (value: CreateContact) => Promise<void>
 }
 
 export type WrappedComponentProps = {
@@ -36,6 +37,7 @@ export type WrappedComponentProps = {
   push?: (internal: boolean, href: string) => void // routing
   paths?: string[] // enabled routing paths
   preview?: boolean
+  onSend?: (value: CreateContact) => Promise<void>
 }
 
 export type Contact = {
