@@ -37,3 +37,17 @@ export type WrappedComponentProps = {
   paths?: string[] // enabled routing paths
   preview?: boolean
 }
+
+export type Contact = {
+  id: string
+  companyName: string | null
+  department: string | null
+  name: string
+  email: string
+  phoneNumber: string
+  message: string
+  createdAt: Date
+  updatedAt: Date
+}
+
+export type CreateContact = Omit<Contact, 'id' | 'createdAt' | 'updatedAt'>

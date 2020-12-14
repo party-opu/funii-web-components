@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
+import { CreateContact } from '../props'
 import isEmpty from 'validator/lib/isEmpty'
 import isNumeric from 'validator/lib/isNumeric'
 import isEmail from 'validator/lib/isEmail'
@@ -12,6 +13,7 @@ import FilledButton from '../../core/filledButton'
 import ContactList from './contactList'
 import ContactListItem from './contactListItem'
 import ContactFetchModal from './contactFetchModal'
+import { createContact } from '../repositories'
 
 const Contact = ({ preview }: { preview?: boolean }) => {
   const [companyName, setCompanyName] = useState<string>('')
@@ -69,17 +71,15 @@ const Contact = ({ preview }: { preview?: boolean }) => {
           return
         }
 
-        // const value: CreateContact = {
-        //   companyName,
-        //   department,
-        //   name,
-        //   email,
-        //   phoneNumber,
-        //   message,
-        // }
-        // await createContact(value)
-
-        throw new Error('not prepare create contact function')
+        const value: CreateContact = {
+          companyName,
+          department,
+          name,
+          email,
+          phoneNumber,
+          message,
+        }
+        await createContact(value)
 
         setSuccess(true)
         setFetching(false)
@@ -119,7 +119,7 @@ const Contact = ({ preview }: { preview?: boolean }) => {
         <FilledButton text="送信する" size="l" onClick={() => onSubmit({ companyName, department, email, message, name, phoneNumber })} disabled={fetching} />
       </GroupInner>
 
-      <ContactFetchModal open={openModal} onClose={() => setOpenModal(false)} fetching={true} success={success} error={errorMessage} />
+      <ContactFetchModal open={openModal} onClose={() => setOpenModal(false)} fetching={fetching} success={success} error={errorMessage} />
     </GroupContainer>
   )
 }
