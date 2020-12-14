@@ -34,4 +34,16 @@ export declare type WrappedComponentProps = {
     paths?: string[];
     preview?: boolean;
 };
+export declare type Contact = {
+    id: string;
+    companyName: string | null;
+    department: string | null;
+    name: string;
+    email: string;
+    phoneNumber: string;
+    message: string;
+    createdAt: Date;
+    updatedAt: Date;
+};
+export declare type CreateContact = Omit<Contact, 'id' | 'createdAt' | 'updatedAt'>;
 //# sourceMappingURL=props.d.ts.map
