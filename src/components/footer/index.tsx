@@ -4,7 +4,6 @@ import Spacer from '../../core/spacer'
 import { ComponentProps } from '../props'
 import { useRouting, useExistLink } from '../hooks'
 
-// TODO: 会社名(copylight)とロゴをどうするか考えないといけない。
 const Footer = ({ sections, push, paths = [] }: ComponentProps) => {
   const onClick = useRouting(push)
   const onCheckExistLink = useExistLink()
@@ -12,9 +11,6 @@ const Footer = ({ sections, push, paths = [] }: ComponentProps) => {
   return (
     <Root>
       <Nav>
-        {/* <Spacer />
-        <Logo src="/funii.svg" />
-        <Spacer size="l" /> */}
         <ListWrapper>
           <List>
             {sections.map((section, index) => (

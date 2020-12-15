@@ -14,20 +14,31 @@ const PCMenu = ({ sections, push, paths = [] }: ComponentProps) => {
 
   return (
     <Nav>
-      {/* <LogoWrapper>
-        <Logo src="/funii.svg" />
-      </LogoWrapper>
-      <Spacer layout="vertical" size="l" /> */}
       <ListWrapper>
         <List>
-          {sections.map((section, index) => (
-            <React.Fragment key={index}>
-              <ListItem data-existlink={onCheckExistLink(section.fields.text, paths)} onClick={() => onClick(section.fields.text, paths)}>
-                <ListItemText>{section.fields.text.value}</ListItemText>
-              </ListItem>
-              <Spacer layout="vertical" size="l" />
-            </React.Fragment>
-          ))}
+          {sections.map((section, index) => {
+            if (section.fields.text) {
+              return (
+                <React.Fragment key={index}>
+                  <ListItem data-existlink={onCheckExistLink(section.fields.text, paths)} onClick={() => onClick(section.fields.text, paths)}>
+                    <ListItemText>{section.fields.text.value}</ListItemText>
+                  </ListItem>
+                  <Spacer layout="vertical" size="l" />
+                </React.Fragment>
+              )
+            }
+
+            if (section.fields.imageURL) {
+              return (
+                <React.Fragment key={index}>
+                  <ListItem data-existlink={onCheckExistLink(section.fields.imageURL, paths)} onClick={() => onClick(section.fields.imageURL, paths)}>
+                    <ListItemImage src={section.fields.imageURL.value} />
+                  </ListItem>
+                  <Spacer layout="vertical" size="l" />
+                </React.Fragment>
+              )
+            }
+          })}
         </List>
       </ListWrapper>
     </Nav>
@@ -48,7 +59,6 @@ const SMMenu = ({ onOpen }: SMMenuProps) => {
   )
 }
 
-// TODO: Logoデータをどうするか考えないといけない。
 const Header = ({ sections, push, paths = [] }: ComponentProps) => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
   const onClick = useRouting(push)
@@ -64,22 +74,45 @@ const Header = ({ sections, push, paths = [] }: ComponentProps) => {
         <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
           <DrawerInner>
             <List>
-              {sections.map((section, index) => (
-                <React.Fragment key={index}>
-                  <ListItem
-                    data-existlink={onCheckExistLink(section.fields.text, paths)}
-                    onClick={() => {
-                      if (onCheckExistLink(section.fields.text, paths)) {
-                        onClick(section.fields.text, paths)
-                        setOpenDrawer(false)
-                      }
-                    }}
-                  >
-                    <ListItemText>{section.fields.text.value}</ListItemText>
-                  </ListItem>
-                  <Spacer size="l" />
-                </React.Fragment>
-              ))}
+              {sections.map((section, index) => {
+                if (section.fields.text) {
+                  return (
+                    <React.Fragment key={index}>
+                      <ListItem
+                        data-existlink={onCheckExistLink(section.fields.text, paths)}
+                        onClick={() => {
+                          if (onCheckExistLink(section.fields.text, paths)) {
+                            onClick(section.fields.text, paths)
+                            setOpenDrawer(false)
+                          }
+                        }}
+                      >
+                        <ListItemText>{section.fields.text.value}</ListItemText>
+                      </ListItem>
+                      <Spacer size="l" />
+                    </React.Fragment>
+                  )
+                }
+
+                if (section.fields.imageURL) {
+                  return (
+                    <React.Fragment key={index}>
+                      <ListItem
+                        data-existlink={onCheckExistLink(section.fields.imageURL, paths)}
+                        onClick={() => {
+                          if (onCheckExistLink(section.fields.imageURL, paths)) {
+                            onClick(section.fields.imageURL, paths)
+                            setOpenDrawer(false)
+                          }
+                        }}
+                      >
+                        <ListItemImage src={section.fields.imageURL.value} />
+                      </ListItem>
+                      <Spacer size="l" />
+                    </React.Fragment>
+                  )
+                }
+              })}
             </List>
           </DrawerInner>
         </Drawer>
@@ -120,19 +153,6 @@ const DrawerInner = styled.div`
   padding: 24px;
 `
 
-// const Logo = styled.img`
-//   height: 60px;
-
-//   @media (min-width: 400px) {
-//     height: 120px;
-//   }
-// `
-
-// const LogoWrapper = styled.div`
-//   display: flex;
-//   justify-content: center;
-// `
-
 const ListWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -153,6 +173,7 @@ const List = styled.ul`
 `
 
 const ListItem = styled.li`
+  display: flex;
   &[data-existlink='true'] {
     cursor: pointer;
   }
@@ -176,5 +197,13 @@ ListItemText.defaultProps = {
     },
   },
 }
+
+const ListItemImage = styled.img`
+  height: 40px;
+
+  @media (min-width: 400px) {
+    height: 40px;
+  }
+`
 
 export default Header
