@@ -506,3 +506,32 @@ export const memberSections: Section[] = [
     },
   },
 ]
+
+export const contactSections: Section[] = [
+  {
+    fields: {
+      label: {
+        label: 'ラベル',
+        order: 10,
+        type: 'text',
+        value: '会社',
+        linkType: 'internal',
+        internalLink: null,
+        externalLink: null,
+      },
+    },
+  },
+  {
+    fields: {
+      label: {
+        label: 'ラベル',
+        order: 10,
+        type: 'text',
+        value: '所属',
+        linkType: 'internal',
+        internalLink: null,
+        externalLink: null,
+      },
+    },
+  },
+]

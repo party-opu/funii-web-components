@@ -12,7 +12,8 @@ import {
   missionSections,
   serviceSections,
   companySections,
-  memberSections
+  memberSections,
+  contactSections,
 } from './consts/sampleSections'
 import Component from '../../src'
 
@@ -262,7 +263,7 @@ export default Page
 <Spacer size='l' />
 
 <ComponentArea>
-  <Component type='contact' sections={[]} />
+  <Component type='contact' sections={contactSections} onSend={(form) => console.info(form)} />
 </ComponentArea>
 
 <Spacer size='l' />
@@ -273,7 +274,7 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type='contact' sections={[]} />
+    <Component type='contact' sections={sections} />
   </React.Fragment>
 )
 
