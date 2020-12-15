@@ -52,4 +52,6 @@ export type Contact = {
   updatedAt: Date
 }
 
-export type CreateContact = Omit<Contact, 'id' | 'createdAt' | 'updatedAt'>
+export type CreateContact = {
+  [key: string]: string
+}

@@ -1,9 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { CreateContact, ComponentProps } from '../props'
+import { ComponentProps } from '../props'
 import isEmpty from 'validator/lib/isEmpty'
-import isNumeric from 'validator/lib/isNumeric'
-import isEmail from 'validator/lib/isEmail'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
@@ -13,83 +11,79 @@ import ContactList from './contactList'
 import ContactListItem from './contactListItem'
 import ContactFetchModal from './contactFetchModal'
 
-const Contact = ({ preview = false, onSend }: ComponentProps) => {
-  const [companyName, setCompanyName] = useState<string>('')
-  const [department, setDepartment] = useState<string>('')
-  const [name, setName] = useState<string>('')
-  const [email, setEmail] = useState<string>('')
-  const [phoneNumber, setPhoneNumber] = useState<string>('')
-  const [message, setMessage] = useState<string>('')
+type Form = {
+  [key: string]: string
+}
+
+const initialForm: Form = {
+  message: '',
+}
+
+const Contact = ({ sections, preview = false, onSend }: ComponentProps) => {
   const [fetching, setFetching] = useState<boolean>(false)
   const [success, setSuccess] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [openModal, setOpenModal] = useState<boolean>(false)
 
-  const validate = useCallback(async ({ email, message, name, phoneNumber }) => {
-    if (isEmpty(name)) {
-      return { result: false, message: '名前を入力してください' }
-    }
+  const [form, setForm] = useState<Form>(initialForm)
 
-    if (isEmpty(email)) {
-      return { result: false, message: 'メールアドレスを入力してください' }
-    }
-
-    if (!isEmail(email)) {
-      return { result: false, message: '正しいメールアドレスを入力してください' }
-    }
-
-    if (isEmpty(phoneNumber)) {
-      return { result: false, message: '電話番号を入力してください' }
-    }
-
-    if (!isNumeric(phoneNumber)) {
-      return { result: false, message: '電話番号は数字のみで入力してください' }
-    }
-
-    if (isEmpty(message)) {
-      return { result: false, message: 'メッセージを入力してください' }
-    }
-
-    return { result: true, message: null }
+  const onChangeFormData = useCallback((key: string, value: string) => {
+    setForm((prev) => ({ ...prev, [key]: value }))
   }, [])
 
-  const onSubmit = useCallback(
-    async ({ companyName, department, email, message, name, phoneNumber }) => {
-      try {
-        if (preview || !onSend) return
-        setFetching(true)
-        setOpenModal(true)
-        setErrorMessage('')
+  const validate = useCallback(async () => {
+    const keys = sections.map((_, index) => `item${index}`)
 
-        const { result, message: validateMessage } = await validate({ companyName, department, email, message, name, phoneNumber })
-        if (!result) {
-          setErrorMessage(validateMessage ?? '')
-          setSuccess(false)
-          setFetching(false)
-          return
-        }
+    let result = true
+    let message = ''
+    keys.forEach((key, index) => {
+      if (isEmpty(message) && isEmpty(form[key] ?? '')) {
+        const label = sections[index].fields.label.value
+        message = `${label}を入力してください`
+        result = false
+      }
+    })
 
-        const value: CreateContact = {
-          companyName,
-          department,
-          name,
-          email,
-          phoneNumber,
-          message,
-        }
-        await onSend(value)
+    if (isEmpty(message) && isEmpty(form.message)) {
+      message = `メッセージを入力してください`
+      result = false
+    }
 
-        setSuccess(true)
-        setFetching(false)
-      } catch (e) {
-        console.warn(e)
-        setErrorMessage('送信に失敗しました')
+    return { result, message }
+  }, [form, sections])
+
+  const onSubmit = useCallback(async () => {
+    try {
+      if (preview || !onSend) return
+      setFetching(true)
+      setOpenModal(true)
+      setErrorMessage('')
+
+      const { result, message: validateMessage } = await validate()
+      if (!result) {
+        setErrorMessage(validateMessage ?? '')
         setSuccess(false)
         setFetching(false)
+        return
       }
-    },
-    [preview, validate, onSend]
-  )
+
+      const value: { [key: string]: string } = { message: form.message }
+      const keys = sections.map((_, index) => `item${index}`)
+      keys.forEach((key) => {
+        value[key] = form[key]
+      })
+
+      await onSend(value)
+
+      setSuccess(true)
+      setFetching(false)
+    } catch (e) {
+      console.warn(e)
+      setErrorMessage('送信に失敗しました')
+      setSuccess(false)
+      setFetching(false)
+    }
+  }, [form, onSend, preview, sections, validate])
 
   return (
     <GroupContainer>
@@ -97,16 +91,25 @@ const Contact = ({ preview = false, onSend }: ComponentProps) => {
         <GroupTitle>お問い合わせ</GroupTitle>
         <Spacer size="xl" />
         <ContactList>
-          <ContactListItem label="会社名" value={companyName} onChangeText={setCompanyName} disabled={fetching || preview} />
-          <ContactListItem label="部署" value={department} onChangeText={setDepartment} disabled={fetching || preview} />
-          <ContactListItem label="名前" required={true} value={name} onChangeText={setName} disabled={fetching || preview} />
-          <ContactListItem label="メールアドレス" required={true} value={email} onChangeText={setEmail} disabled={fetching || preview} />
-          <ContactListItem label="電話番号" required={true} value={phoneNumber} onChangeText={setPhoneNumber} disabled={fetching || preview} />
+          {sections.map((section, index) => {
+            return (
+              <ContactListItem
+                key={index}
+                label={section.fields.label.value}
+                required={true}
+                value={form[`item${index}`] || ''}
+                onChangeText={(text) => onChangeFormData(`item${index}`, text)}
+                disabled={fetching || preview}
+              />
+            )
+          })}
+
+          {/* TODO: 必須項目どうしようか.... */}
           <ContactListItem
             label="メッセージ"
             required={true}
-            value={message}
-            onChangeText={setMessage}
+            value={form.message}
+            onChangeText={(text) => onChangeFormData('message', text)}
             multiple={true}
             rows={6}
             disabled={fetching || preview}
@@ -114,7 +117,7 @@ const Contact = ({ preview = false, onSend }: ComponentProps) => {
         </ContactList>
         <Spacer size="xl" />
 
-        <FilledButton text="送信する" size="l" onClick={() => onSubmit({ companyName, department, email, message, name, phoneNumber })} disabled={fetching} />
+        <FilledButton text="送信する" size="l" onClick={onSubmit} disabled={fetching} />
       </GroupInner>
 
       <ContactFetchModal open={openModal} onClose={() => setOpenModal(false)} fetching={fetching} success={success} error={errorMessage} />
