@@ -34,7 +34,7 @@ export declare type WrappedComponentProps = {
     push?: (internal: boolean, href: string) => void;
     paths?: string[];
     preview?: boolean;
-    onSend?: (value: CreateContact) => Promise<void>;
+    onSend?: (values: CreateContact) => Promise<void>;
 };
 export declare type Contact = {
     id: string;
@@ -48,6 +48,8 @@ export declare type Contact = {
     updatedAt: Date;
 };
 export declare type CreateContact = {
-    [key: string]: string;
-};
+    label: string;
+    value: string;
+    order: number;
+}[];
 //# sourceMappingURL=props.d.ts.map
