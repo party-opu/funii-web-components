@@ -47,5 +47,7 @@ export declare type Contact = {
     createdAt: Date;
     updatedAt: Date;
 };
-export declare type CreateContact = Omit<Contact, 'id' | 'createdAt' | 'updatedAt'>;
+export declare type CreateContact = {
+    [key: string]: string;
+};
 //# sourceMappingURL=props.d.ts.map
