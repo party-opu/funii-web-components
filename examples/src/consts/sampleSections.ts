@@ -93,6 +93,19 @@ export const imageSections2: Section[] = [
 export const headerSections: Section[] = [
   {
     fields: {
+      imageURL: {
+        label: 'イメージ',
+        order: 10,
+        type: 'image',
+        value: 'https://www.nintendo.co.jp/switch/ampna/material/img/common/logo_footer.png',
+        linkType: 'internal',
+        internalLink: null,
+        externalLink: null,
+      },
+    },
+  },
+  {
+    fields: {
       text: {
         label: 'テキスト',
         order: 10,
