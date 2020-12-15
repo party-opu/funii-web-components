@@ -67,13 +67,14 @@ const Contact = ({ sections, preview = false, onSend }: ComponentProps) => {
         return
       }
 
-      const value: { [key: string]: string } = { message: form.message }
-      const keys = sections.map((_, index) => `item${index}`)
-      keys.forEach((key) => {
-        value[key] = form[key]
+      const values = sections.map((section, index) => {
+        const key = `item${index}`
+        return { label: section.fields.label.value, value: form[key], order: index * 10 }
       })
 
-      await onSend(value)
+      values.push({ label: 'メッセージ', value: form.message, order: sections.length * 10 })
+
+      await onSend(values)
 
       setSuccess(true)
       setFetching(false)

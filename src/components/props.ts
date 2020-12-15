@@ -37,7 +37,7 @@ export type WrappedComponentProps = {
   push?: (internal: boolean, href: string) => void // routing
   paths?: string[] // enabled routing paths
   preview?: boolean
-  onSend?: (value: CreateContact) => Promise<void>
+  onSend?: (values: CreateContact) => Promise<void>
 }
 
 export type Contact = {
@@ -53,5 +53,7 @@ export type Contact = {
 }
 
 export type CreateContact = {
-  [key: string]: string
-}
+  label: string
+  value: string
+  order: number
+}[]
