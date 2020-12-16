@@ -4,7 +4,6 @@ import { useRouting } from '../hooks'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
-import GroupTitle from '../../core/groupTitle'
 import BorderList from '../../core/borderList'
 import BorderListItem from '../../core/borderListItem'
 
@@ -14,7 +13,6 @@ const Table = ({ sections, push, paths = [] }: ComponentProps) => {
   return (
     <GroupContainer>
       <GroupInner>
-        <GroupTitle>会社概要</GroupTitle>
         <Spacer size="xl" />
         {sections.map((section, index) => (
           <BorderList key={`table-item-${index}`}>
