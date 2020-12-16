@@ -345,7 +345,16 @@ export const tableSections: Section[] = [
   {
     fields: {
       label: {
-        label: '会社名',
+        label: 'ラベル',
+        order: 10,
+        type: 'text',
+        value: '会社名',
+        linkType: 'internal',
+        internalLink: null,
+        externalLink: null,
+      },
+      value: {
+        label: 'バリュー',
         order: 10,
         type: 'text',
         value: 'funii inc',
@@ -358,7 +367,16 @@ export const tableSections: Section[] = [
   {
     fields: {
       label: {
-        label: '代表者',
+        label: 'ラベル',
+        order: 10,
+        type: 'text',
+        value: '代表者',
+        linkType: 'internal',
+        internalLink: null,
+        externalLink: null,
+      },
+      value: {
+        label: 'バリュー',
         order: 10,
         type: 'text',
         value: '栗野　耕作',
@@ -371,7 +389,16 @@ export const tableSections: Section[] = [
   {
     fields: {
       label: {
-        label: '設立',
+        label: 'ラベル',
+        order: 10,
+        type: 'text',
+        value: '設立',
+        linkType: 'internal',
+        internalLink: null,
+        externalLink: null,
+      },
+      value: {
+        label: 'バリュー',
         order: 10,
         type: 'text',
         value: '2020年10月1日',
