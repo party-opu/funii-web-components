@@ -5,7 +5,6 @@ import { useRouting } from '../hooks'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
-import GroupTitle from '../../core/groupTitle'
 
 const Mission = ({ sections, push, paths = [] }: ComponentProps) => {
   const onClick = useRouting(push)
@@ -13,7 +12,6 @@ const Mission = ({ sections, push, paths = [] }: ComponentProps) => {
   return (
     <GroupContainer>
       <GroupInner>
-        <GroupTitle>ミッション</GroupTitle>
         <Spacer size="xl" />
         {sections.map((section, index) => (
           <React.Fragment key={`mission-${index}`}>

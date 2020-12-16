@@ -5,7 +5,6 @@ import { useRouting } from '../hooks'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
-import GroupTitle from '../../core/groupTitle'
 import ResponsiveList from '../../core/responsiveList'
 import ResponsiveListItem from '../../core/responsiveListItem'
 
@@ -15,7 +14,6 @@ const Service = ({ sections, push, paths = [] }: ComponentProps) => {
   return (
     <GroupContainer>
       <GroupInner>
-        <GroupTitle>サービス</GroupTitle>
         <Spacer size="xl" />
         <ResponsiveList>
           {sections.map((section, index) => (
