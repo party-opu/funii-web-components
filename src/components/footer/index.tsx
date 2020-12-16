@@ -34,6 +34,7 @@ const Root = styled.footer`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: 60px;
 `
 
 const Nav = styled.nav`
