@@ -24,9 +24,6 @@ const Footer = ({ sections, push, paths = [] }: ComponentProps) => {
             ))}
           </List>
         </ListWrapper>
-        <Spacer size="xxl" />
-        <CopyrightText>Copyright ©︎ 2020 xxx inc. All Rights Reserved.</CopyrightText>
-        <Spacer size="l" />
       </Nav>
     </Root>
   )
