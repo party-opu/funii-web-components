@@ -9,7 +9,7 @@ export declare const footerSections: Section[];
 export declare const carouselSections: Section[];
 export declare const missionSections: Section[];
 export declare const serviceSections: Section[];
-export declare const companySections: Section[];
+export declare const tableSections: Section[];
 export declare const memberSections: Section[];
 export declare const contactSections: Section[];
 //# sourceMappingURL=sampleSections.d.ts.map

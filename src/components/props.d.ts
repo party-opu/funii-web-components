@@ -38,7 +38,7 @@ export declare type WrappedComponentProps = {
 };
 export declare type Contact = {
     id: string;
-    companyName: string | null;
+    tableName: string | null;
     department: string | null;
     name: string;
     email: string;
