@@ -12,4 +12,5 @@ export declare const serviceSections: Section[];
 export declare const tableSections: Section[];
 export declare const memberSections: Section[];
 export declare const contactSections: Section[];
+export declare const spaceSections: Section[];
 //# sourceMappingURL=sampleSections.d.ts.map
