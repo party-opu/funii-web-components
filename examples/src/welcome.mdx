@@ -11,7 +11,7 @@ import {
   carouselSections,
   missionSections,
   serviceSections,
-  companySections,
+  tableSections,
   memberSections,
   contactSections,
 } from './consts/sampleSections'
@@ -19,19 +19,19 @@ import Component from '../../src'
 
 <Heading>BaseComponent</Heading>
 
-<Spacer size='xxl' />
+<Spacer size="xxl" />
 
 <SubHeading>Text</SubHeading>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 <ComponentArea>
-  <Component type='text' sections={textSections} />
-  <Component type='text' sections={textSections2} />
-  <Component type='text' sections={textSections3} />
+  <Component type="text" sections={textSections} />
+  <Component type="text" sections={textSections2} />
+  <Component type="text" sections={textSections3} />
 </ComponentArea>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 ```jsx
 import React from 'react'
@@ -39,28 +39,28 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type='text' sections={sections} />
-    <Component type='text' sections={sections2} /> // link text
-    <Component type='text' sections={sections3} /> // custom styling text
+    <Component type="text" sections={sections} />
+    <Component type="text" sections={sections2} /> // link text
+    <Component type="text" sections={sections3} /> // custom styling text
   </React.Fragment>
 )
 
 export default Page
 ```
 
-<Spacer size='xxl' />
+<Spacer size="xxl" />
 
 <SubHeading>Image</SubHeading>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 <ComponentArea>
-  <Component type='image' sections={imageSections} />
-  <Spacer size='s' />
-  <Component type='image' sections={imageSections2} />
+  <Component type="image" sections={imageSections} />
+  <Spacer size="s" />
+  <Component type="image" sections={imageSections2} />
 </ComponentArea>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 ```jsx
 import React from 'react'
@@ -68,25 +68,25 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type='text' sections={sections} />
-    <Component type='text' sections={sections2} /> // link and custom styling image
+    <Component type="text" sections={sections} />
+    <Component type="text" sections={sections2} /> // link and custom styling image
   </React.Fragment>
 )
 
 export default Page
 ```
 
-<Spacer size='xxl' />
+<Spacer size="xxl" />
 
 <SubHeading>Header</SubHeading>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 <ComponentArea>
-  <Component type='header' sections={headerSections} />
+  <Component type="header" sections={headerSections} />
 </ComponentArea>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 ```jsx
 import React from 'react'
@@ -94,24 +94,24 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type='header' sections={sections} />
+    <Component type="header" sections={sections} />
   </React.Fragment>
 )
 
 export default Page
 ```
 
-<Spacer size='xxl' />
+<Spacer size="xxl" />
 
 <SubHeading>Footer</SubHeading>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 <ComponentArea>
-  <Component type='footer' sections={footerSections} />
+  <Component type="footer" sections={footerSections} />
 </ComponentArea>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 ```jsx
 import React from 'react'
@@ -119,24 +119,24 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type='footer' sections={sections} />
+    <Component type="footer" sections={sections} />
   </React.Fragment>
 )
 
 export default Page
 ```
 
-<Spacer size='xxl' />
+<Spacer size="xxl" />
 
 <SubHeading>Carousel</SubHeading>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 <ComponentArea>
-  <Component type='carousel' sections={carouselSections} />
+  <Component type="carousel" sections={carouselSections} />
 </ComponentArea>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 ```jsx
 import React from 'react'
@@ -144,29 +144,29 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type='carousel' sections={sections} />
+    <Component type="carousel" sections={sections} />
   </React.Fragment>
 )
 
 export default Page
 ```
 
-<Spacer size='xxl' />
-<Spacer size='xxl' />
+<Spacer size="xxl" />
+<Spacer size="xxl" />
 
 <Heading>TemplateComponent</Heading>
 
-<Spacer size='xxl' />
+<Spacer size="xxl" />
 
 <SubHeading>Mission</SubHeading>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 <ComponentArea>
-  <Component type='mission' sections={missionSections} />
+  <Component type="mission" sections={missionSections} />
 </ComponentArea>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 ```jsx
 import React from 'react'
@@ -174,24 +174,24 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type='mission' sections={sections} />
+    <Component type="mission" sections={sections} />
   </React.Fragment>
 )
 
 export default Page
 ```
 
-<Spacer size='xxl' />
+<Spacer size="xxl" />
 
 <SubHeading>Service</SubHeading>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 <ComponentArea>
-  <Component type='service' sections={serviceSections} />
+  <Component type="service" sections={serviceSections} />
 </ComponentArea>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 ```jsx
 import React from 'react'
@@ -199,24 +199,24 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type='service' sections={sections} />
+    <Component type="service" sections={sections} />
   </React.Fragment>
 )
 
 export default Page
 ```
 
-<Spacer size='xxl' />
+<Spacer size="xxl" />
 
-<SubHeading>Company</SubHeading>
+<SubHeading>table</SubHeading>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 <ComponentArea>
-  <Component type='company' sections={companySections} />
+  <Component type="table" sections={tableSections} />
 </ComponentArea>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 ```jsx
 import React from 'react'
@@ -224,24 +224,24 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type='company' sections={sections} />
+    <Component type="table" sections={sections} />
   </React.Fragment>
 )
 
 export default Page
 ```
 
-<Spacer size='xxl' />
+<Spacer size="xxl" />
 
 <SubHeading>Member</SubHeading>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 <ComponentArea>
-  <Component type='member' sections={memberSections} />
+  <Component type="member" sections={memberSections} />
 </ComponentArea>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 ```jsx
 import React from 'react'
@@ -249,24 +249,24 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type='member' sections={sections} />
+    <Component type="member" sections={sections} />
   </React.Fragment>
 )
 
 export default Page
 ```
 
-<Spacer size='xxl' />
+<Spacer size="xxl" />
 
 <SubHeading>Contact</SubHeading>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 <ComponentArea>
-  <Component type='contact' sections={contactSections} onSend={(form) => console.info(form)} />
+  <Component type="contact" sections={contactSections} onSend={(form) => console.info(form)} />
 </ComponentArea>
 
-<Spacer size='l' />
+<Spacer size="l" />
 
 ```jsx
 import React from 'react'
@@ -274,7 +274,7 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type='contact' sections={sections} />
+    <Component type="contact" sections={sections} />
   </React.Fragment>
 )
 

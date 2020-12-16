@@ -7,7 +7,7 @@ import Header from './header'
 import Footer from './footer'
 import Mission from './mission'
 import Service from './service'
-import Company from './company'
+import Table from './table'
 import Member from './member'
 import Contact from './contact'
 
@@ -34,8 +34,8 @@ const Component = ({ type, sections, push, paths, preview = false, onSend }: Wra
     case 'service': {
       return <Service sections={sections} push={push} paths={paths} preview={preview} />
     }
-    case 'company': {
-      return <Company sections={sections} push={push} paths={paths} preview={preview} />
+    case 'table': {
+      return <Table sections={sections} push={push} paths={paths} preview={preview} />
     }
     case 'member': {
       return <Member sections={sections} push={push} paths={paths} preview={preview} />

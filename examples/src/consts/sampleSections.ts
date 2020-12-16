@@ -341,7 +341,7 @@ export const serviceSections: Section[] = [
   },
 ]
 
-export const companySections: Section[] = [
+export const tableSections: Section[] = [
   {
     fields: {
       label: {
