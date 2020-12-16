@@ -14,7 +14,7 @@ const Service = ({ sections, push, paths = [] }: ComponentProps) => {
   return (
     <GroupContainer>
       <GroupInner>
-        <Spacer size="xl" />
+        <Spacer size="m" />
         <ResponsiveList>
           {sections.map((section, index) => (
             <ResponsiveListItem key={`service-${index}`}>
@@ -30,6 +30,7 @@ const Service = ({ sections, push, paths = [] }: ComponentProps) => {
             </ResponsiveListItem>
           ))}
         </ResponsiveList>
+        <Spacer size="m" />
       </GroupInner>
     </GroupContainer>
   )

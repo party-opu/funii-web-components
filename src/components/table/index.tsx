@@ -13,12 +13,13 @@ const Table = ({ sections, push, paths = [] }: ComponentProps) => {
   return (
     <GroupContainer>
       <GroupInner>
-        <Spacer size="xl" />
+        <Spacer size="m" />
         {sections.map((section, index) => (
           <BorderList key={`table-item-${index}`}>
             <BorderListItem label={section.fields.label.value} value={section.fields.value.value} onClick={() => onClick(section.fields.value, paths)} />
           </BorderList>
         ))}
+        <Spacer size="m" />
       </GroupInner>
     </GroupContainer>
   )
