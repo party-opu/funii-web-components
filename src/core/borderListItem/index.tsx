@@ -19,7 +19,6 @@ const BorderListItem: React.FC<BorderListItemProps> = ({ label, value, children,
         {value && <ValueText>{value}</ValueText>}
         {children}
       </Inner>
-      <Border />
     </ListItem>
   )
 }
@@ -74,21 +73,6 @@ ValueText.defaultProps = {
   theme: {
     foregrounds: {
       primary: '#404040',
-    },
-  },
-}
-
-const Border = styled.div`
-  width: 100%;
-  border-style: solid;
-  border-bottom-color: ${(props) => props.color ?? props.theme.foregrounds.separator};
-  border-bottom-width: 1px;
-`
-
-Border.defaultProps = {
-  theme: {
-    foregrounds: {
-      separator: '#d5d5d5',
     },
   },
 }

@@ -43,6 +43,9 @@ const Component = ({ type, sections, push, paths, preview = false, onSend }: Wra
     case 'contact': {
       return <Contact sections={sections} preview={preview} onSend={onSend} />
     }
+    case 'space': {
+      return <Text sections={sections} push={push} paths={paths} preview={preview} />
+    }
     default: {
       return null
     }
