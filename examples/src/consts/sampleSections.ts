@@ -561,3 +561,19 @@ export const contactSections: Section[] = [
     },
   },
 ]
+
+export const spaceSections: Section[] = [
+  {
+    fields: {
+      text: {
+        label: 'スペース',
+        order: 10,
+        type: 'text',
+        value: '',
+        linkType: 'internal',
+        internalLink: null,
+        externalLink: null,
+      },
+    },
+  },
+]

@@ -14,6 +14,7 @@ import {
   tableSections,
   memberSections,
   contactSections,
+  spaceSections,
 } from './consts/sampleSections'
 import Component from '../../src'
 
@@ -275,6 +276,31 @@ import Component from '@party-opu/funii-web-components'
 const Page = () => (
   <React.Fragment>
     <Component type="contact" sections={sections} />
+  </React.Fragment>
+)
+
+export default Page
+```
+
+<Spacer size="xxl" />
+
+<SubHeading>Space</SubHeading>
+
+<Spacer size="l" />
+
+<ComponentArea>
+  <Component type="space" sections={spaceSections} onSend={(form) => console.info(form)} />
+</ComponentArea>
+
+<Spacer size="l" />
+
+```jsx
+import React from 'react'
+import Component from '@party-opu/funii-web-components'
+
+const Page = () => (
+  <React.Fragment>
+    <Component type="space" sections={sections} />
   </React.Fragment>
 )
 
