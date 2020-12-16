@@ -31,7 +31,8 @@ const Wrapper = styled.div`
 
 const BaseText = styled.p`
   width: 100%;
-  font-size: 16px;
+  font-size: 18px;
+  line-height: 1.5;
   color: ${(props) => props.theme.foregrounds.primary};
   white-space: pre-wrap;
 
