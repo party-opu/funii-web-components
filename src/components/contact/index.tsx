@@ -88,7 +88,7 @@ const Contact = ({ sections, preview = false, onSend }: ComponentProps) => {
   return (
     <GroupContainer>
       <GroupInner>
-        <Spacer size="xl" />
+        <Spacer size="m" />
         <ContactList>
           {sections.map((section, index) => {
             return (
@@ -117,6 +117,7 @@ const Contact = ({ sections, preview = false, onSend }: ComponentProps) => {
         <Spacer size="xl" />
 
         <FilledButton text="送信する" size="l" onClick={onSubmit} disabled={fetching} />
+        <Spacer size="m" />
       </GroupInner>
 
       <ContactFetchModal open={openModal} onClose={() => setOpenModal(false)} fetching={fetching} success={success} error={errorMessage} />

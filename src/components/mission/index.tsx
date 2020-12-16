@@ -12,7 +12,7 @@ const Mission = ({ sections, push, paths = [] }: ComponentProps) => {
   return (
     <GroupContainer>
       <GroupInner>
-        <Spacer size="xl" />
+        <Spacer size="m" />
         {sections.map((section, index) => (
           <React.Fragment key={`mission-${index}`}>
             <MissionText onClick={() => onClick(section.fields.title, paths)}>{section.fields.title.value}</MissionText>
@@ -20,6 +20,7 @@ const Mission = ({ sections, push, paths = [] }: ComponentProps) => {
             <MissionDetailText onClick={() => onClick(section.fields.description, paths)}>{section.fields.description.value}</MissionDetailText>
           </React.Fragment>
         ))}
+        <Spacer size="m" />
       </GroupInner>
     </GroupContainer>
   )
