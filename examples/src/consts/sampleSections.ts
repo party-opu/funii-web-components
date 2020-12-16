@@ -344,7 +344,7 @@ export const serviceSections: Section[] = [
 export const companySections: Section[] = [
   {
     fields: {
-      title: {
+      label: {
         label: '会社名',
         order: 10,
         type: 'text',
@@ -353,29 +353,28 @@ export const companySections: Section[] = [
         internalLink: null,
         externalLink: null,
       },
-      ceoName: {
+    },
+  },
+  {
+    fields: {
+      label: {
         label: '代表者',
-        order: 20,
+        order: 10,
         type: 'text',
         value: '栗野　耕作',
         linkType: 'internal',
         internalLink: null,
         externalLink: null,
       },
-      foundationDate: {
-        label: '設　立',
-        order: 30,
+    },
+  },
+  {
+    fields: {
+      label: {
+        label: '設立',
+        order: 10,
         type: 'text',
         value: '2020年10月1日',
-        linkType: 'internal',
-        internalLink: null,
-        externalLink: null,
-      },
-      address: {
-        label: '住　所',
-        order: 40,
-        type: 'text',
-        value: '〒103-0026 東京都中央区日本橋兜町18-5 日本橋兜町ビル 2F',
         linkType: 'internal',
         internalLink: null,
         externalLink: null,

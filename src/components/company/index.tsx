@@ -17,10 +17,8 @@ const Company = ({ sections, push, paths = [] }: ComponentProps) => {
         <GroupTitle>会社概要</GroupTitle>
         <Spacer size="xl" />
         {sections.map((section, index) => (
-          <BorderList key={`company-list-${index}`}>
-            {Object.entries(section.fields).map(([, item], index) => (
-              <BorderListItem key={`company-list-item-${index}`} label={item.label} value={item.value} onClick={() => onClick(item, paths)} />
-            ))}
+          <BorderList key={`company-item-${index}`}>
+            <BorderListItem label={section.fields.label.label} value={section.fields.label.value} onClick={() => onClick(section.fields.label, paths)} />
           </BorderList>
         ))}
       </GroupInner>
