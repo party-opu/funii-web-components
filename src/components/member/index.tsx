@@ -5,7 +5,6 @@ import { useRouting } from '../hooks'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
-import GroupTitle from '../../core/groupTitle'
 import ResponsiveList from '../../core/responsiveList'
 import ResponsiveListItem from '../../core/responsiveListItem'
 import Avatar from '../../core/avatar'
@@ -16,7 +15,6 @@ const Member = ({ sections, push, paths = [] }: ComponentProps) => {
   return (
     <GroupContainer>
       <GroupInner>
-        <GroupTitle>メンバー</GroupTitle>
         <Spacer size="xl" />
         <ResponsiveList>
           {sections.map((section, index) => (

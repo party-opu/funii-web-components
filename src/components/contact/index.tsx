@@ -5,7 +5,6 @@ import isEmpty from 'validator/lib/isEmpty'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
-import GroupTitle from '../../core/groupTitle'
 import FilledButton from '../../core/filledButton'
 import ContactList from './contactList'
 import ContactListItem from './contactListItem'
@@ -89,7 +88,6 @@ const Contact = ({ sections, preview = false, onSend }: ComponentProps) => {
   return (
     <GroupContainer>
       <GroupInner>
-        <GroupTitle>お問い合わせ</GroupTitle>
         <Spacer size="xl" />
         <ContactList>
           {sections.map((section, index) => {
