@@ -41,7 +41,6 @@ const Nav = styled.nav`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1080px;
 `
 
 // const Logo = styled.img`
@@ -66,7 +65,11 @@ const List = styled.ul`
   width: 100%;
 `
 
-const ListItem = styled.li``
+const ListItem = styled.li`
+  &[data-existlink='true'] {
+    cursor: pointer;
+  }
+`
 
 const ListItemText = styled.p`
   text-decoration: none;
