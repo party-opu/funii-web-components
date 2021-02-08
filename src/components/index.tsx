@@ -11,6 +11,7 @@ import Table from './table'
 import Member from './member'
 import Contact from './contact'
 
+// FIXME: type,sectionsを廃止し、nodeを渡すように変更する。
 const Component = ({ type, sections, push, paths, preview = false, onSend }: WrappedComponentProps) => {
   switch (type) {
     case 'text': {
