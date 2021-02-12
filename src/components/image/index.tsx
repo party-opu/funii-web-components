@@ -47,21 +47,14 @@ const Image = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   )
 
   const useIsDesktop = () => {
-    let isDesktop: boolean
-    isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
-    if (artboardSize && artboardSize === 'desktop') {
-      isDesktop = true
-    }
-    return isDesktop
+    const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'desktop' ? true : false) : isDesktop
   }
   const useIsTablet = () => {
-    let isTablet: boolean
-    isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH, maxWidth: DESKTOP_MIN_WIDTH - 1 })
-    if (artboardSize && artboardSize === 'tablet') {
-      isTablet = true
-    }
-    return isTablet
+    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH, maxWidth: DESKTOP_MIN_WIDTH - 1 })
+    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
   }
+
   const isDesktop = useIsDesktop()
   const isTablet = useIsTablet()
 
