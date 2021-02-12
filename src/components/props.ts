@@ -51,9 +51,8 @@ export interface Image extends BaseNode {
 export type ImageSizeType = 'percentage' | 'pixel'
 
 export type StyleMode = 'common' | 'responsive'
-export const DESKTOP_MIN_WIDTH = 992
-export const TABLET_MIN_WIDTH = 768
-export const MOBILE_MIN_WIDTH = 500
+export const DESKTOP_MIN_WIDTH = 1200
+export const TABLET_MIN_WIDTH = 700
 
 // Text
 // --------------------------------
