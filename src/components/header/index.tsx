@@ -5,10 +5,11 @@ import Spacer from '../../core/spacer'
 import Hidden from '../../core/hidden'
 import IconButton from '../../core/iconButton'
 import Drawer from '../../core/drawer'
-import { ComponentProps } from '../props'
+import { ComponentProps, ComponentSet } from '../props'
 import { useRouting, useExistLink } from '../hooks'
 
-const PCMenu = ({ sections, push, paths = [] }: ComponentProps) => {
+const PCMenu = ({ node, push, paths = [] }: ComponentProps) => {
+  const componentSet = node as ComponentSet
   const onClick = useRouting(push)
   const onCheckExistLink = useExistLink()
 
@@ -16,7 +17,7 @@ const PCMenu = ({ sections, push, paths = [] }: ComponentProps) => {
     <Nav>
       <ListWrapper>
         <List>
-          {sections.map((section, index) => {
+          {componentSet.sections.map((section, index) => {
             if (section.fields.text) {
               return (
                 <React.Fragment key={index}>
@@ -59,7 +60,8 @@ const SMMenu = ({ onOpen }: SMMenuProps) => {
   )
 }
 
-const Header = ({ sections, push, paths = [] }: ComponentProps) => {
+const Header = ({ node, push, paths = [] }: ComponentProps) => {
+  const componentSet = node as ComponentSet
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
   const onClick = useRouting(push)
   const onCheckExistLink = useExistLink()
@@ -67,14 +69,14 @@ const Header = ({ sections, push, paths = [] }: ComponentProps) => {
   return (
     <Root>
       <Hidden smUp={false}>
-        <PCMenu sections={sections} push={push} paths={paths} />
+        <PCMenu node={node} push={push} paths={paths} />
       </Hidden>
       <Hidden smUp={true}>
         <SMMenu onOpen={() => setOpenDrawer(true)} />
         <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
           <DrawerInner>
             <List>
-              {sections.map((section, index) => {
+              {componentSet.sections.map((section, index) => {
                 if (section.fields.text) {
                   return (
                     <React.Fragment key={index}>

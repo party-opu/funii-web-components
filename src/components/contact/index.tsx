@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { ComponentProps } from '../props'
+import { ComponentProps, ComponentSet } from '../props'
 import isEmpty from 'validator/lib/isEmpty'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
@@ -18,7 +18,8 @@ const initialForm: Form = {
   message: '',
 }
 
-const Contact = ({ sections, preview = false, onSend }: ComponentProps) => {
+const Contact = ({ node, preview = false, onSend }: ComponentProps) => {
+  const componentSet = node as ComponentSet
   const [fetching, setFetching] = useState<boolean>(false)
   const [success, setSuccess] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string>('')
@@ -31,13 +32,13 @@ const Contact = ({ sections, preview = false, onSend }: ComponentProps) => {
   }, [])
 
   const validate = useCallback(async () => {
-    const keys = sections.map((_, index) => `item${index}`)
+    const keys = componentSet.sections.map((_, index) => `item${index}`)
 
     let result = true
     let message = ''
     keys.forEach((key, index) => {
       if (isEmpty(message) && isEmpty(form[key] ?? '')) {
-        const label = sections[index].fields.label.value
+        const label = componentSet.sections[index].fields.label.value
         message = `${label}を入力してください`
         result = false
       }
@@ -49,7 +50,7 @@ const Contact = ({ sections, preview = false, onSend }: ComponentProps) => {
     }
 
     return { result, message }
-  }, [form, sections])
+  }, [componentSet, form])
 
   const onSubmit = useCallback(async () => {
     try {
@@ -66,12 +67,12 @@ const Contact = ({ sections, preview = false, onSend }: ComponentProps) => {
         return
       }
 
-      const values = sections.map((section, index) => {
+      const values = componentSet.sections.map((section, index) => {
         const key = `item${index}`
         return { label: section.fields.label.value, value: form[key], order: index * 10 }
       })
 
-      values.push({ label: 'メッセージ', value: form.message, order: sections.length * 10 })
+      values.push({ label: 'メッセージ', value: form.message, order: componentSet.sections.length * 10 })
 
       await onSend(values)
 
@@ -83,14 +84,14 @@ const Contact = ({ sections, preview = false, onSend }: ComponentProps) => {
       setSuccess(false)
       setFetching(false)
     }
-  }, [form, onSend, preview, sections, validate])
+  }, [componentSet, form, onSend, preview, validate])
 
   return (
     <GroupContainer>
       <GroupInner>
         <Spacer size="m" />
         <ContactList>
-          {sections.map((section, index) => {
+          {componentSet.sections.map((section, index) => {
             return (
               <ContactListItem
                 key={index}

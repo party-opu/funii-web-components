@@ -1,19 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ComponentProps } from '../props'
+import { ComponentProps, ComponentSet } from '../props'
 import { useRouting } from '../hooks'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
 
-const Mission = ({ sections, push, paths = [] }: ComponentProps) => {
+const Mission = ({ node, push, paths = [] }: ComponentProps) => {
+  const componentSet = node as ComponentSet
   const onClick = useRouting(push)
 
   return (
     <GroupContainer>
       <GroupInner>
         <Spacer size="m" />
-        {sections.map((section, index) => (
+        {componentSet.sections.map((section, index) => (
           <React.Fragment key={`mission-${index}`}>
             <MissionText onClick={() => onClick(section.fields.title, paths)}>{section.fields.title.value}</MissionText>
             <Spacer size="xl" />

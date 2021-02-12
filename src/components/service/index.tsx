@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ComponentProps } from '../props'
+import { ComponentProps, ComponentSet } from '../props'
 import { useRouting } from '../hooks'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
@@ -8,7 +8,8 @@ import GroupInner from '../../core/groupInner'
 import ResponsiveList from '../../core/responsiveList'
 import ResponsiveListItem from '../../core/responsiveListItem'
 
-const Service = ({ sections, push, paths = [] }: ComponentProps) => {
+const Service = ({ node, push, paths = [] }: ComponentProps) => {
+  const componentSet = node as ComponentSet
   const onClick = useRouting(push)
 
   return (
@@ -16,7 +17,7 @@ const Service = ({ sections, push, paths = [] }: ComponentProps) => {
       <GroupInner>
         <Spacer size="m" />
         <ResponsiveList>
-          {sections.map((section, index) => (
+          {componentSet.sections.map((section, index) => (
             <ResponsiveListItem key={`service-${index}`}>
               <ServiceRoot>
                 <Image src={section.fields.imageURL.value} onClick={() => onClick(section.fields.imageURL, paths)} />
