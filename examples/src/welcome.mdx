@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 import Layout, { ComponentArea, Spacer, Heading, SubHeading } from './layout'
 import {
+  frame,
+} from './consts/layouts'
+import {
   text,
   text2,
   text3,
@@ -19,6 +22,36 @@ import {
   space,
 } from './consts/componentSets'
 import Component from '../../src'
+
+<Heading>Layout</Heading>
+
+<Spacer size="xxl" />
+
+<SubHeading>Frame</SubHeading>
+
+<Spacer size="l" />
+
+<ComponentArea>
+  <Component node={frame} />
+</ComponentArea>
+
+<Spacer size="l" />
+
+```jsx
+import React from 'react'
+import Component from '@party-opu/funii-web-components'
+
+const Page = () => (
+  <React.Fragment>
+    <Component node={frame} />
+  </React.Fragment>
+)
+
+export default Page
+```
+
+<Spacer size="xxl" />
+<Spacer size="xxl" />
 
 <Heading>BasicNode</Heading>
 
