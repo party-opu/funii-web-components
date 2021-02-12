@@ -6,6 +6,7 @@ export const text: Node = {
   order: 10,
   type: 'text',
   value: 'hello world',
+  styleMode: 'common',
   style: {
     color: '#404040',
     fontSize: 16,
@@ -21,6 +22,7 @@ export const text2: Node = {
   order: 10,
   type: 'text',
   value: 'link text',
+  styleMode: 'common',
   style: {
     color: '#404040',
     fontSize: 16,
@@ -39,6 +41,7 @@ export const text3: Node = {
   linkType: 'internal',
   internalLink: null,
   externalLink: null,
+  styleMode: 'common',
   style: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -53,6 +56,7 @@ export const image: Node = {
   type: 'image',
   imageURL: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
   imageSizeType: 'percentage',
+  styleMode: 'common',
   style: {
     width: '100%',
     height: 'auto',
@@ -79,6 +83,7 @@ export const image2: Node = {
   type: 'image',
   imageURL: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
   imageSizeType: 'pixel',
+  styleMode: 'common',
   style: {
     width: 300,
     height: 300,

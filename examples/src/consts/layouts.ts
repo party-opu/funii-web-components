@@ -24,6 +24,7 @@ export const frame: Node = {
       type: 'image',
       imageURL: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
       imageSizeType: 'percentage',
+      styleMode: 'common',
       style: {
         width: '100%',
         height: 'auto',
@@ -49,6 +50,7 @@ export const frame: Node = {
       type: 'image',
       imageURL: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
       imageSizeType: 'percentage',
+      styleMode: 'common',
       style: {
         width: '100%',
         height: 'auto',
@@ -74,6 +76,7 @@ export const frame: Node = {
       type: 'image',
       imageURL: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
       imageSizeType: 'percentage',
+      styleMode: 'common',
       style: {
         width: '100%',
         height: 'auto',

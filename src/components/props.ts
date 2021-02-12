@@ -41,8 +41,8 @@ export interface Image extends BaseNode {
   styleMb?: React.CSSProperties
   styleTb?: React.CSSProperties
   containerStyle: React.CSSProperties
-  containerStyleTb: React.CSSProperties
-  containerStyleMb: React.CSSProperties
+  containerStyleMb?: React.CSSProperties
+  containerStyleTb?: React.CSSProperties
   imageSizeType: ImageSizeType
   externalLink: string | null
   internalLink: string | null
