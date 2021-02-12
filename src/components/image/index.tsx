@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
-import { ComponentProps, Image as ImageNode } from '../props'
-import MediaQuery from 'react-responsive'
+import { ComponentProps, Image as ImageNode, DESKTOP_MIN_WIDTH, TABLET_MAX_WIDTH, TABLET_MIN_WIDTH } from '../props'
+import { useMediaQuery } from 'react-responsive'
 
 const Image = ({ node, push, paths = [] }: ComponentProps) => {
   const imageNode = node as ImageNode
@@ -46,39 +46,19 @@ const Image = ({ node, push, paths = [] }: ComponentProps) => {
     [paths]
   )
 
+  const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
+  const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH, maxWidth: TABLET_MAX_WIDTH })
+
   return (
     <React.Fragment>
-      <MediaQuery query="(min-width: 768px)">
-        <Wrapper style={imageNode.containerStyle ? { ...imageNode.containerStyle } : {}}>
-          <BaseImage
-            src={imageNode.imageURL}
-            data-existlink={onCheckExistLink(imageNode)}
-            style={imageNode.style ? { ...imageNode.style } : {}}
-            onClick={() => onClick(imageNode)}
-          />
-        </Wrapper>
-      </MediaQuery>
-      <MediaQuery query="(max-width: 768px)">
-        <Wrapper style={imageNode.containerStyleTb ? { ...imageNode.containerStyle } : {}}>
-          <BaseImage
-            src={imageNode.imageURL}
-            data-existlink={onCheckExistLink(imageNode)}
-            style={imageNode.style ? { ...imageNode.style } : {}}
-            onClick={() => onClick(imageNode)}
-          />
-        </Wrapper>
-      </MediaQuery>
-
-      <MediaQuery query="(max-width: 500px)">
-        <Wrapper style={imageNode.containerStyleMb ? { ...imageNode.containerStyle } : {}}>
-          <BaseImage
-            src={imageNode.imageURL}
-            data-existlink={onCheckExistLink(imageNode)}
-            style={imageNode.style ? { ...imageNode.style } : {}}
-            onClick={() => onClick(imageNode)}
-          />
-        </Wrapper>
-      </MediaQuery>
+      <Wrapper style={isDesktop ? imageNode.containerStyle ?? {} : isTablet ? imageNode?.containerStyleTb ?? {} : imageNode.containerStyleMb ?? {}}>
+        <BaseImage
+          src={imageNode.imageURL}
+          data-existlink={onCheckExistLink(imageNode)}
+          style={isDesktop ? imageNode.style ?? {} : isTablet ? imageNode?.styleTb ?? {} : imageNode.styleMb ?? {}}
+          onClick={() => onClick(imageNode)}
+        />
+      </Wrapper>
     </React.Fragment>
   )
 }

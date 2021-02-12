@@ -48,9 +48,12 @@ export interface Image extends BaseNode {
   internalLink: string | null
   linkType: LinkType
 }
-export type StyleMode = 'common' | 'responsive'
-
 export type ImageSizeType = 'percentage' | 'pixel'
+
+export type StyleMode = 'common' | 'responsive'
+export const DESKTOP_MIN_WIDTH = 992
+export const TABLET_MAX_WIDTH = 991
+export const TABLET_MIN_WIDTH = 500
 
 // Text
 // --------------------------------
