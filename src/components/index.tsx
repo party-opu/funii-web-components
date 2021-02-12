@@ -12,7 +12,7 @@ import Table from './table'
 import Member from './member'
 import Contact from './contact'
 
-const Component = ({ node, push, paths, preview = false, onSend }: ComponentProps) => {
+const Component = ({ node, push, paths, preview = false, onSend, artboardSize }: ComponentProps) => {
   const NodeTree = useCallback(({ node, push, paths, preview, onSend }: ComponentProps) => {
     switch (node.type) {
       // Layouts
@@ -38,7 +38,7 @@ const Component = ({ node, push, paths, preview = false, onSend }: ComponentProp
         return <Text node={node} push={push} paths={paths} preview={preview} />
       }
       case 'image': {
-        return <Image node={node} push={push} paths={paths} preview={preview} />
+        return <Image node={node} push={push} paths={paths} preview={preview} artboardSize={artboardSize} />
       }
 
       // ComponentSets

@@ -7,6 +7,8 @@ export interface BaseNode {
   type: string
 }
 
+export type ArtboardSize = 'desktop' | 'tablet' | 'mobile'
+
 // ComponentSet
 // --------------------------------
 export interface ComponentSet extends BaseNode {
@@ -86,6 +88,7 @@ export type ComponentProps = {
   paths?: string[]
   preview?: boolean
   onSend?: (value: CreateContact) => Promise<void>
+  artboardSize?: ArtboardSize
 }
 
 export type Contact = {
