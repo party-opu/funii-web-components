@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { ComponentProps, Image as ImageNode, DESKTOP_MIN_WIDTH, TABLET_MIN_WIDTH } from '../props'
 import { useMediaQuery } from 'react-responsive'
 
-const Image = ({ node, push, paths = [] }: ComponentProps) => {
+const Image = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const imageNode = node as ImageNode
 
   // FIXME: useRoutingをリファクタリングして、それを利用するようにしたい。
@@ -46,8 +46,24 @@ const Image = ({ node, push, paths = [] }: ComponentProps) => {
     [paths]
   )
 
-  const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
-  const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH, maxWidth: DESKTOP_MIN_WIDTH - 1 })
+  const useIsDesktop = () => {
+    let isDesktop: boolean
+    isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
+    if (artboardSize && artboardSize === 'desktop') {
+      isDesktop = true
+    }
+    return isDesktop
+  }
+  const useIsTablet = () => {
+    let isTablet: boolean
+    isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH, maxWidth: DESKTOP_MIN_WIDTH - 1 })
+    if (artboardSize && artboardSize === 'tablet') {
+      isTablet = true
+    }
+    return isTablet
+  }
+  const isDesktop = useIsDesktop()
+  const isTablet = useIsTablet()
 
   return (
     <React.Fragment>
