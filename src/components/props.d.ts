@@ -40,9 +40,8 @@ export interface Image extends BaseNode {
 }
 export declare type ImageSizeType = 'percentage' | 'pixel';
 export declare type StyleMode = 'common' | 'responsive';
-export declare const DESKTOP_MIN_WIDTH = 992;
-export declare const TABLET_MIN_WIDTH = 768;
-export declare const MOBILE_MIN_WIDTH = 500;
+export declare const DESKTOP_MIN_WIDTH = 1200;
+export declare const TABLET_MIN_WIDTH = 700;
 export interface Text extends BaseNode {
     value: string;
     style: React.CSSProperties;
