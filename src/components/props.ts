@@ -36,23 +36,35 @@ export type LinkType = 'internal' | 'external'
 // --------------------------------
 export interface Image extends BaseNode {
   imageURL: string
+  styleMode: StyleMode
   style: React.CSSProperties
+  styleMb?: React.CSSProperties
+  styleTb?: React.CSSProperties
   containerStyle: React.CSSProperties
+  containerStyleTb: React.CSSProperties
+  containerStyleMb: React.CSSProperties
   imageSizeType: ImageSizeType
   externalLink: string | null
   internalLink: string | null
   linkType: LinkType
 }
-
 export type ImageSizeType = 'percentage' | 'pixel'
+
+export type StyleMode = 'common' | 'responsive'
+export const DESKTOP_MIN_WIDTH = 992
+export const TABLET_MAX_WIDTH = 991
+export const TABLET_MIN_WIDTH = 500
 
 // Text
 // --------------------------------
 export interface Text extends BaseNode {
   value: string
+  styleMode: StyleMode
   style: React.CSSProperties
   externalLink: string | null
   internalLink: string | null
+  styleMb?: React.CSSProperties
+  styleTb?: React.CSSProperties
   linkType: LinkType
 }
 
