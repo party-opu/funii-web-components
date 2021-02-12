@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { WrappedComponentProps } from './props';
-declare const Component: ({ type, sections, push, paths, preview, onSend }: WrappedComponentProps) => JSX.Element | null;
+import { ComponentProps } from './props';
+declare const Component: ({ node, push, paths, preview, onSend }: ComponentProps) => JSX.Element | null;
 export default Component;
 //# sourceMappingURL=index.d.ts.map
