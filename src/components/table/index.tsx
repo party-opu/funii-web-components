@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ComponentProps } from '../props'
+import { ComponentProps, ComponentSet } from '../props'
 import { useRouting } from '../hooks'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
@@ -8,19 +8,20 @@ import GroupInner from '../../core/groupInner'
 import BorderList from '../../core/borderList'
 import BorderListItem from '../../core/borderListItem'
 
-const Table = ({ sections, push, paths = [] }: ComponentProps) => {
+const Table = ({ node, push, paths = [] }: ComponentProps) => {
+  const componentSet = node as ComponentSet
   const onClick = useRouting(push)
 
   return (
     <GroupContainer>
       <GroupInner>
         <Spacer size="m" />
-        {sections.map((section, index) => (
+        {componentSet.sections.map((section, index) => (
           <BorderList key={`table-item-${index}`}>
             <BorderListItem label={section.fields.label.value} value={section.fields.value.value} onClick={() => onClick(section.fields.value, paths)} />
           </BorderList>
         ))}
-        {sections.length > 0 && <Border />}
+        {componentSet.sections.length > 0 && <Border />}
         <Spacer size="m" />
       </GroupInner>
     </GroupContainer>

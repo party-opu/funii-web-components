@@ -1,5 +1,6 @@
 import React from 'react'
-import { WrappedComponentProps } from './props'
+import { ComponentProps, Frame as FrameNode } from './props'
+import Frame, { FrameItemWrapper } from './frame'
 import Text from './text'
 import Image from './image'
 import Carousel from './carousel'
@@ -11,41 +12,62 @@ import Table from './table'
 import Member from './member'
 import Contact from './contact'
 
-// FIXME: type,sectionsを廃止し、nodeを渡すように変更する。
-const Component = ({ type, sections, push, paths, preview = false, onSend }: WrappedComponentProps) => {
-  switch (type) {
+const Component = ({ node, push, paths, preview = false, onSend }: ComponentProps) => {
+  switch (node.type) {
+    // Layouts
+    // -----------------------------
+    case 'frame': {
+      const frame = node as FrameNode
+      return (
+        <Frame node={frame}>
+          {frame.children.map((childNode) => {
+            return (
+              <FrameItemWrapper key={childNode.id}>
+                <Component node={node} push={push} paths={paths} preview={preview} />
+              </FrameItemWrapper>
+            )
+          })}
+        </Frame>
+      )
+    }
+
+    // BasicNodes
+    // -----------------------------
     case 'text': {
-      return <Text sections={sections} push={push} paths={paths} preview={preview} />
+      return <Text node={node} push={push} paths={paths} preview={preview} />
     }
     case 'image': {
-      return <Image sections={sections} push={push} paths={paths} preview={preview} />
+      return <Image node={node} push={push} paths={paths} preview={preview} />
     }
+
+    // ComponentSets
+    // -----------------------------
     case 'header': {
-      return <Header sections={sections} push={push} paths={paths} preview={preview} />
+      return <Header node={node} push={push} paths={paths} preview={preview} />
     }
     case 'footer': {
-      return <Footer sections={sections} push={push} paths={paths} preview={preview} />
+      return <Footer node={node} push={push} paths={paths} preview={preview} />
     }
     case 'carousel': {
-      return <Carousel sections={sections} push={push} paths={paths} preview={preview} />
+      return <Carousel node={node} push={push} paths={paths} preview={preview} />
     }
     case 'mission': {
-      return <Mission sections={sections} push={push} paths={paths} preview={preview} />
+      return <Mission node={node} push={push} paths={paths} preview={preview} />
     }
     case 'service': {
-      return <Service sections={sections} push={push} paths={paths} preview={preview} />
+      return <Service node={node} push={push} paths={paths} preview={preview} />
     }
     case 'table': {
-      return <Table sections={sections} push={push} paths={paths} preview={preview} />
+      return <Table node={node} push={push} paths={paths} preview={preview} />
     }
     case 'member': {
-      return <Member sections={sections} push={push} paths={paths} preview={preview} />
+      return <Member node={node} push={push} paths={paths} preview={preview} />
     }
     case 'contact': {
-      return <Contact sections={sections} preview={preview} onSend={onSend} />
+      return <Contact node={node} preview={preview} onSend={onSend} />
     }
     case 'space': {
-      return <Text sections={sections} push={push} paths={paths} preview={preview} />
+      return <Text node={node} push={push} paths={paths} preview={preview} />
     }
     default: {
       return null

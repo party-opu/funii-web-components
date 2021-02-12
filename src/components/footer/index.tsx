@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import Spacer from '../../core/spacer'
-import { ComponentProps } from '../props'
+import { ComponentProps, ComponentSet } from '../props'
 import { useRouting, useExistLink } from '../hooks'
 
-const Footer = ({ sections, push, paths = [] }: ComponentProps) => {
+const Footer = ({ node, push, paths = [] }: ComponentProps) => {
+  const componentSet = node as ComponentSet
   const onClick = useRouting(push)
   const onCheckExistLink = useExistLink()
 
@@ -13,7 +14,7 @@ const Footer = ({ sections, push, paths = [] }: ComponentProps) => {
       <Nav>
         <ListWrapper>
           <List>
-            {sections.map((section, index) => (
+            {componentSet.sections.map((section, index) => (
               <React.Fragment key={index}>
                 <Spacer layout="vertical" size="l" />
                 <ListItem data-existlink={onCheckExistLink(section.fields.text, paths)} onClick={() => onClick(section.fields.text, paths)}>

@@ -1,24 +1,26 @@
 import styled from 'styled-components'
 import Layout, { ComponentArea, Spacer, Heading, SubHeading } from './layout'
 import {
-  textSections,
-  textSections2,
-  textSections3,
-  imageSections,
-  imageSections2,
-  headerSections,
-  footerSections,
-  carouselSections,
-  missionSections,
-  serviceSections,
-  tableSections,
-  memberSections,
-  contactSections,
-  spaceSections,
-} from './consts/sampleSections'
+  text,
+  text2,
+  text3,
+  image,
+  image2,
+} from './consts/basicNodes'
+import {
+  header,
+  footer,
+  carousel,
+  mission,
+  service,
+  table,
+  member,
+  contact,
+  space,
+} from './consts/componentSets'
 import Component from '../../src'
 
-<Heading>BaseComponent</Heading>
+<Heading>BasicNode</Heading>
 
 <Spacer size="xxl" />
 
@@ -27,9 +29,9 @@ import Component from '../../src'
 <Spacer size="l" />
 
 <ComponentArea>
-  <Component type="text" sections={textSections} />
-  <Component type="text" sections={textSections2} />
-  <Component type="text" sections={textSections3} />
+  <Component node={text} />
+  <Component node={text2} />
+  <Component node={text3} />
 </ComponentArea>
 
 <Spacer size="l" />
@@ -40,9 +42,9 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type="text" sections={sections} />
-    <Component type="text" sections={sections2} /> // link text
-    <Component type="text" sections={sections3} /> // custom styling text
+    <Component node={text} />
+    <Component node={text2} /> // link text
+    <Component node={text3} /> // custom styling text
   </React.Fragment>
 )
 
@@ -56,9 +58,9 @@ export default Page
 <Spacer size="l" />
 
 <ComponentArea>
-  <Component type="image" sections={imageSections} />
+  <Component node={image} />
   <Spacer size="s" />
-  <Component type="image" sections={imageSections2} />
+  <Component node={image2} />
 </ComponentArea>
 
 <Spacer size="l" />
@@ -69,13 +71,18 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type="text" sections={sections} />
-    <Component type="text" sections={sections2} /> // link and custom styling image
+    <Component node={image} />
+    <Component node={image2} /> // link and custom styling image
   </React.Fragment>
 )
 
 export default Page
 ```
+
+<Spacer size="xxl" />
+<Spacer size="xxl" />
+
+<Heading>ComponentSet</Heading>
 
 <Spacer size="xxl" />
 
@@ -84,7 +91,7 @@ export default Page
 <Spacer size="l" />
 
 <ComponentArea>
-  <Component type="header" sections={headerSections} />
+  <Component node={header} />
 </ComponentArea>
 
 <Spacer size="l" />
@@ -95,7 +102,7 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type="header" sections={sections} />
+    <Component node={header} />
   </React.Fragment>
 )
 
@@ -109,7 +116,7 @@ export default Page
 <Spacer size="l" />
 
 <ComponentArea>
-  <Component type="footer" sections={footerSections} />
+  <Component node={footer} />
 </ComponentArea>
 
 <Spacer size="l" />
@@ -120,7 +127,7 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type="footer" sections={sections} />
+    <Component node={footer} />
   </React.Fragment>
 )
 
@@ -134,7 +141,7 @@ export default Page
 <Spacer size="l" />
 
 <ComponentArea>
-  <Component type="carousel" sections={carouselSections} />
+  <Component node={carousel} />
 </ComponentArea>
 
 <Spacer size="l" />
@@ -145,17 +152,12 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type="carousel" sections={sections} />
+    <Component node={carousel} />
   </React.Fragment>
 )
 
 export default Page
 ```
-
-<Spacer size="xxl" />
-<Spacer size="xxl" />
-
-<Heading>TemplateComponent</Heading>
 
 <Spacer size="xxl" />
 
@@ -164,7 +166,7 @@ export default Page
 <Spacer size="l" />
 
 <ComponentArea>
-  <Component type="mission" sections={missionSections} />
+  <Component node={mission} />
 </ComponentArea>
 
 <Spacer size="l" />
@@ -175,7 +177,7 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type="mission" sections={sections} />
+    <Component type="mission" node={mission} />
   </React.Fragment>
 )
 
@@ -189,7 +191,7 @@ export default Page
 <Spacer size="l" />
 
 <ComponentArea>
-  <Component type="service" sections={serviceSections} />
+  <Component node={service} />
 </ComponentArea>
 
 <Spacer size="l" />
@@ -200,7 +202,7 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type="service" sections={sections} />
+    <Component node={service} />
   </React.Fragment>
 )
 
@@ -214,7 +216,7 @@ export default Page
 <Spacer size="l" />
 
 <ComponentArea>
-  <Component type="table" sections={tableSections} />
+  <Component node={table} />
 </ComponentArea>
 
 <Spacer size="l" />
@@ -225,7 +227,7 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type="table" sections={sections} />
+    <Component node={table} />
   </React.Fragment>
 )
 
@@ -239,7 +241,7 @@ export default Page
 <Spacer size="l" />
 
 <ComponentArea>
-  <Component type="member" sections={memberSections} />
+  <Component node={member} />
 </ComponentArea>
 
 <Spacer size="l" />
@@ -250,7 +252,7 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type="member" sections={sections} />
+    <Component node={member} />
   </React.Fragment>
 )
 
@@ -264,7 +266,7 @@ export default Page
 <Spacer size="l" />
 
 <ComponentArea>
-  <Component type="contact" sections={contactSections} onSend={(form) => console.info(form)} />
+  <Component node={contact} onSend={(form) => console.info(form)} />
 </ComponentArea>
 
 <Spacer size="l" />
@@ -275,7 +277,7 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type="contact" sections={sections} />
+    <Component node={contact} onSend={(form) => console.info(form)} />
   </React.Fragment>
 )
 
@@ -289,7 +291,7 @@ export default Page
 <Spacer size="l" />
 
 <ComponentArea>
-  <Component type="space" sections={spaceSections} onSend={(form) => console.info(form)} />
+  <Component node={space} />
 </ComponentArea>
 
 <Spacer size="l" />
@@ -300,7 +302,7 @@ import Component from '@party-opu/funii-web-components'
 
 const Page = () => (
   <React.Fragment>
-    <Component type="space" sections={sections} />
+    <Component node={space} />
   </React.Fragment>
 )
 

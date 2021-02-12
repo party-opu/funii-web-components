@@ -2,7 +2,7 @@
 import React from 'react'
 import ReactCarousel from 'react-multi-carousel'
 import styled from 'styled-components'
-import { ComponentProps } from '../props'
+import { ComponentProps, ComponentSet } from '../props'
 import { useRouting } from '../hooks'
 
 const responsive = {
@@ -18,7 +18,8 @@ const responsive = {
   },
 }
 
-const Carousel = ({ sections, push, paths = [] }: ComponentProps) => {
+const Carousel = ({ node, push, paths = [] }: ComponentProps) => {
+  const componentSet = node as ComponentSet
   const onClick = useRouting(push)
 
   return (
@@ -36,7 +37,7 @@ const Carousel = ({ sections, push, paths = [] }: ComponentProps) => {
       containerClass="carousel-container"
       itemClass="image-item"
     >
-      {sections.map((section, index) => (
+      {componentSet.sections.map((section, index) => (
         <Image
           key={index}
           draggable={false}
