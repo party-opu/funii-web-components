@@ -26,19 +26,31 @@ export declare type FieldItem = {
 export declare type LinkType = 'internal' | 'external';
 export interface Image extends BaseNode {
     imageURL: string;
+    styleMode: StyleMode;
     style: React.CSSProperties;
+    styleMb?: React.CSSProperties;
+    styleTb?: React.CSSProperties;
     containerStyle: React.CSSProperties;
+    containerStyleMb?: React.CSSProperties;
+    containerStyleTb?: React.CSSProperties;
     imageSizeType: ImageSizeType;
     externalLink: string | null;
     internalLink: string | null;
     linkType: LinkType;
 }
 export declare type ImageSizeType = 'percentage' | 'pixel';
+export declare type StyleMode = 'common' | 'responsive';
+export declare const DESKTOP_MIN_WIDTH = 992;
+export declare const TABLET_MAX_WIDTH = 991;
+export declare const TABLET_MIN_WIDTH = 500;
 export interface Text extends BaseNode {
     value: string;
+    styleMode: StyleMode;
     style: React.CSSProperties;
     externalLink: string | null;
     internalLink: string | null;
+    styleMb?: React.CSSProperties;
+    styleTb?: React.CSSProperties;
     linkType: LinkType;
 }
 export declare type BasicNode = Image | Text;
