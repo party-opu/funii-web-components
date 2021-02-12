@@ -5,6 +5,7 @@ export interface BaseNode {
     order: number;
     type: string;
 }
+export declare type ArtboardSize = 'desktop' | 'tablet' | 'mobile';
 export interface ComponentSet extends BaseNode {
     sections: Section[];
 }
@@ -62,6 +63,7 @@ export declare type ComponentProps = {
     paths?: string[];
     preview?: boolean;
     onSend?: (value: CreateContact) => Promise<void>;
+    artboardSize?: ArtboardSize;
 };
 export declare type Contact = {
     id: string;
