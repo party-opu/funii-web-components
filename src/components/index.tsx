@@ -13,7 +13,7 @@ import Member from './member'
 import Contact from './contact'
 
 const Component = ({ node, push, paths, preview = false, onSend, artboardSize }: ComponentProps) => {
-  const NodeTree = useCallback(({ node, push, paths, preview, onSend }: ComponentProps) => {
+  const NodeTree = useCallback(({ node, push, paths, preview, onSend, artboardSize }: ComponentProps) => {
     switch (node.type) {
       // Layouts
       // -----------------------------
@@ -76,7 +76,7 @@ const Component = ({ node, push, paths, preview = false, onSend, artboardSize }:
     }
   }, [])
 
-  return <NodeTree node={node} push={push} paths={paths} preview={preview} onSend={onSend} />
+  return <NodeTree node={node} push={push} paths={paths} preview={preview} onSend={onSend} artboardSize={artboardSize} />
 }
 
 export default Component
