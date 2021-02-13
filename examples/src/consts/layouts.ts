@@ -67,9 +67,7 @@ export const frame: Node = {
         display: 'flex',
         justifyContent: 'center',
       },
-      linkType: 'internal',
-      internalLink: null,
-      externalLink: null,
+      actions: [],
     },
     {
       id: '2',
@@ -121,9 +119,7 @@ export const frame: Node = {
         display: 'flex',
         justifyContent: 'flex-end',
       },
-      linkType: 'internal',
-      internalLink: null,
-      externalLink: null,
+      actions: [],
     },
     {
       id: '3',
@@ -175,9 +171,7 @@ export const frame: Node = {
         display: 'flex',
         justifyContent: 'center',
       },
-      linkType: 'internal',
-      internalLink: null,
-      externalLink: null,
+      actions: [],
     },
   ],
 }

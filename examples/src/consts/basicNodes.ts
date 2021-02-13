@@ -19,9 +19,7 @@ export const text: Node = {
     color: '#404040',
     fontSize: 16,
   },
-  linkType: 'internal',
-  internalLink: null,
-  externalLink: null,
+  actions: [],
 }
 
 export const text2: Node = {
@@ -43,9 +41,13 @@ export const text2: Node = {
     color: '#404040',
     fontSize: 16,
   },
-  linkType: 'external',
-  internalLink: null,
-  externalLink: 'https://iganin.hatenablog.com/entry/2019/12/12/084419',
+  actions: [
+    {
+      trigger: 'click',
+      type: 'externalLink',
+      value: 'https://iganin.hatenablog.com/entry/2019/12/12/084419',
+    },
+  ],
 }
 
 export const text3: Node = {
@@ -54,9 +56,6 @@ export const text3: Node = {
   order: 10,
   type: 'text',
   value: 'styling text',
-  linkType: 'internal',
-  internalLink: null,
-  externalLink: null,
   styleMode: 'common',
   style: {
     fontSize: 24,
@@ -73,6 +72,7 @@ export const text3: Node = {
     fontWeight: 'bold',
     color: 'green',
   },
+  actions: [],
 }
 
 export const image: Node = {
@@ -125,9 +125,7 @@ export const image: Node = {
     display: 'flex',
     justifyContent: 'center',
   },
-  linkType: 'internal',
-  internalLink: null,
-  externalLink: null,
+  actions: [],
 }
 
 export const image2: Node = {
@@ -180,9 +178,13 @@ export const image2: Node = {
     display: 'flex',
     justifyContent: 'flex-end',
   },
-  linkType: 'external',
-  internalLink: null,
-  externalLink: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
+  actions: [
+    {
+      trigger: 'click',
+      type: 'externalLink',
+      value: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
+    },
+  ],
 }
 
 export const space: Node = {
