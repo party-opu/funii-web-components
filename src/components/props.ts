@@ -69,9 +69,18 @@ export interface Text extends BaseNode {
   linkType: LinkType
 }
 
+// Space
+// --------------------------------
+export interface Space extends BaseNode {
+  styleMode: StyleMode
+  style: React.CSSProperties
+  styleMb: React.CSSProperties
+  styleTb: React.CSSProperties
+}
+
 // BasicNode
 // --------------------------------
-export type BasicNode = Image | Text
+export type BasicNode = Image | Text | Space
 
 // Frame
 // --------------------------------

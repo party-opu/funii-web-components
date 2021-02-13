@@ -184,3 +184,23 @@ export const image2: Node = {
   internalLink: null,
   externalLink: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
 }
+
+export const space: Node = {
+  id: '1',
+  label: 'スペース',
+  order: 15,
+  type: 'space',
+  styleMode: 'common',
+  style: {
+    width: 100,
+    height: 100,
+  },
+  styleTb: {
+    width: 100,
+    height: 100,
+  },
+  styleMb: {
+    width: 100,
+    height: 100,
+  },
+}
