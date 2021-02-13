@@ -35,7 +35,7 @@ const Component = ({ node, push, paths, preview = false, onSend, artboardSize }:
       // BasicNodes
       // -----------------------------
       case 'text': {
-        return <Text node={node} push={push} paths={paths} preview={preview} />
+        return <Text node={node} push={push} paths={paths} preview={preview} artboardSize={artboardSize} />
       }
       case 'image': {
         return <Image node={node} push={push} paths={paths} preview={preview} artboardSize={artboardSize} />
