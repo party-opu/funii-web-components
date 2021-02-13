@@ -45,7 +45,10 @@ export declare const DESKTOP_MIN_WIDTH = 1200;
 export declare const TABLET_MIN_WIDTH = 700;
 export interface Text extends BaseNode {
     value: string;
+    styleMode: StyleMode;
     style: React.CSSProperties;
+    styleMb: React.CSSProperties;
+    styleTb: React.CSSProperties;
     externalLink: string | null;
     internalLink: string | null;
     linkType: LinkType;
