@@ -1,4 +1,13 @@
 /// <reference types="react" />
+export interface BaseAction {
+    trigger: 'click';
+    type: 'externalLink' | 'internalLink';
+}
+export interface LinkAction extends BaseAction {
+    type: 'externalLink' | 'internalLink';
+    value: string;
+}
+export declare type Action = LinkAction;
 export interface BaseNode {
     id: string;
     label: string;
@@ -19,12 +28,9 @@ export declare type FieldItem = {
     type: 'text' | 'image';
     value: string;
     order: number;
-    externalLink: string | null;
-    internalLink: string | null;
-    linkType: LinkType;
+    actions: Action[];
     style?: React.CSSProperties;
 };
-export declare type LinkType = 'internal' | 'external';
 export interface Image extends BaseNode {
     imageURL: string;
     styleMode: StyleMode;
@@ -35,9 +41,7 @@ export interface Image extends BaseNode {
     containerStyleMb: React.CSSProperties;
     containerStyleTb: React.CSSProperties;
     imageSizeType: ImageSizeType;
-    externalLink: string | null;
-    internalLink: string | null;
-    linkType: LinkType;
+    actions: Action[];
 }
 export declare type ImageSizeType = 'percentage' | 'pixel';
 export declare type StyleMode = 'common' | 'responsive';
@@ -49,9 +53,7 @@ export interface Text extends BaseNode {
     style: React.CSSProperties;
     styleMb: React.CSSProperties;
     styleTb: React.CSSProperties;
-    externalLink: string | null;
-    internalLink: string | null;
-    linkType: LinkType;
+    actions: Action[];
 }
 export interface Space extends BaseNode {
     styleMode: StyleMode;
