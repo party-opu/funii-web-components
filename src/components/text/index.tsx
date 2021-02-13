@@ -1,9 +1,10 @@
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
-import { ComponentProps, Text as TextNode } from '../props'
+import { ComponentProps, Text as TextNode, DESKTOP_MIN_WIDTH, TABLET_MIN_WIDTH } from '../props'
+import { useMediaQuery } from 'react-responsive'
 
-const Text = ({ node, push, paths = [] }: ComponentProps) => {
-  const textNode = node as TextNode
+const Text = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
+  const text = node as TextNode
 
   const onClick = useCallback(
     (text: TextNode) => {
@@ -42,11 +43,27 @@ const Text = ({ node, push, paths = [] }: ComponentProps) => {
     [paths]
   )
 
+  const useIsDesktop = () => {
+    const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'desktop' ? true : false) : isDesktop
+  }
+  const useIsTablet = () => {
+    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH, maxWidth: DESKTOP_MIN_WIDTH - 1 })
+    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
+  }
+
+  const isDesktop = useIsDesktop()
+  const isTablet = useIsTablet()
+
   return (
     <React.Fragment>
       <Wrapper>
-        <BaseText data-existlink={onCheckExistLink(textNode)} style={textNode.style ? { ...textNode.style } : {}} onClick={() => onClick(textNode)}>
-          {textNode.value}
+        <BaseText
+          data-existlink={onCheckExistLink(text)}
+          style={text.styleMode === 'common' ? text.style : isDesktop ? text.style : isTablet ? text.styleTb : text.styleMb}
+          onClick={() => onClick(text)}
+        >
+          {text.value}
         </BaseText>
       </Wrapper>
     </React.Fragment>
