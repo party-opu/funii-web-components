@@ -11,6 +11,14 @@ export const text: Node = {
     color: '#404040',
     fontSize: 16,
   },
+  styleTb: {
+    color: '#404040',
+    fontSize: 16,
+  },
+  styleMb: {
+    color: '#404040',
+    fontSize: 16,
+  },
   linkType: 'internal',
   internalLink: null,
   externalLink: null,
@@ -24,6 +32,14 @@ export const text2: Node = {
   value: 'link text',
   styleMode: 'common',
   style: {
+    color: '#404040',
+    fontSize: 16,
+  },
+  styleTb: {
+    color: '#404040',
+    fontSize: 16,
+  },
+  styleMb: {
     color: '#404040',
     fontSize: 16,
   },
@@ -43,6 +59,16 @@ export const text3: Node = {
   externalLink: null,
   styleMode: 'common',
   style: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'green',
+  },
+  styleTb: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'green',
+  },
+  styleMb: {
     fontSize: 24,
     fontWeight: 'bold',
     color: 'green',
