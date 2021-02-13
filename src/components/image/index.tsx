@@ -4,7 +4,7 @@ import { ComponentProps, Image as ImageNode, DESKTOP_MIN_WIDTH, TABLET_MIN_WIDTH
 import { useMediaQuery } from 'react-responsive'
 
 const Image = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
-  const imageNode = node as ImageNode
+  const image = node as ImageNode
 
   // FIXME: useRoutingをリファクタリングして、それを利用するようにしたい。
   const onClick = useCallback(
@@ -60,12 +60,16 @@ const Image = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
 
   return (
     <React.Fragment>
-      <Wrapper style={isDesktop ? imageNode.containerStyle ?? {} : isTablet ? imageNode?.containerStyleTb ?? {} : imageNode.containerStyleMb ?? {}}>
+      <Wrapper
+        style={
+          image.styleMode === 'common' ? image.containerStyle : isDesktop ? image.containerStyle : isTablet ? image.containerStyleTb : image.containerStyleMb
+        }
+      >
         <BaseImage
-          src={imageNode.imageURL}
-          data-existlink={onCheckExistLink(imageNode)}
-          style={isDesktop ? imageNode.style ?? {} : isTablet ? imageNode?.styleTb ?? {} : imageNode.styleMb ?? {}}
-          onClick={() => onClick(imageNode)}
+          src={image.imageURL}
+          data-existlink={onCheckExistLink(image)}
+          style={image.styleMode === 'common' ? image.style : isDesktop ? image.style : isTablet ? image.styleTb : image.styleMb}
+          onClick={() => onClick(image)}
         />
       </Wrapper>
     </React.Fragment>
