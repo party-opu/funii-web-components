@@ -24,7 +24,7 @@ const Component = ({ node, push, paths, preview = false, onSend, artboardSize }:
             {frame.children.map((childNode) => {
               return (
                 <FrameItemWrapper key={childNode.id}>
-                  <NodeTree node={childNode} push={push} paths={paths} preview={preview} onSend={onSend} />
+                  <NodeTree node={childNode} push={push} paths={paths} preview={preview} onSend={onSend} artboardSize={artboardSize} />
                 </FrameItemWrapper>
               )
             })}
