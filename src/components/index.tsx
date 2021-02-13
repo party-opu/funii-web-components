@@ -3,6 +3,7 @@ import { ComponentProps, Frame as FrameNode } from './props'
 import Frame, { FrameItemWrapper } from './frame'
 import Text from './text'
 import Image from './image'
+import Space from './space'
 import Carousel from './carousel'
 import Header from './header'
 import Footer from './footer'
@@ -68,7 +69,7 @@ const Component = ({ node, push, paths, preview = false, onSend, artboardSize }:
         return <Contact node={node} preview={preview} onSend={onSend} />
       }
       case 'space': {
-        return <Text node={node} push={push} paths={paths} preview={preview} />
+        return <Space node={node} preview={preview} />
       }
       default: {
         return null
