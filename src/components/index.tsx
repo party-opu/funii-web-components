@@ -41,6 +41,9 @@ const Component = ({ node, push, paths, preview = false, onSend, artboardSize }:
       case 'image': {
         return <Image node={node} push={push} paths={paths} preview={preview} artboardSize={artboardSize} />
       }
+      case 'space': {
+        return <Space node={node} preview={preview} artboardSize={artboardSize} />
+      }
 
       // ComponentSets
       // -----------------------------
@@ -67,9 +70,6 @@ const Component = ({ node, push, paths, preview = false, onSend, artboardSize }:
       }
       case 'contact': {
         return <Contact node={node} preview={preview} onSend={onSend} />
-      }
-      case 'space': {
-        return <Space node={node} preview={preview} />
       }
       default: {
         return null
