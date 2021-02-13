@@ -1,20 +1,21 @@
 import { useCallback } from 'react'
-import { FieldItem } from './props'
+import { Text, Image, FieldItem, LinkAction } from './props'
 
 export const useRouting = (push?: (internal: boolean, href: string) => void) => {
   const onClick = useCallback(
-    (fieldItem: FieldItem, paths: string[]) => {
-      const linkType = fieldItem.linkType
-      const internalLink = fieldItem.internalLink
-      const externalLink = fieldItem.externalLink
+    (node: FieldItem | Text | Image, paths: string[]) => {
+      const action = node.actions.find((action) => action.trigger === 'click' && (action.type === 'externalLink' || action.type === 'internalLink'))
+      if (!action) return
 
-      if (push && linkType === 'external' && externalLink) {
-        push(false, externalLink)
+      const linkAction = action as LinkAction
+
+      if (push && linkAction.type === 'externalLink' && linkAction.value) {
+        push(false, linkAction.value)
         return
       }
 
-      if (push && linkType === 'internal' && internalLink && paths.includes(internalLink)) {
-        push(true, internalLink)
+      if (push && linkAction.type === 'internalLink' && linkAction.value && paths.includes(linkAction.value)) {
+        push(true, linkAction.value)
         return
       }
     },
@@ -25,16 +26,19 @@ export const useRouting = (push?: (internal: boolean, href: string) => void) => 
 }
 
 export const useExistLink = () => {
-  const exist = useCallback((fieldItem: FieldItem, paths: string[]) => {
-    const linkType = fieldItem.linkType
-    const internalLink = fieldItem.internalLink
-    const externalLink = fieldItem.externalLink
+  const exist = useCallback((node: FieldItem | Text | Image, paths: string[]) => {
+    const action = node.actions.find((action) => action.trigger === 'click' && (action.type === 'externalLink' || action.type === 'internalLink'))
+    if (!action) {
+      return false
+    }
 
-    if (linkType === 'external' && externalLink) {
+    const linkAction = action as LinkAction
+
+    if (linkAction.type === 'externalLink' && linkAction.value) {
       return true
     }
 
-    if (linkType === 'internal' && internalLink && paths.includes(internalLink)) {
+    if (linkAction.type === 'internalLink' && linkAction.value && paths.includes(linkAction.value)) {
       return true
     }
 
