@@ -1,50 +1,13 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { ComponentProps, Image as ImageNode, DESKTOP_MIN_WIDTH, TABLET_MIN_WIDTH } from '../props'
+import { useRouting, useExistLink } from '../hooks'
 import { useMediaQuery } from 'react-responsive'
 
 const Image = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const image = node as ImageNode
-
-  // FIXME: useRoutingをリファクタリングして、それを利用するようにしたい。
-  const onClick = useCallback(
-    (image: ImageNode) => {
-      const linkType = image.linkType
-      const internalLink = image.internalLink
-      const externalLink = image.externalLink
-
-      if (push && linkType === 'external' && externalLink) {
-        push(false, externalLink)
-        return
-      }
-
-      if (push && linkType === 'internal' && internalLink && paths.includes(internalLink)) {
-        push(true, internalLink)
-        return
-      }
-    },
-    [paths, push]
-  )
-
-  // FIXME: useExistLinkをリファクタリングして、それを利用するようにしたい。
-  const onCheckExistLink = useCallback(
-    (image: ImageNode) => {
-      const linkType = image.linkType
-      const internalLink = image.internalLink
-      const externalLink = image.externalLink
-
-      if (linkType === 'external' && externalLink) {
-        return true
-      }
-
-      if (linkType === 'internal' && internalLink && paths.includes(internalLink)) {
-        return true
-      }
-
-      return false
-    },
-    [paths]
-  )
+  const onClick = useRouting(push)
+  const onCheckExistLink = useExistLink()
 
   const useIsDesktop = () => {
     const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
@@ -67,9 +30,9 @@ const Image = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
       >
         <BaseImage
           src={image.imageURL}
-          data-existlink={onCheckExistLink(image)}
+          data-existlink={onCheckExistLink(image, paths)}
           style={image.styleMode === 'common' ? image.style : isDesktop ? image.style : isTablet ? image.styleTb : image.styleMb}
-          onClick={() => onClick(image)}
+          onClick={() => onClick(image, paths)}
         />
       </Wrapper>
     </React.Fragment>
