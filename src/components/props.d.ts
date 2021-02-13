@@ -53,7 +53,13 @@ export interface Text extends BaseNode {
     internalLink: string | null;
     linkType: LinkType;
 }
-export declare type BasicNode = Image | Text;
+export interface Space extends BaseNode {
+    styleMode: StyleMode;
+    style: React.CSSProperties;
+    styleMb: React.CSSProperties;
+    styleTb: React.CSSProperties;
+}
+export declare type BasicNode = Image | Text | Space;
 export interface Frame extends BaseNode {
     type: 'frame';
     style: React.CSSProperties;
