@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
-import { Text, Image, FieldItem, LinkAction } from './props'
+import { Text, Image, Button, FieldItem, LinkAction } from './props'
 
 export const useRouting = (push?: (internal: boolean, href: string) => void) => {
   const onClick = useCallback(
-    (node: FieldItem | Text | Image, paths: string[]) => {
+    (node: FieldItem | Text | Image | Button, paths: string[]) => {
       const action = node.actions.find((action) => action.trigger === 'click' && (action.type === 'externalLink' || action.type === 'internalLink'))
       if (!action) return
 
@@ -26,7 +26,7 @@ export const useRouting = (push?: (internal: boolean, href: string) => void) => 
 }
 
 export const useExistLink = () => {
-  const exist = useCallback((node: FieldItem | Text | Image, paths: string[]) => {
+  const exist = useCallback((node: FieldItem | Text | Image | Button, paths: string[]) => {
     const action = node.actions.find((action) => action.trigger === 'click' && (action.type === 'externalLink' || action.type === 'internalLink'))
     if (!action) {
       return false

@@ -84,9 +84,28 @@ export interface Space extends BaseNode {
   styleTb: React.CSSProperties
 }
 
+// Button
+// --------------------------------
+export interface Button extends BaseNode {
+  value: string
+  buttonSizeType: ButtonSizeType
+  styleMode: StyleMode
+  style: React.CSSProperties
+  styleMb: React.CSSProperties
+  styleTb: React.CSSProperties
+  textStyle: React.CSSProperties
+  textStyleMb: React.CSSProperties
+  textStyleTb: React.CSSProperties
+  containerStyle: React.CSSProperties
+  containerStyleMb: React.CSSProperties
+  containerStyleTb: React.CSSProperties
+  actions: Action[]
+}
+export type ButtonSizeType = 'percentage' | 'pixel'
+
 // BasicNode
 // --------------------------------
-export type BasicNode = Image | Text | Space
+export type BasicNode = Image | Text | Space | Button
 
 // Frame
 // --------------------------------
