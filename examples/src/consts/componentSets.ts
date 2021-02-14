@@ -323,23 +323,3 @@ export const contact: Node = {
     },
   ],
 }
-
-export const space: Node = {
-  id: '1',
-  label: 'スペース',
-  order: 10,
-  type: 'space',
-  sections: [
-    {
-      fields: {
-        text: {
-          label: 'スペース',
-          order: 10,
-          type: 'text',
-          value: '',
-          actions: [],
-        },
-      },
-    },
-  ],
-}

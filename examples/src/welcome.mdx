@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Layout, { ComponentArea, Spacer, Heading, SubHeading } from './layout'
 import { frame } from './consts/layouts'
-import { text, text2, text3, image, image2, space } from './consts/basicNodes'
+import { text, text2, text3, image, image2, space, button } from './consts/basicNodes'
 import { header, footer, carousel, mission, service, table, member, contact } from './consts/componentSets'
 import Component from '../../src'
 
@@ -318,6 +318,31 @@ import Component from '@party-opu/funii-web-components'
 const Page = () => (
   <React.Fragment>
     <Component node={space} />
+  </React.Fragment>
+)
+
+export default Page
+```
+
+<Spacer size="xxl" />
+
+<SubHeading>Button</SubHeading>
+
+<Spacer size="l" />
+
+<ComponentArea>
+  <Component node={button} />
+</ComponentArea>
+
+<Spacer size="l" />
+
+```jsx
+import React from 'react'
+import Component from '@party-opu/funii-web-components'
+
+const Page = () => (
+  <React.Fragment>
+    <Component node={button} />
   </React.Fragment>
 )
 
