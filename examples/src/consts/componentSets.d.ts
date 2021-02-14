@@ -7,5 +7,4 @@ export declare const service: Node;
 export declare const table: Node;
 export declare const member: Node;
 export declare const contact: Node;
-export declare const space: Node;
 //# sourceMappingURL=componentSets.d.ts.map
