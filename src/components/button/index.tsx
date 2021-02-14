@@ -42,6 +42,7 @@ const Button = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
 
 const Wrapper = styled.div`
   width: 100%;
+  overflow: hidden;
 `
 
 const BaseButton = styled.div`
