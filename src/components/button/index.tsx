@@ -5,7 +5,7 @@ import { useRouting, useExistLink } from '../hooks'
 import { useMediaQuery } from 'react-responsive'
 
 const Button = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
-  const bt = node as ButtonNode
+  const button = node as ButtonNode
   const onClick = useRouting(push)
   const onCheckExistLink = useExistLink()
 
@@ -20,18 +20,19 @@ const Button = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
 
   const isDesktop = useIsDesktop()
   const isTablet = useIsTablet()
-  console.log('isDesktop', isDesktop)
 
   return (
     <React.Fragment>
-      <Wrapper style={bt.styleMode === 'common' ? bt.containerStyle : isDesktop ? bt.containerStyle : isTablet ? bt.containerStyleTb : bt.containerStyleMb}>
+      <Wrapper style={button.styleMode === 'common' || isDesktop ? button.containerStyle : isTablet ? button.containerStyleTb : button.containerStyleMb}>
         <BaseButton
-          data-existlink={onCheckExistLink(bt, paths)}
-          style={bt.styleMode === 'common' ? bt.style : isDesktop ? bt.style : isTablet ? bt.styleTb : bt.styleMb}
-          onClick={() => onClick(bt, paths)}
+          data-existlink={onCheckExistLink(button, paths)}
+          style={button.styleMode === 'common' ? button.style : isDesktop ? button.style : isTablet ? button.styleTb : button.styleMb}
+          onClick={() => onClick(button, paths)}
         >
-          <BaseText style={bt.styleMode === 'common' ? bt.textStyle : isDesktop ? bt.textStyle : isTablet ? bt.textStyleTb : bt.textStyleMb}>
-            {bt.value}
+          <BaseText
+            style={button.styleMode === 'common' ? button.textStyle : isDesktop ? button.textStyle : isTablet ? button.textStyleTb : button.textStyleMb}
+          >
+            {button.value}
           </BaseText>
         </BaseButton>
       </Wrapper>
