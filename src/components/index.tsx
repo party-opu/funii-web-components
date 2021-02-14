@@ -4,6 +4,7 @@ import Frame, { FrameItemWrapper } from './frame'
 import Text from './text'
 import Image from './image'
 import Space from './space'
+import Button from './button'
 import Carousel from './carousel'
 import Header from './header'
 import Footer from './footer'
@@ -43,6 +44,9 @@ const Component = ({ node, push, paths, preview = false, onSend, artboardSize }:
       }
       case 'space': {
         return <Space node={node} preview={preview} artboardSize={artboardSize} />
+      }
+      case 'button': {
+        return <Button node={node} push={push} paths={paths} preview={preview} artboardSize={artboardSize} />
       }
 
       // ComponentSets
