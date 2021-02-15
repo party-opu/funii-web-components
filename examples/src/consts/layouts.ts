@@ -2,9 +2,11 @@ import { Node } from '../../../src/components/props'
 
 export const frame: Node = {
   id: '1',
-  label: 'イメージ',
+  label: 'フレーム',
   order: 10,
   type: 'frame',
+  thumbnailURL:
+    'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2Fframe%402x.png?alt=media&token=9fd765d2-abad-4c05-b8f1-7b2acd83cb6a',
   styleMode: 'responsive',
   style: {
     width: '100%',
@@ -45,6 +47,8 @@ export const frame: Node = {
       label: 'イメージ',
       order: 10,
       type: 'image',
+      thumbnailURL:
+        'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2Fimage%402x.png?alt=media&token=a99e979e-50a4-4171-a832-f41a791a5068',
       imageURL: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
       imageSizeType: 'percentage',
       styleMode: 'common',
@@ -97,6 +101,8 @@ export const frame: Node = {
       label: 'イメージ',
       order: 10,
       type: 'image',
+      thumbnailURL:
+        'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2Fimage%402x.png?alt=media&token=a99e979e-50a4-4171-a832-f41a791a5068',
       imageURL: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
       imageSizeType: 'percentage',
       styleMode: 'common',
@@ -149,6 +155,8 @@ export const frame: Node = {
       label: 'イメージ',
       order: 10,
       type: 'image',
+      thumbnailURL:
+        'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2Fimage%402x.png?alt=media&token=a99e979e-50a4-4171-a832-f41a791a5068',
       imageURL: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
       imageSizeType: 'percentage',
       styleMode: 'common',

@@ -5,6 +5,8 @@ export const header: Node = {
   label: 'ヘッダー',
   order: 10,
   type: 'header',
+  thumbnailURL:
+    'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2FcomponentSets%2Fheader%2FthumbnailURL%2Fheader%402x.png?alt=media&token=429b4699-546c-423b-8886-2e67f7cfe7f8',
   sections: [
     {
       fields: {
@@ -58,6 +60,8 @@ export const footer: Node = {
   label: 'フッター',
   order: 10,
   type: 'footer',
+  thumbnailURL:
+    'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2Ffooter%402x.png?alt=media&token=b44924fe-9251-4bc0-b5d4-47f3fc846191',
   sections: [
     {
       fields: {
@@ -100,6 +104,8 @@ export const carousel: Node = {
   label: 'カルーセル',
   order: 10,
   type: 'carousel',
+  thumbnailURL:
+    'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2FcomponentSets%2Fcarousel%2FthumbnailURL%2Fcarousel%402x.png?alt=media&token=bb919f0f-3f14-422c-b195-8653ff3e64da',
   sections: [
     {
       fields: {
@@ -131,6 +137,8 @@ export const mission: Node = {
   label: 'ミッション',
   order: 10,
   type: 'mission',
+  thumbnailURL:
+    'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2FcomponentSets%2Fmission%2FthumbnailURL%2Fmission%402x.png?alt=media&token=ac0f3139-d870-447f-9d85-e19256a49e2f',
   sections: [
     {
       fields: {
@@ -159,6 +167,8 @@ export const service: Node = {
   label: 'サービス',
   order: 10,
   type: 'service',
+  thumbnailURL:
+    'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2FcomponentSets%2Fservice%2FthumbnailURL%2Fservice%402x.png?alt=media&token=38ef56b2-87d9-4e6b-ae61-b154ab806734',
   sections: [
     {
       fields: {
@@ -194,6 +204,8 @@ export const table: Node = {
   label: 'テーブル',
   order: 10,
   type: 'table',
+  thumbnailURL:
+    'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2FcomponentSets%2Ftable%2FthumbnailURL%2Ftable%402x.png?alt=media&token=5174cb55-a277-4591-a8e9-637f19188bfd',
   sections: [
     {
       fields: {
@@ -257,6 +269,8 @@ export const member: Node = {
   label: 'メンバー',
   order: 10,
   type: 'member',
+  thumbnailURL:
+    'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2FcomponentSets%2Fmember%2FthumbnailURL%2Fmember%402x.png?alt=media&token=a7ee47da-a095-4a18-9260-355977ea64a1',
   sections: [
     {
       fields: {
@@ -298,6 +312,8 @@ export const contact: Node = {
   label: 'お問い合わせ',
   order: 10,
   type: 'contact',
+  thumbnailURL:
+    'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2FcomponentSets%2Fcontact%2FthumbnailURL%2Fcontact%402x.png?alt=media&token=0ee652d7-2bc3-4a06-99fc-c8137a273132',
   sections: [
     {
       fields: {
