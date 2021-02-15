@@ -13,6 +13,7 @@ export interface BaseNode {
     label: string;
     order: number;
     type: string;
+    thumbnailURL: string;
 }
 export declare type ArtboardSize = 'desktop' | 'tablet' | 'mobile';
 export interface ComponentSet extends BaseNode {
