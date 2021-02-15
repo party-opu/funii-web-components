@@ -22,7 +22,7 @@ const Component = ({ node, push, paths, preview = false, onSend, artboardSize }:
       case 'frame': {
         const frame = node as FrameNode
         return (
-          <Frame node={frame}>
+          <Frame node={frame} artboardSize={artboardSize}>
             {frame.children.map((childNode) => {
               return (
                 <FrameItemWrapper key={childNode.id}>

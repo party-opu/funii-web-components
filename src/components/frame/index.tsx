@@ -1,10 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ComponentProps, Frame as FrameNode } from '../props'
+import { ComponentProps, Frame as FrameNode, DESKTOP_MIN_WIDTH, TABLET_MIN_WIDTH } from '../props'
+import { useMediaQuery } from 'react-responsive'
 
-const Frame: React.FC<ComponentProps> = ({ node, children }) => {
+const Frame: React.FC<ComponentProps> = ({ node, children, artboardSize }) => {
   const frame = node as FrameNode
-  return <div style={frame.style}>{children}</div>
+
+  const useIsDesktop = () => {
+    const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'desktop' ? true : false) : isDesktop
+  }
+  const useIsTablet = () => {
+    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH, maxWidth: DESKTOP_MIN_WIDTH - 1 })
+    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
+  }
+
+  const isDesktop = useIsDesktop()
+  const isTablet = useIsTablet()
+  return <div style={frame.styleMode === 'common' ? frame.style : isDesktop ? frame.style : isTablet ? frame.styleTb : frame.styleMb}>{children}</div>
 }
 
 export const FrameItemWrapper = styled.div`

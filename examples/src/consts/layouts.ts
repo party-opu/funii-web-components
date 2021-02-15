@@ -5,6 +5,7 @@ export const frame: Node = {
   label: 'イメージ',
   order: 10,
   type: 'frame',
+  styleMode: 'responsive',
   style: {
     width: '100%',
     display: 'flex',
@@ -15,6 +16,28 @@ export const frame: Node = {
     paddingBottom: 0,
     paddingRight: 0,
     paddingLeft: 0,
+  },
+  styleTb: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    minHeight: 50,
+    paddingTop: 100,
+    paddingBottom: 10,
+    paddingRight: 10,
+    paddingLeft: 10,
+  },
+  styleMb: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    minHeight: 50,
+    paddingTop: 100,
+    paddingBottom: 20,
+    paddingRight: 30,
+    paddingLeft: 40,
   },
   children: [
     {
