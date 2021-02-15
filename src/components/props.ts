@@ -111,7 +111,10 @@ export type BasicNode = Image | Text | Space | Button
 // --------------------------------
 export interface Frame extends BaseNode {
   type: 'frame'
+  styleMode: StyleMode
   style: React.CSSProperties
+  styleMb: React.CSSProperties
+  styleTb: React.CSSProperties
   children: Node[]
 }
 
