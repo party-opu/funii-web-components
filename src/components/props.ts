@@ -19,6 +19,7 @@ export interface BaseNode {
   label: string
   order: number
   type: string
+  thumbnailURL: string
 }
 
 export type ArtboardSize = 'desktop' | 'tablet' | 'mobile'
