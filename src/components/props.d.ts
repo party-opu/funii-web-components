@@ -80,7 +80,10 @@ export declare type ButtonSizeType = 'percentage' | 'pixel';
 export declare type BasicNode = Image | Text | Space | Button;
 export interface Frame extends BaseNode {
     type: 'frame';
+    styleMode: StyleMode;
     style: React.CSSProperties;
+    styleMb: React.CSSProperties;
+    styleTb: React.CSSProperties;
     children: Node[];
 }
 export declare type Node = Frame | ComponentSet | BasicNode;
