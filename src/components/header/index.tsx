@@ -5,24 +5,32 @@ import Spacer from '../../core/spacer'
 import Hidden from '../../core/hidden'
 import IconButton from '../../core/iconButton'
 import Drawer from '../../core/drawer'
-import { ComponentProps, ComponentSet } from '../props'
+import { ComponentProps, ComponentSet, TABLET_MIN_WIDTH } from '../props'
 import { useRouting, useExistLink } from '../hooks'
+import { useMediaQuery } from 'react-responsive'
 
-const PCMenu = ({ node, push, paths = [] }: ComponentProps) => {
+const PCMenu = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
   const onClick = useRouting(push)
   const onCheckExistLink = useExistLink()
 
+  const useIsTablet = () => {
+    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
+  }
+
+  const isTablet = useIsTablet()
+
   return (
     <Nav>
       <ListWrapper>
-        <List>
+        <List style={isTablet ? { flexDirection: 'row', alignItems: 'center', justifyContent: 'start' } : { flexDirection: 'column' }}>
           {componentSet.sections.map((section, index) => {
             if (section.fields.text) {
               return (
                 <React.Fragment key={index}>
                   <ListItem data-existlink={onCheckExistLink(section.fields.text, paths)} onClick={() => onClick(section.fields.text, paths)}>
-                    <ListItemText>{section.fields.text.value}</ListItemText>
+                    <ListItemText style={isTablet ? { fontSize: '14px' } : { fontSize: '12px' }}>{section.fields.text.value}</ListItemText>
                   </ListItem>
                   <Spacer layout="vertical" size="l" />
                 </React.Fragment>
@@ -60,22 +68,29 @@ const SMMenu = ({ onOpen }: SMMenuProps) => {
   )
 }
 
-const Header = ({ node, push, paths = [] }: ComponentProps) => {
+const Header = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
   const onClick = useRouting(push)
   const onCheckExistLink = useExistLink()
 
+  const useIsTablet = () => {
+    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
+  }
+
+  const isTablet = useIsTablet()
+
   return (
     <Root>
-      <Hidden smUp={false}>
-        <PCMenu node={node} push={push} paths={paths} />
+      <Hidden smUp={false} artboardSize={artboardSize!}>
+        <PCMenu node={node} push={push} paths={paths} artboardSize={artboardSize} />
       </Hidden>
-      <Hidden smUp={true}>
+      <Hidden smUp={true} artboardSize={artboardSize!}>
         <SMMenu onOpen={() => setOpenDrawer(true)} />
         <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
           <DrawerInner>
-            <List>
+            <List style={isTablet ? { flexDirection: 'row', alignItems: 'center', justifyContent: 'start' } : { flexDirection: 'column' }}>
               {componentSet.sections.map((section, index) => {
                 if (section.fields.text) {
                   return (
@@ -89,7 +104,7 @@ const Header = ({ node, push, paths = [] }: ComponentProps) => {
                           }
                         }}
                       >
-                        <ListItemText>{section.fields.text.value}</ListItemText>
+                        <ListItemText style={isTablet ? { fontSize: '14px' } : { fontSize: '12px' }}>{section.fields.text.value}</ListItemText>
                       </ListItem>
                       <Spacer size="l" />
                     </React.Fragment>
@@ -163,15 +178,8 @@ const ListWrapper = styled.div`
 
 const List = styled.ul`
   display: flex;
-  flex-direction: column;
   width: 100%;
   list-style-type: none;
-
-  @media (min-width: 400px) {
-    justify-content: start;
-    flex-direction: row;
-    align-items: center;
-  }
 `
 
 const ListItem = styled.li`
@@ -184,12 +192,7 @@ const ListItem = styled.li`
 const ListItemText = styled.p`
   text-decoration: none;
   font-weight: bold;
-  font-size: 14px;
   color: ${(props) => props.theme.foregrounds.primary};
-
-  @media (min-width: 400px) {
-    font-size: 12px;
-  }
 `
 
 ListItemText.defaultProps = {
@@ -202,10 +205,6 @@ ListItemText.defaultProps = {
 
 const ListItemImage = styled.img`
   height: 40px;
-
-  @media (min-width: 400px) {
-    height: 40px;
-  }
 `
 
 export default Header

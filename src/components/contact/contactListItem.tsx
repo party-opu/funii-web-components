@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import TextField from '../../core/textField'
 import Spacer from '../../core/spacer'
+import { TABLET_MIN_WIDTH, ArtboardSize } from '../props'
+import { useMediaQuery } from 'react-responsive'
 
 type ContractListItem = {
   label: string
@@ -11,13 +13,21 @@ type ContractListItem = {
   disabled?: boolean
   multiple?: boolean
   rows?: number
+  artboardSize: ArtboardSize
 }
 
-const ContractListItem = ({ label, value, onChangeText, required = false, disabled = false, multiple = false, rows = 6 }: ContractListItem) => {
+const ContractListItem = ({ label, value, onChangeText, required = false, disabled = false, multiple = false, rows = 6, artboardSize }: ContractListItem) => {
+  const useIsTablet = () => {
+    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
+  }
+
+  const isTablet = useIsTablet()
+
   return (
     <ListItem>
-      <Inner>
-        <LabelWrapper>
+      <Inner style={isTablet ? { flexDirection: 'row', alignItems: 'center' } : { flexDirection: 'column' }}>
+        <LabelWrapper style={isTablet ? { width: '260px', paddingRight: '36px', paddingBottom: '0px' } : { flexDirection: 'column' }}>
           <LabelText>{label}</LabelText>
           {required && (
             <React.Fragment>
@@ -38,27 +48,14 @@ const ListItem = styled.li`
 
 const Inner = styled.div`
   display: flex;
-  flex-direction: column;
   width: 100%;
   padding: 12px;
-
-  @media (min-width: 400px) {
-    flex-direction: row;
-    align-items: center;
-  }
 `
 
 const LabelWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-bottom: 12px;
-
-  @media (min-width: 400px) {
-    width: 260px;
-    padding-right: 36px;
-    padding-bottom: 0px;
-  }
 `
 
 const LabelText = styled.p`

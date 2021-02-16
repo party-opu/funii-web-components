@@ -5,7 +5,7 @@ const GroupTitle = styled.h2`
   font-weight: bold;
   color: ${(props) => props.theme.foregrounds.primary};
 
-  @media (min-width: 400px) {
+  &[is-tablet='false'] {
     font-size: 24px;
   }
 `

@@ -52,28 +52,28 @@ const Component = ({ node, push, paths, preview = false, onSend, artboardSize }:
       // ComponentSets
       // -----------------------------
       case 'header': {
-        return <Header node={node} push={push} paths={paths} preview={preview} />
+        return <Header node={node} push={push} paths={paths} preview={preview} artboardSize={artboardSize} />
       }
       case 'footer': {
-        return <Footer node={node} push={push} paths={paths} preview={preview} />
+        return <Footer node={node} push={push} paths={paths} preview={preview} artboardSize={artboardSize} />
       }
       case 'carousel': {
         return <Carousel node={node} push={push} paths={paths} preview={preview} />
       }
       case 'mission': {
-        return <Mission node={node} push={push} paths={paths} preview={preview} />
+        return <Mission node={node} push={push} paths={paths} preview={preview} artboardSize={artboardSize} />
       }
       case 'service': {
-        return <Service node={node} push={push} paths={paths} preview={preview} />
+        return <Service node={node} push={push} paths={paths} preview={preview} artboardSize={artboardSize} />
       }
       case 'table': {
-        return <Table node={node} push={push} paths={paths} preview={preview} />
+        return <Table node={node} push={push} paths={paths} preview={preview} artboardSize={artboardSize} />
       }
       case 'member': {
-        return <Member node={node} push={push} paths={paths} preview={preview} />
+        return <Member node={node} push={push} paths={paths} preview={preview} artboardSize={artboardSize} />
       }
       case 'contact': {
-        return <Contact node={node} preview={preview} onSend={onSend} />
+        return <Contact node={node} preview={preview} onSend={onSend} artboardSize={artboardSize} />
       }
       default: {
         return null

@@ -4,25 +4,23 @@ import { TABLET_MIN_WIDTH, ArtboardSize } from '../../components/props'
 import { useMediaQuery } from 'react-responsive'
 
 type Props = {
-  smUp: boolean
   children: React.ReactNode
   artboardSize: ArtboardSize
 }
 
-const Hidden: React.FC<Props> = ({ smUp = true, children, artboardSize }) => {
+const ResponsiveListItem: React.FC<Props> = ({ children, artboardSize }) => {
   const useIsTablet = () => {
     const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
     return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
   }
 
   const isTablet = useIsTablet()
-
-  return <BaseHidden style={(!isTablet && !smUp) || (isTablet && smUp) ? { display: 'none' } : { display: 'block' }}>{children}</BaseHidden>
+  return <BaseResponsiveListItem style={isTablet ? { paddingBottom: '0px' } : { paddingBottom: '60px' }}>{children}</BaseResponsiveListItem>
 }
 
-const BaseHidden = styled.div`
-  width: 100%;
-  height: 100%;
+const BaseResponsiveListItem = styled.div`
+  flex: 1;
+  padding-right: 18px;
+  padding-left: 18px;
 `
-
-export default Hidden
+export default ResponsiveListItem

@@ -1,13 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
 import Spacer from '../../core/spacer'
-import { ComponentProps, ComponentSet } from '../props'
+import { ComponentProps, ComponentSet, TABLET_MIN_WIDTH } from '../props'
 import { useRouting, useExistLink } from '../hooks'
+import { useMediaQuery } from 'react-responsive'
 
-const Footer = ({ node, push, paths = [] }: ComponentProps) => {
+const Footer = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
   const onClick = useRouting(push)
   const onCheckExistLink = useExistLink()
+
+  const useIsTablet = () => {
+    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
+  }
+
+  const isTablet = useIsTablet()
 
   return (
     <Root>
@@ -18,7 +26,9 @@ const Footer = ({ node, push, paths = [] }: ComponentProps) => {
               <React.Fragment key={index}>
                 <Spacer layout="vertical" size="l" />
                 <ListItem data-existlink={onCheckExistLink(section.fields.text, paths)} onClick={() => onClick(section.fields.text, paths)}>
-                  <ListItemText>{section.fields.text.value}</ListItemText>
+                  <ListItemText style={isTablet ? { fontSize: '12px' } : { fontSize: '9px' }} is-tablet={isTablet}>
+                    {section.fields.text.value}
+                  </ListItemText>
                 </ListItem>
                 <Spacer layout="vertical" size="l" />
               </React.Fragment>
@@ -47,10 +57,9 @@ const Nav = styled.nav`
 // const Logo = styled.img`
 //   height: 80px;
 
-//   @media (min-width: 400px) {
-//     height: 120px;
-//   }
-// `
+// &[is-tablet='false'] {
+//   height: 120px;
+// }
 
 const ListWrapper = styled.div`
   display: flex;
@@ -75,12 +84,7 @@ const ListItem = styled.li`
 const ListItemText = styled.p`
   text-decoration: none;
   font-weight: bold;
-  font-size: 9px;
   color: ${(props) => props.theme.foregrounds.primary};
-
-  @media (min-width: 400px) {
-    font-size: 12px;
-  }
 `
 
 ListItemText.defaultProps = {
@@ -97,9 +101,9 @@ const CopyrightText = styled.p`
   color: ${(props) => props.theme.foregrounds.primary};
   text-align: center;
 
-  @media (min-width: 400px) {
-    font-size: 12px;
-  }
+  // &[is-tablet='false'] {
+  //   font-size: 12px;
+  // }
 `
 
 CopyrightText.defaultProps = {

@@ -1,22 +1,32 @@
 import React from 'react'
 import styled from 'styled-components'
+import { TABLET_MIN_WIDTH, ArtboardSize } from '../../components/props'
+import { useMediaQuery } from 'react-responsive'
 
 type BorderListItemProps = {
   label?: string
   value?: string
   onClick?: (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => void
+  artboardSize: ArtboardSize
 }
 
-const BorderListItem: React.FC<BorderListItemProps> = ({ label, value, children, onClick }) => {
+const BorderListItem: React.FC<BorderListItemProps> = ({ label, value, children, onClick, artboardSize }) => {
+  const useIsTablet = () => {
+    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
+  }
+
+  const isTablet = useIsTablet()
+
   return (
     <ListItem onClick={onClick}>
       <Inner>
         {label && (
           <LabelWrapper>
-            <LabelText>{label}</LabelText>
+            <LabelText style={isTablet ? { fontSize: '18px' } : { fontSize: '16px' }}>{label}</LabelText>
           </LabelWrapper>
         )}
-        {value && <ValueText>{value}</ValueText>}
+        {value && <ValueText style={isTablet ? { fontSize: '18px' } : { fontSize: '16px' }}>{value}</ValueText>}
         {children}
       </Inner>
     </ListItem>
@@ -40,14 +50,9 @@ const LabelWrapper = styled.div`
 `
 
 const LabelText = styled.p`
-  font-size: 16px;
   font-weight: bold;
   color: ${(props) => props.theme.foregrounds.secondary};
   white-space: pre-wrap;
-
-  @media (min-width: 400px) {
-    font-size: 18px;
-  }
 `
 
 LabelText.defaultProps = {
@@ -59,14 +64,9 @@ LabelText.defaultProps = {
 }
 
 const ValueText = styled.p`
-  font-size: 16px;
   font-weight: bold;
   color: ${(props) => props.theme.foregrounds.primary};
   white-space: pre-wrap;
-
-  @media (min-width: 400px) {
-    font-size: 18px;
-  }
 `
 
 ValueText.defaultProps = {

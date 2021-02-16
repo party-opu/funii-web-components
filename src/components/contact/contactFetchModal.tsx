@@ -1,10 +1,12 @@
 import React from 'react'
 import { AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai'
+import { ArtboardSize, TABLET_MIN_WIDTH } from '../props'
 import styled from 'styled-components'
 import Spacer from '../../core/spacer'
 import CircleProgress from '../../core/circleProgress'
 import FilledButton from '../../core/filledButton'
 import Modal from '../../core/modal'
+import { useMediaQuery } from 'react-responsive'
 
 type ContactFetchModalProps = {
   fetching: boolean
@@ -13,9 +15,16 @@ type ContactFetchModalProps = {
   open?: boolean
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClose?: (e: any) => void
+  artboardSize: ArtboardSize
 }
 
-const ContactFetchModal = ({ fetching, success, error, open = true, onClose }: ContactFetchModalProps) => {
+const ContactFetchModal = ({ fetching, success, error, open = true, onClose, artboardSize }: ContactFetchModalProps) => {
+  const useIsTablet = () => {
+    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
+  }
+
+  const isTablet = useIsTablet()
   return (
     <Modal open={open} onClose={onClose}>
       <Inner>
@@ -23,7 +32,9 @@ const ContactFetchModal = ({ fetching, success, error, open = true, onClose }: C
           <Body>
             <CircleProgress />
             <Spacer size="l" />
-            <MessageText>送信中</MessageText>
+            <MessageText style={isTablet ? { fontSize: '18px' } : { fontSize: '16px' }} is-tablet={isTablet}>
+              送信中
+            </MessageText>
           </Body>
         )}
         {!fetching && success && (
@@ -31,7 +42,7 @@ const ContactFetchModal = ({ fetching, success, error, open = true, onClose }: C
             <Body>
               <AiOutlineCheckCircle size={120} color="#4cd984" />
               <Spacer size="l" />
-              <MessageText>送信に成功しました</MessageText>
+              <MessageText style={isTablet ? { fontSize: '18px' } : { fontSize: '16px' }}>送信に成功しました</MessageText>
             </Body>
             <ActionArea>
               <FilledButton text="閉じる" size="l" color="#4cd984" onClick={onClose} />
@@ -43,7 +54,7 @@ const ContactFetchModal = ({ fetching, success, error, open = true, onClose }: C
             <Body>
               <AiOutlineCloseCircle size={120} color="#ff6753" />
               <Spacer size="l" />
-              <MessageText>{error}</MessageText>
+              <MessageText style={isTablet ? { fontSize: '18px' } : { fontSize: '16px' }}>{error}</MessageText>
             </Body>
             <ActionArea>
               <FilledButton text="閉じる" size="l" color="#ff6753" onClick={onClose} />
@@ -82,12 +93,7 @@ const ActionArea = styled.div`
 `
 
 const MessageText = styled.p`
-  font-size: 16px;
   color: ${(props) => props.theme.system.gray};
-
-  @media (min-width: 400px) {
-    font-size: 18px;
-  }
 `
 
 MessageText.defaultProps = {
