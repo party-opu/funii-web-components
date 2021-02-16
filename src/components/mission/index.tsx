@@ -11,12 +11,12 @@ const Mission = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
   const onClick = useRouting(push)
 
-  const useIsTablet = () => {
-    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
-    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
+  const useIsLargeDevice = () => {
+    const isLargeDevice = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'tablet' || artboardSize === 'desktop' ? true : false) : isLargeDevice
   }
 
-  const isTablet = useIsTablet()
+  const isLargeDevice = useIsLargeDevice()
 
   return (
     <GroupContainer>
@@ -24,11 +24,11 @@ const Mission = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
         <Spacer size="m" />
         {componentSet.sections.map((section, index) => (
           <React.Fragment key={`mission-${index}`}>
-            <MissionText style={isTablet ? { fontSize: '36px' } : { fontSize: '24px' }} onClick={() => onClick(section.fields.title, paths)}>
+            <MissionText style={isLargeDevice ? { fontSize: '36px' } : { fontSize: '24px' }} onClick={() => onClick(section.fields.title, paths)}>
               {section.fields.title.value}
             </MissionText>
             <Spacer size="xl" />
-            <MissionDetailText is-tablet={isTablet} onClick={() => onClick(section.fields.description, paths)}>
+            <MissionDetailText is-tablet={isLargeDevice} onClick={() => onClick(section.fields.description, paths)}>
               {section.fields.description.value}
             </MissionDetailText>
           </React.Fragment>

@@ -9,13 +9,13 @@ type Props = {
 }
 
 const ResponsiveListItem: React.FC<Props> = ({ children, artboardSize }) => {
-  const useIsTablet = () => {
-    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
-    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
+  const useIsLargeDevice = () => {
+    const isLargeDevice = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'tablet' || artboardSize === 'desktop' ? true : false) : isLargeDevice
   }
 
-  const isTablet = useIsTablet()
-  return <BaseResponsiveListItem style={isTablet ? { paddingBottom: '0px' } : { paddingBottom: '60px' }}>{children}</BaseResponsiveListItem>
+  const isLargeDevice = useIsLargeDevice()
+  return <BaseResponsiveListItem style={isLargeDevice ? { paddingBottom: '0px' } : { paddingBottom: '60px' }}>{children}</BaseResponsiveListItem>
 }
 
 const BaseResponsiveListItem = styled.div`

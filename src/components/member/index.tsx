@@ -14,12 +14,12 @@ const Member = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
   const onClick = useRouting(push)
 
-  const useIsTablet = () => {
-    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
-    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
+  const useIsLargeDevice = () => {
+    const isLargeDevice = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'tablet' || artboardSize === 'desktop' ? true : false) : isLargeDevice
   }
 
-  const isTablet = useIsTablet()
+  const isLargeDevice = useIsLargeDevice()
 
   return (
     <GroupContainer>
@@ -36,7 +36,7 @@ const Member = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
                 />
                 <Spacer />
                 <MemberBody>
-                  <MemberNameText style={isTablet ? { fontSize: '24x' } : { fontSize: '20px' }} onClick={() => onClick(section.fields.name, paths)}>
+                  <MemberNameText style={isLargeDevice ? { fontSize: '24x' } : { fontSize: '20px' }} onClick={() => onClick(section.fields.name, paths)}>
                     {section.fields.name.value}
                   </MemberNameText>
                   <Spacer size="s" />
