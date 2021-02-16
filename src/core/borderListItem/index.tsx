@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { DESKTOP_MIN_WIDTH, ArtboardSize } from '../../components/props'
+import { TABLET_MIN_WIDTH, ArtboardSize } from '../../components/props'
 import { useMediaQuery } from 'react-responsive'
 
 type BorderListItemProps = {
@@ -11,22 +11,22 @@ type BorderListItemProps = {
 }
 
 const BorderListItem: React.FC<BorderListItemProps> = ({ label, value, children, onClick, artboardSize }) => {
-  const useIsDesktop = () => {
-    const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
-    return artboardSize ? (artboardSize === 'desktop' ? true : false) : isDesktop
+  const useIsTablet = () => {
+    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
   }
 
-  const isDesktop = useIsDesktop()
+  const isTablet = useIsTablet()
 
   return (
     <ListItem onClick={onClick}>
       <Inner>
         {label && (
           <LabelWrapper>
-            <LabelText is-desktop={isDesktop}>{label}</LabelText>
+            <LabelText style={isTablet ? { fontSize: '18px' } : { fontSize: '16px' }}>{label}</LabelText>
           </LabelWrapper>
         )}
-        {value && <ValueText is-desktop={isDesktop}>{value}</ValueText>}
+        {value && <ValueText style={isTablet ? { fontSize: '18px' } : { fontSize: '16px' }}>{value}</ValueText>}
         {children}
       </Inner>
     </ListItem>
@@ -50,14 +50,9 @@ const LabelWrapper = styled.div`
 `
 
 const LabelText = styled.p`
-  font-size: 16px;
   font-weight: bold;
   color: ${(props) => props.theme.foregrounds.secondary};
   white-space: pre-wrap;
-
-  &[is-desktop='false'] {
-    font-size: 18px;
-  }
 `
 
 LabelText.defaultProps = {
@@ -69,14 +64,9 @@ LabelText.defaultProps = {
 }
 
 const ValueText = styled.p`
-  font-size: 16px;
   font-weight: bold;
   color: ${(props) => props.theme.foregrounds.primary};
   white-space: pre-wrap;
-
-  &[is-desktop='false'] {
-    font-size: 18px;
-  }
 `
 
 ValueText.defaultProps = {
