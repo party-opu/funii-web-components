@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ComponentProps, ComponentSet } from '../props'
+import { ComponentProps, ComponentSet, DESKTOP_MIN_WIDTH } from '../props'
 import { useRouting } from '../hooks'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
@@ -8,18 +8,26 @@ import GroupInner from '../../core/groupInner'
 import ResponsiveList from '../../core/responsiveList'
 import ResponsiveListItem from '../../core/responsiveListItem'
 import Avatar from '../../core/avatar'
+import { useMediaQuery } from 'react-responsive'
 
-const Member = ({ node, push, paths = [] }: ComponentProps) => {
+const Member = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
   const onClick = useRouting(push)
+
+  const useIsDesktop = () => {
+    const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'desktop' ? true : false) : isDesktop
+  }
+
+  const isDesktop = useIsDesktop()
 
   return (
     <GroupContainer>
       <GroupInner>
         <Spacer size="m" />
-        <ResponsiveList>
+        <ResponsiveList is-desktop={isDesktop}>
           {componentSet.sections.map((section, index) => (
-            <ResponsiveListItem key={`service-${index}`}>
+            <ResponsiveListItem key={`service-${index}`} is-desktop={isDesktop}>
               <MemberRoot>
                 <Avatar
                   uri={section.fields.imageURL ? section.fields.imageURL.value : undefined}
@@ -28,7 +36,9 @@ const Member = ({ node, push, paths = [] }: ComponentProps) => {
                 />
                 <Spacer />
                 <MemberBody>
-                  <MemberNameText onClick={() => onClick(section.fields.name, paths)}>{section.fields.name.value}</MemberNameText>
+                  <MemberNameText is-desktop={isDesktop} onClick={() => onClick(section.fields.name, paths)}>
+                    {section.fields.name.value}
+                  </MemberNameText>
                   <Spacer size="s" />
                   <MemberPositionText onClick={() => onClick(section.fields.role, paths)}>{section.fields.role.value}</MemberPositionText>
                   <Spacer />
@@ -64,7 +74,7 @@ const MemberNameText = styled.p`
   color: ${(props) => props.theme.foregrounds.primary};
   white-space: pre-wrap;
 
-  @media (min-width: 400px) {
+  &[is-desktop='false'] {
     font-size: 24px;
   }
 `

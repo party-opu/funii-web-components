@@ -1,10 +1,12 @@
 import React from 'react'
 import { AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai'
+import { ArtboardSize, DESKTOP_MIN_WIDTH } from '../props'
 import styled from 'styled-components'
 import Spacer from '../../core/spacer'
 import CircleProgress from '../../core/circleProgress'
 import FilledButton from '../../core/filledButton'
 import Modal from '../../core/modal'
+import { useMediaQuery } from 'react-responsive'
 
 type ContactFetchModalProps = {
   fetching: boolean
@@ -13,9 +15,16 @@ type ContactFetchModalProps = {
   open?: boolean
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClose?: (e: any) => void
+  artboardSize: ArtboardSize
 }
 
-const ContactFetchModal = ({ fetching, success, error, open = true, onClose }: ContactFetchModalProps) => {
+const ContactFetchModal = ({ fetching, success, error, open = true, onClose, artboardSize }: ContactFetchModalProps) => {
+  const useIsDesktop = () => {
+    const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'desktop' ? true : false) : isDesktop
+  }
+
+  const isDesktop = useIsDesktop()
   return (
     <Modal open={open} onClose={onClose}>
       <Inner>
@@ -23,7 +32,7 @@ const ContactFetchModal = ({ fetching, success, error, open = true, onClose }: C
           <Body>
             <CircleProgress />
             <Spacer size="l" />
-            <MessageText>送信中</MessageText>
+            <MessageText is-desktop={isDesktop}>送信中</MessageText>
           </Body>
         )}
         {!fetching && success && (
@@ -85,7 +94,7 @@ const MessageText = styled.p`
   font-size: 16px;
   color: ${(props) => props.theme.system.gray};
 
-  @media (min-width: 400px) {
+  &[is-desktop='false'] {
     font-size: 18px;
   }
 `

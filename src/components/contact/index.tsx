@@ -18,7 +18,7 @@ const initialForm: Form = {
   message: '',
 }
 
-const Contact = ({ node, preview = false, onSend }: ComponentProps) => {
+const Contact = ({ node, preview = false, onSend, artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
   const [fetching, setFetching] = useState<boolean>(false)
   const [success, setSuccess] = useState<boolean>(false)
@@ -100,6 +100,7 @@ const Contact = ({ node, preview = false, onSend }: ComponentProps) => {
                 value={form[`item${index}`] || ''}
                 onChangeText={(text) => onChangeFormData(`item${index}`, text)}
                 disabled={fetching || preview}
+                artboardSize={artboardSize!}
               />
             )
           })}
@@ -113,6 +114,7 @@ const Contact = ({ node, preview = false, onSend }: ComponentProps) => {
             multiple={true}
             rows={6}
             disabled={fetching || preview}
+            artboardSize={artboardSize!}
           />
         </ContactList>
         <Spacer size="xl" />
@@ -121,7 +123,14 @@ const Contact = ({ node, preview = false, onSend }: ComponentProps) => {
         <Spacer size="m" />
       </GroupInner>
 
-      <ContactFetchModal open={openModal} onClose={() => setOpenModal(false)} fetching={fetching} success={success} error={errorMessage} />
+      <ContactFetchModal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        fetching={fetching}
+        success={success}
+        error={errorMessage}
+        artboardSize={artboardSize!}
+      />
     </GroupContainer>
   )
 }
@@ -132,7 +141,7 @@ const MissionText = styled.p`
   color: ${(props) => props.theme.foregrounds.primary};
   white-space: pre-wrap;
 
-  @media (min-width: 400px) {
+  &[is-desktop='false'] {
     font-size: 36px;
   }
 `
@@ -150,7 +159,7 @@ const MissionDetailText = styled.p`
   color: ${(props) => props.theme.foregrounds.secondary};
   white-space: pre-wrap;
 
-  @media (min-width: 400px) {
+  &[is-desktop='false'] {
     font-size: 18px;
   }
 `

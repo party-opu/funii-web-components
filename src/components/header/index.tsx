@@ -5,24 +5,32 @@ import Spacer from '../../core/spacer'
 import Hidden from '../../core/hidden'
 import IconButton from '../../core/iconButton'
 import Drawer from '../../core/drawer'
-import { ComponentProps, ComponentSet } from '../props'
+import { ComponentProps, ComponentSet, DESKTOP_MIN_WIDTH } from '../props'
 import { useRouting, useExistLink } from '../hooks'
+import { useMediaQuery } from 'react-responsive'
 
-const PCMenu = ({ node, push, paths = [] }: ComponentProps) => {
+const PCMenu = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
   const onClick = useRouting(push)
   const onCheckExistLink = useExistLink()
 
+  const useIsDesktop = () => {
+    const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'desktop' ? true : false) : isDesktop
+  }
+
+  const isDesktop = useIsDesktop()
+
   return (
     <Nav>
       <ListWrapper>
-        <List>
+        <List style={!isDesktop ? { minWidth: '400px', justifyContent: 'start', flexDirection: 'row', alignItems: 'center' } : {}}>
           {componentSet.sections.map((section, index) => {
             if (section.fields.text) {
               return (
                 <React.Fragment key={index}>
                   <ListItem data-existlink={onCheckExistLink(section.fields.text, paths)} onClick={() => onClick(section.fields.text, paths)}>
-                    <ListItemText>{section.fields.text.value}</ListItemText>
+                    <ListItemText style={!isDesktop ? { minWidth: '400px', fontSize: '12px' } : {}}>{section.fields.text.value}</ListItemText>
                   </ListItem>
                   <Spacer layout="vertical" size="l" />
                 </React.Fragment>
@@ -33,7 +41,7 @@ const PCMenu = ({ node, push, paths = [] }: ComponentProps) => {
               return (
                 <React.Fragment key={index}>
                   <ListItem data-existlink={onCheckExistLink(section.fields.imageURL, paths)} onClick={() => onClick(section.fields.imageURL, paths)}>
-                    <ListItemImage src={section.fields.imageURL.value} />
+                    <ListItemImage style={!isDesktop ? { minWidth: '400px', height: '40px' } : {}} src={section.fields.imageURL.value} />
                   </ListItem>
                   <Spacer layout="vertical" size="l" />
                 </React.Fragment>
@@ -60,22 +68,29 @@ const SMMenu = ({ onOpen }: SMMenuProps) => {
   )
 }
 
-const Header = ({ node, push, paths = [] }: ComponentProps) => {
+const Header = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
   const onClick = useRouting(push)
   const onCheckExistLink = useExistLink()
 
+  const useIsDesktop = () => {
+    const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'desktop' ? true : false) : isDesktop
+  }
+
+  const isDesktop = useIsDesktop()
+
   return (
     <Root>
-      <Hidden smUp={false}>
-        <PCMenu node={node} push={push} paths={paths} />
+      <Hidden smUp={false} artboardSize={artboardSize!}>
+        <PCMenu node={node} push={push} paths={paths} artboardSize={artboardSize} />
       </Hidden>
-      <Hidden smUp={true}>
+      <Hidden smUp={true} artboardSize={artboardSize!}>
         <SMMenu onOpen={() => setOpenDrawer(true)} />
         <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
           <DrawerInner>
-            <List>
+            <List is-desktop={isDesktop}>
               {componentSet.sections.map((section, index) => {
                 if (section.fields.text) {
                   return (
@@ -89,7 +104,7 @@ const Header = ({ node, push, paths = [] }: ComponentProps) => {
                           }
                         }}
                       >
-                        <ListItemText>{section.fields.text.value}</ListItemText>
+                        <ListItemText is-desktop={isDesktop}>{section.fields.text.value}</ListItemText>
                       </ListItem>
                       <Spacer size="l" />
                     </React.Fragment>
@@ -108,7 +123,7 @@ const Header = ({ node, push, paths = [] }: ComponentProps) => {
                           }
                         }}
                       >
-                        <ListItemImage src={section.fields.imageURL.value} />
+                        <ListItemImage is-desktop={isDesktop} src={section.fields.imageURL.value} />
                       </ListItem>
                       <Spacer size="l" />
                     </React.Fragment>
@@ -167,7 +182,7 @@ const List = styled.ul`
   width: 100%;
   list-style-type: none;
 
-  @media (min-width: 400px) {
+  &[is-desktop='false'] {
     justify-content: start;
     flex-direction: row;
     align-items: center;
@@ -187,7 +202,7 @@ const ListItemText = styled.p`
   font-size: 14px;
   color: ${(props) => props.theme.foregrounds.primary};
 
-  @media (min-width: 400px) {
+  &[is-desktop='false'] {
     font-size: 12px;
   }
 `
@@ -203,7 +218,7 @@ ListItemText.defaultProps = {
 const ListItemImage = styled.img`
   height: 40px;
 
-  @media (min-width: 400px) {
+  &[is-desktop='false'] {
     height: 40px;
   }
 `
