@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ComponentProps, ComponentSet, DESKTOP_MIN_WIDTH } from '../props'
+import { ComponentProps, ComponentSet, TABLET_MIN_WIDTH } from '../props'
 import { useRouting } from '../hooks'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
@@ -14,20 +14,20 @@ const Member = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
   const onClick = useRouting(push)
 
-  const useIsDesktop = () => {
-    const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
-    return artboardSize ? (artboardSize === 'desktop' ? true : false) : isDesktop
+  const useIsTablet = () => {
+    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
   }
 
-  const isDesktop = useIsDesktop()
+  const isTablet = useIsTablet()
 
   return (
     <GroupContainer>
       <GroupInner>
         <Spacer size="m" />
-        <ResponsiveList is-desktop={isDesktop}>
+        <ResponsiveList artboardSize={artboardSize!}>
           {componentSet.sections.map((section, index) => (
-            <ResponsiveListItem key={`service-${index}`} is-desktop={isDesktop}>
+            <ResponsiveListItem key={`service-${index}`} artboardSize={artboardSize!}>
               <MemberRoot>
                 <Avatar
                   uri={section.fields.imageURL ? section.fields.imageURL.value : undefined}
@@ -36,7 +36,7 @@ const Member = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
                 />
                 <Spacer />
                 <MemberBody>
-                  <MemberNameText is-desktop={isDesktop} onClick={() => onClick(section.fields.name, paths)}>
+                  <MemberNameText style={isTablet ? { fontSize: '24x' } : { fontSize: '20px' }} onClick={() => onClick(section.fields.name, paths)}>
                     {section.fields.name.value}
                   </MemberNameText>
                   <Spacer size="s" />
@@ -69,14 +69,9 @@ const MemberBody = styled.div`
 `
 
 const MemberNameText = styled.p`
-  font-size: 20px;
   font-weight: bold;
   color: ${(props) => props.theme.foregrounds.primary};
   white-space: pre-wrap;
-
-  &[is-desktop='false'] {
-    font-size: 24px;
-  }
 `
 
 MemberNameText.defaultProps = {

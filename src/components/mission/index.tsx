@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ComponentProps, ComponentSet, DESKTOP_MIN_WIDTH } from '../props'
+import { ComponentProps, ComponentSet, TABLET_MIN_WIDTH } from '../props'
 import { useRouting } from '../hooks'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
@@ -11,12 +11,12 @@ const Mission = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
   const onClick = useRouting(push)
 
-  const useIsDesktop = () => {
-    const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
-    return artboardSize ? (artboardSize === 'desktop' ? true : false) : isDesktop
+  const useIsTablet = () => {
+    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
   }
 
-  const isDesktop = useIsDesktop()
+  const isTablet = useIsTablet()
 
   return (
     <GroupContainer>
@@ -24,11 +24,11 @@ const Mission = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
         <Spacer size="m" />
         {componentSet.sections.map((section, index) => (
           <React.Fragment key={`mission-${index}`}>
-            <MissionText is-desktop={isDesktop} onClick={() => onClick(section.fields.title, paths)}>
+            <MissionText style={isTablet ? { fontSize: '36px' } : { fontSize: '24px' }} onClick={() => onClick(section.fields.title, paths)}>
               {section.fields.title.value}
             </MissionText>
             <Spacer size="xl" />
-            <MissionDetailText is-desktop={isDesktop} onClick={() => onClick(section.fields.description, paths)}>
+            <MissionDetailText is-tablet={isTablet} onClick={() => onClick(section.fields.description, paths)}>
               {section.fields.description.value}
             </MissionDetailText>
           </React.Fragment>
@@ -40,14 +40,9 @@ const Mission = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
 }
 
 const MissionText = styled.p`
-  font-size: 24px;
   font-weight: bold;
   color: ${(props) => props.theme.foregrounds.primary};
   white-space: pre-wrap;
-
-  &[is-desktop='false'] {
-    font-size: 36px;
-  }
 `
 
 MissionText.defaultProps = {
@@ -63,9 +58,9 @@ const MissionDetailText = styled.p`
   color: ${(props) => props.theme.foregrounds.secondary};
   white-space: pre-wrap;
 
-  &[is-desktop='false'] {
-    font-size: 18px;
-  }
+  // &[is-tablet='false'] {
+  //   font-size: 18px;
+  // }
 `
 
 MissionDetailText.defaultProps = {

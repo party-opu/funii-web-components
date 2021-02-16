@@ -141,9 +141,9 @@ const MissionText = styled.p`
   color: ${(props) => props.theme.foregrounds.primary};
   white-space: pre-wrap;
 
-  &[is-desktop='false'] {
-    font-size: 36px;
-  }
+  // &[is-tablet='false'] {
+  //   font-size: 36px;
+  // }
 `
 
 MissionText.defaultProps = {
@@ -159,9 +159,9 @@ const MissionDetailText = styled.p`
   color: ${(props) => props.theme.foregrounds.secondary};
   white-space: pre-wrap;
 
-  &[is-desktop='false'] {
-    font-size: 18px;
-  }
+  // &[is-tablet='false'] {
+  //   font-size: 18px;
+  // }
 `
 
 MissionDetailText.defaultProps = {
