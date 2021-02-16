@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import { ArtboardSize } from '../props';
 declare type ContractListItem = {
     label: string;
     value: string;
@@ -7,7 +8,8 @@ declare type ContractListItem = {
     disabled?: boolean;
     multiple?: boolean;
     rows?: number;
+    artboardSize: ArtboardSize;
 };
-declare const ContractListItem: ({ label, value, onChangeText, required, disabled, multiple, rows }: ContractListItem) => JSX.Element;
+declare const ContractListItem: ({ label, value, onChangeText, required, disabled, multiple, rows, artboardSize }: ContractListItem) => JSX.Element;
 export default ContractListItem;
 //# sourceMappingURL=contactListItem.d.ts.map
