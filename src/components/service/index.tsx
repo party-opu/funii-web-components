@@ -13,13 +13,12 @@ const Service = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
   const onClick = useRouting(push)
 
-  const useIsTablet = () => {
-    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
-    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
+  const useIsLargeDevice = () => {
+    const isLargeDevice = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'tablet' || artboardSize === 'desktop' ? true : false) : isLargeDevice
   }
 
-  const isTablet = useIsTablet()
-  console.log('isTablet', isTablet)
+  const isLargeDevice = useIsLargeDevice()
 
   return (
     <GroupContainer>
@@ -32,7 +31,7 @@ const Service = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
                 <Image src={section.fields.imageURL.value} onClick={() => onClick(section.fields.imageURL, paths)} />
                 <Spacer />
                 <ServiceBody>
-                  <ServiceTitleText style={isTablet ? { fontSize: '24px' } : { fontSize: '20px' }} onClick={() => onClick(section.fields.title, paths)}>
+                  <ServiceTitleText style={isLargeDevice ? { fontSize: '24px' } : { fontSize: '20px' }} onClick={() => onClick(section.fields.title, paths)}>
                     {section.fields.title.value}
                   </ServiceTitleText>
                   <Spacer />

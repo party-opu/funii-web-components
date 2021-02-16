@@ -10,14 +10,14 @@ type Props = {
 }
 
 const Hidden: React.FC<Props> = ({ smUp = true, children, artboardSize }) => {
-  const useIsTablet = () => {
-    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
-    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
+  const useIsLargeDevice = () => {
+    const isLargeDevice = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'tablet' || artboardSize === 'desktop' ? true : false) : isLargeDevice
   }
 
-  const isTablet = useIsTablet()
+  const isLargeDevice = useIsLargeDevice()
 
-  return <BaseHidden style={(!isTablet && !smUp) || (isTablet && smUp) ? { display: 'none' } : { display: 'block' }}>{children}</BaseHidden>
+  return <BaseHidden style={(isLargeDevice && smUp) || (!isLargeDevice && !smUp) ? { display: 'none' } : { display: 'block' }}>{children}</BaseHidden>
 }
 
 const BaseHidden = styled.div`

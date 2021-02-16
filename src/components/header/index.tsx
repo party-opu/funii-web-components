@@ -14,23 +14,23 @@ const PCMenu = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const onClick = useRouting(push)
   const onCheckExistLink = useExistLink()
 
-  const useIsTablet = () => {
-    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
-    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
+  const useIsLargeDevice = () => {
+    const isLargeDevice = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'tablet' || artboardSize === 'desktop' ? true : false) : isLargeDevice
   }
 
-  const isTablet = useIsTablet()
+  const isLargeDevice = useIsLargeDevice()
 
   return (
     <Nav>
       <ListWrapper>
-        <List style={isTablet ? { flexDirection: 'row', alignItems: 'center', justifyContent: 'start' } : { flexDirection: 'column' }}>
+        <List style={isLargeDevice ? { flexDirection: 'row', alignItems: 'center', justifyContent: 'start' } : { flexDirection: 'column' }}>
           {componentSet.sections.map((section, index) => {
             if (section.fields.text) {
               return (
                 <React.Fragment key={index}>
                   <ListItem data-existlink={onCheckExistLink(section.fields.text, paths)} onClick={() => onClick(section.fields.text, paths)}>
-                    <ListItemText style={isTablet ? { fontSize: '14px' } : { fontSize: '12px' }}>{section.fields.text.value}</ListItemText>
+                    <ListItemText style={isLargeDevice ? { fontSize: '14px' } : { fontSize: '12px' }}>{section.fields.text.value}</ListItemText>
                   </ListItem>
                   <Spacer layout="vertical" size="l" />
                 </React.Fragment>
@@ -74,13 +74,13 @@ const Header = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const onClick = useRouting(push)
   const onCheckExistLink = useExistLink()
 
-  const useIsTablet = () => {
-    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
-    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
+  const useIsLargeDevice = () => {
+    const isLargeDevice = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'tablet' || artboardSize === 'desktop' ? true : false) : isLargeDevice
   }
 
-  const isTablet = useIsTablet()
-
+  const isLargeDevice = useIsLargeDevice()
+  console.log(isLargeDevice)
   return (
     <Root>
       <Hidden smUp={false} artboardSize={artboardSize!}>
@@ -90,7 +90,7 @@ const Header = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
         <SMMenu onOpen={() => setOpenDrawer(true)} />
         <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
           <DrawerInner>
-            <List style={isTablet ? { flexDirection: 'row', alignItems: 'center', justifyContent: 'start' } : { flexDirection: 'column' }}>
+            <List style={isLargeDevice ? { flexDirection: 'row', alignItems: 'center', justifyContent: 'start' } : { flexDirection: 'column' }}>
               {componentSet.sections.map((section, index) => {
                 if (section.fields.text) {
                   return (
@@ -104,7 +104,7 @@ const Header = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
                           }
                         }}
                       >
-                        <ListItemText style={isTablet ? { fontSize: '14px' } : { fontSize: '12px' }}>{section.fields.text.value}</ListItemText>
+                        <ListItemText style={isLargeDevice ? { fontSize: '14px' } : { fontSize: '12px' }}>{section.fields.text.value}</ListItemText>
                       </ListItem>
                       <Spacer size="l" />
                     </React.Fragment>

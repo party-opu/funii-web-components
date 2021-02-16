@@ -11,22 +11,22 @@ type BorderListItemProps = {
 }
 
 const BorderListItem: React.FC<BorderListItemProps> = ({ label, value, children, onClick, artboardSize }) => {
-  const useIsTablet = () => {
-    const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
-    return artboardSize ? (artboardSize === 'tablet' ? true : false) : isTablet
+  const useIsLargeDevice = () => {
+    const isLargeDevice = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'tablet' || artboardSize === 'desktop' ? true : false) : isLargeDevice
   }
 
-  const isTablet = useIsTablet()
+  const isLargeDevice = useIsLargeDevice()
 
   return (
     <ListItem onClick={onClick}>
       <Inner>
         {label && (
           <LabelWrapper>
-            <LabelText style={isTablet ? { fontSize: '18px' } : { fontSize: '16px' }}>{label}</LabelText>
+            <LabelText style={isLargeDevice ? { fontSize: '18px' } : { fontSize: '16px' }}>{label}</LabelText>
           </LabelWrapper>
         )}
-        {value && <ValueText style={isTablet ? { fontSize: '18px' } : { fontSize: '16px' }}>{value}</ValueText>}
+        {value && <ValueText style={isLargeDevice ? { fontSize: '18px' } : { fontSize: '16px' }}>{value}</ValueText>}
         {children}
       </Inner>
     </ListItem>
