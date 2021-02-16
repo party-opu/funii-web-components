@@ -6,7 +6,7 @@ const ResponsiveListItem = styled.div`
   padding-left: 18px;
   padding-bottom: 60px;
 
-  @media (min-width: 400px) {
+  &[is-desktop='false'] {
     padding-bottom: 0px;
   }
 `

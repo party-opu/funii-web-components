@@ -1,22 +1,32 @@
 import React from 'react'
 import styled from 'styled-components'
+import { DESKTOP_MIN_WIDTH, ArtboardSize } from '../../components/props'
+import { useMediaQuery } from 'react-responsive'
 
 type BorderListItemProps = {
   label?: string
   value?: string
   onClick?: (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => void
+  artboardSize: ArtboardSize
 }
 
-const BorderListItem: React.FC<BorderListItemProps> = ({ label, value, children, onClick }) => {
+const BorderListItem: React.FC<BorderListItemProps> = ({ label, value, children, onClick, artboardSize }) => {
+  const useIsDesktop = () => {
+    const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
+    return artboardSize ? (artboardSize === 'desktop' ? true : false) : isDesktop
+  }
+
+  const isDesktop = useIsDesktop()
+
   return (
     <ListItem onClick={onClick}>
       <Inner>
         {label && (
           <LabelWrapper>
-            <LabelText>{label}</LabelText>
+            <LabelText is-desktop={isDesktop}>{label}</LabelText>
           </LabelWrapper>
         )}
-        {value && <ValueText>{value}</ValueText>}
+        {value && <ValueText is-desktop={isDesktop}>{value}</ValueText>}
         {children}
       </Inner>
     </ListItem>
@@ -45,7 +55,7 @@ const LabelText = styled.p`
   color: ${(props) => props.theme.foregrounds.secondary};
   white-space: pre-wrap;
 
-  @media (min-width: 400px) {
+  &[is-desktop='false'] {
     font-size: 18px;
   }
 `
@@ -64,7 +74,7 @@ const ValueText = styled.p`
   color: ${(props) => props.theme.foregrounds.primary};
   white-space: pre-wrap;
 
-  @media (min-width: 400px) {
+  &[is-desktop='false'] {
     font-size: 18px;
   }
 `

@@ -6,7 +6,7 @@ const ResponsiveList = styled.div`
   justify-content: 'center';
   flex: 1;
 
-  @media (min-width: 400px) {
+  &[is-desktop='false'] {
     flex-direction: row;
     justify-content: 'space-between';
   }
