@@ -32,6 +32,7 @@ jobs:
       - name: package-version-to-git-tag
         uses: pkgdeps/action-package-version-to-git-tag@v1
         with:
+          version: "1.0.0"
           github_token: ${{ secrets.GIT_TOKEN }}
           github_repo: ${{ github.repository }}
           git_commit_sha: ${{ github.sha }}
