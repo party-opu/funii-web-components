@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ComponentProps, ComponentSet, TABLET_MIN_WIDTH } from '../props'
-import { useRouting } from '../hooks'
+import { useActionForItem } from '../hooks'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
@@ -9,7 +9,7 @@ import { useMediaQuery } from 'react-responsive'
 
 const Mission = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
-  const onClick = useRouting(push)
+  const action = useActionForItem(push, paths)
 
   const useIsLargeDevice = () => {
     const isLargeDevice = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
@@ -24,11 +24,11 @@ const Mission = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
         <Spacer size="m" />
         {componentSet.sections.map((section, index) => (
           <React.Fragment key={`mission-${index}`}>
-            <MissionText style={isLargeDevice ? { fontSize: '36px' } : { fontSize: '24px' }} onClick={() => onClick(section.fields.title, paths)}>
+            <MissionText style={isLargeDevice ? { fontSize: '36px' } : { fontSize: '24px' }} onClick={() => action(section.fields.title)}>
               {section.fields.title.value}
             </MissionText>
             <Spacer size="xl" />
-            <MissionDetailText is-tablet={isLargeDevice} onClick={() => onClick(section.fields.description, paths)}>
+            <MissionDetailText is-tablet={isLargeDevice} onClick={() => action(section.fields.description)}>
               {section.fields.description.value}
             </MissionDetailText>
           </React.Fragment>

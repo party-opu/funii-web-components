@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ComponentProps, Image as ImageNode, DESKTOP_MIN_WIDTH, TABLET_MIN_WIDTH } from '../props'
-import { useRouting, useExistLink } from '../hooks'
+import { useAction, useExistAction } from '../hooks'
 import { useMediaQuery } from 'react-responsive'
 
 const Image = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const image = node as ImageNode
-  const onClick = useRouting(push)
-  const onCheckExistLink = useExistLink()
+  const action = useAction(image, push, paths)
+  const existAction = useExistAction(image, paths)
 
   const useIsDesktop = () => {
     const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
@@ -30,9 +30,9 @@ const Image = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
       >
         <BaseImage
           src={image.imageURL}
-          data-existlink={onCheckExistLink(image, paths)}
+          data-existlink={existAction}
           style={image.styleMode === 'common' ? image.style : isDesktop ? image.style : isTablet ? image.styleTb : image.styleMb}
-          onClick={() => onClick(image, paths)}
+          onClick={action}
         />
       </Wrapper>
     </React.Fragment>

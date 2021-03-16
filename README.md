@@ -1,6 +1,6 @@
 # funii-web-components
 
-**[github-pages](https://party-opu.github.io/funii-web-components/)**
+**[github-pages](https://party-opu.github.io/funii-assist-web-components/)**
 
 ## Installation
 
@@ -12,8 +12,8 @@ GitHub Packagesで公開する場合、レジストリを登録する必要が�
 
 ```
 // with npm
-npm install @party-opu/funii-web-components
+npm install @party-opu/funii-assist-web-components
 
 // with yarn
-yarn add @party-opu/funii-web-components
+yarn add @party-opu/funii-assist-web-components
 ```

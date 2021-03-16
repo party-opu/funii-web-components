@@ -3,7 +3,7 @@ import React from 'react'
 import ReactCarousel from 'react-multi-carousel'
 import styled from 'styled-components'
 import { ComponentProps, ComponentSet } from '../props'
-import { useRouting } from '../hooks'
+import { useActionForItem } from '../hooks'
 
 const responsive = {
   desktop: {
@@ -20,7 +20,7 @@ const responsive = {
 
 const Carousel = ({ node, push, paths = [] }: ComponentProps) => {
   const componentSet = node as ComponentSet
-  const onClick = useRouting(push)
+  const action = useActionForItem(push, paths)
 
   return (
     <ReactCarousel
@@ -43,7 +43,7 @@ const Carousel = ({ node, push, paths = [] }: ComponentProps) => {
           draggable={false}
           src={section.fields.imageURL.value}
           alt={section.fields.imageURL.label}
-          onClick={() => onClick(section.fields.imageURL, paths)}
+          onClick={() => action(section.fields.imageURL)}
         />
       ))}
     </ReactCarousel>

@@ -1,16 +1,4 @@
-// Action
-// --------------------------------
-export interface BaseAction {
-  trigger: 'click'
-  type: 'externalLink' | 'internalLink'
-}
-
-export interface LinkAction extends BaseAction {
-  type: 'externalLink' | 'internalLink'
-  value: string
-}
-
-export type Action = LinkAction
+import { Action } from './action'
 
 // BaseNode
 // --------------------------------
@@ -125,7 +113,7 @@ export type Node = Frame | ComponentSet | BasicNode
 
 export type ComponentProps = {
   node: Node
-  push?: (internal: boolean, href: string) => void
+  push?: (url: string) => void
   paths?: string[]
   preview?: boolean
   onSend?: (value: CreateContact) => Promise<void>
