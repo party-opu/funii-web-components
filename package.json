@@ -1,12 +1,12 @@
 {
-  "name": "@party-opu/funii-web-components",
-  "version": "0.2.0",
+  "name": "@party-opu/funii-assist-web-components",
+  "version": "0.2.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/party-opu/funii-web-components.git",
+  "repository": "https://github.com/party-opu/funii-assist-web-components.git",
   "author": "kosaku kurino <kousaku.maron@gmail.com>",
   "license": "MIT",
   "scripts": {
