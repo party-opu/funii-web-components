@@ -307,5 +307,14 @@ export const button: Node = {
       type: 'externalLink',
       value: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
     },
+    {
+      trigger: 'click',
+      type: 'api',
+      method: 'get',
+      authorization: null,
+      headers: [],
+      endpoint: 'https://endpoint.jp',
+      queryParams: [],
+    },
   ],
 }
