@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ComponentProps, Text as TextNode, DESKTOP_MIN_WIDTH, TABLET_MIN_WIDTH } from '../props'
-import { useRouting, useExistLink } from '../hooks'
+import { useAction, useExistAction } from '../hooks'
 import { useMediaQuery } from 'react-responsive'
 
 const Text = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const text = node as TextNode
-  const onClick = useRouting(push)
-  const onCheckExistLink = useExistLink()
+  const action = useAction(text, push, paths)
+  const existAction = useExistAction(text, paths)
 
   const useIsDesktop = () => {
     const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
@@ -25,9 +25,9 @@ const Text = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
     <React.Fragment>
       <Wrapper>
         <BaseText
-          data-existlink={onCheckExistLink(text, paths)}
+          data-existlink={existAction}
           style={text.styleMode === 'common' ? text.style : isDesktop ? text.style : isTablet ? text.styleTb : text.styleMb}
-          onClick={() => onClick(text, paths)}
+          onClick={action}
         >
           {text.value}
         </BaseText>

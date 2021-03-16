@@ -6,13 +6,13 @@ import Hidden from '../../core/hidden'
 import IconButton from '../../core/iconButton'
 import Drawer from '../../core/drawer'
 import { ComponentProps, ComponentSet, TABLET_MIN_WIDTH } from '../props'
-import { useRouting, useExistLink } from '../hooks'
+import { useActionForItem, useExistActionForItem } from '../hooks'
 import { useMediaQuery } from 'react-responsive'
 
 const PCMenu = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
-  const onClick = useRouting(push)
-  const onCheckExistLink = useExistLink()
+  const action = useActionForItem(push, paths)
+  const existAction = useExistActionForItem(paths)
 
   const useIsLargeDevice = () => {
     const isLargeDevice = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
@@ -29,7 +29,7 @@ const PCMenu = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
             if (section.fields.text) {
               return (
                 <React.Fragment key={index}>
-                  <ListItem data-existlink={onCheckExistLink(section.fields.text, paths)} onClick={() => onClick(section.fields.text, paths)}>
+                  <ListItem data-existlink={existAction(section.fields.text)} onClick={() => action(section.fields.text)}>
                     <ListItemText style={isLargeDevice ? { fontSize: '14px' } : { fontSize: '12px' }}>{section.fields.text.value}</ListItemText>
                   </ListItem>
                   <Spacer layout="vertical" size="l" />
@@ -40,7 +40,7 @@ const PCMenu = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
             if (section.fields.imageURL) {
               return (
                 <React.Fragment key={index}>
-                  <ListItem data-existlink={onCheckExistLink(section.fields.imageURL, paths)} onClick={() => onClick(section.fields.imageURL, paths)}>
+                  <ListItem data-existlink={existAction(section.fields.imageURL)} onClick={() => action(section.fields.imageURL)}>
                     <ListItemImage src={section.fields.imageURL.value} />
                   </ListItem>
                   <Spacer layout="vertical" size="l" />
@@ -68,11 +68,11 @@ const SMMenu = ({ onOpen }: SMMenuProps) => {
   )
 }
 
-const Header = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
+const Header = ({ node, push, paths = [], artboardSize = 'desktop' }: ComponentProps) => {
   const componentSet = node as ComponentSet
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
-  const onClick = useRouting(push)
-  const onCheckExistLink = useExistLink()
+  const action = useActionForItem(push, paths)
+  const existAction = useExistActionForItem(paths)
 
   const useIsLargeDevice = () => {
     const isLargeDevice = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
@@ -80,13 +80,13 @@ const Header = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   }
 
   const isLargeDevice = useIsLargeDevice()
-  console.log(isLargeDevice)
+
   return (
     <Root>
-      <Hidden smUp={false} artboardSize={artboardSize!}>
+      <Hidden smUp={false} artboardSize={artboardSize}>
         <PCMenu node={node} push={push} paths={paths} artboardSize={artboardSize} />
       </Hidden>
-      <Hidden smUp={true} artboardSize={artboardSize!}>
+      <Hidden smUp={true} artboardSize={artboardSize}>
         <SMMenu onOpen={() => setOpenDrawer(true)} />
         <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
           <DrawerInner>
@@ -96,10 +96,10 @@ const Header = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
                   return (
                     <React.Fragment key={index}>
                       <ListItem
-                        data-existlink={onCheckExistLink(section.fields.text, paths)}
+                        data-existlink={existAction(section.fields.text)}
                         onClick={() => {
-                          if (onCheckExistLink(section.fields.text, paths)) {
-                            onClick(section.fields.text, paths)
+                          action(section.fields.text)
+                          if (existAction(section.fields.text)) {
                             setOpenDrawer(false)
                           }
                         }}
@@ -115,10 +115,10 @@ const Header = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
                   return (
                     <React.Fragment key={index}>
                       <ListItem
-                        data-existlink={onCheckExistLink(section.fields.imageURL, paths)}
+                        data-existlink={existAction(section.fields.imageURL)}
                         onClick={() => {
-                          if (onCheckExistLink(section.fields.imageURL, paths)) {
-                            onClick(section.fields.imageURL, paths)
+                          action(section.fields.imageURL)
+                          if (existAction(section.fields.imageURL)) {
                             setOpenDrawer(false)
                           }
                         }}

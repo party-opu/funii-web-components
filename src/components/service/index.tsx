@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ComponentProps, ComponentSet, TABLET_MIN_WIDTH } from '../props'
-import { useRouting } from '../hooks'
+import { useActionForItem } from '../hooks'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
@@ -9,9 +9,9 @@ import ResponsiveList from '../../core/responsiveList'
 import ResponsiveListItem from '../../core/responsiveListItem'
 import { useMediaQuery } from 'react-responsive'
 
-const Service = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
+const Service = ({ node, push, paths = [], artboardSize = 'desktop' }: ComponentProps) => {
   const componentSet = node as ComponentSet
-  const onClick = useRouting(push)
+  const action = useActionForItem(push, paths)
 
   const useIsLargeDevice = () => {
     const isLargeDevice = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
@@ -24,18 +24,18 @@ const Service = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
     <GroupContainer>
       <GroupInner>
         <Spacer size="m" />
-        <ResponsiveList artboardSize={artboardSize!}>
+        <ResponsiveList artboardSize={artboardSize}>
           {componentSet.sections.map((section, index) => (
-            <ResponsiveListItem key={`service-${index}`} artboardSize={artboardSize!}>
+            <ResponsiveListItem key={`service-${index}`} artboardSize={artboardSize}>
               <ServiceRoot>
-                <Image src={section.fields.imageURL.value} onClick={() => onClick(section.fields.imageURL, paths)} />
+                <Image src={section.fields.imageURL.value} onClick={() => action(section.fields.imageURL)} />
                 <Spacer />
                 <ServiceBody>
-                  <ServiceTitleText style={isLargeDevice ? { fontSize: '24px' } : { fontSize: '20px' }} onClick={() => onClick(section.fields.title, paths)}>
+                  <ServiceTitleText style={isLargeDevice ? { fontSize: '24px' } : { fontSize: '20px' }} onClick={() => action(section.fields.title)}>
                     {section.fields.title.value}
                   </ServiceTitleText>
                   <Spacer />
-                  <ServiceDetailText onClick={() => onClick(section.fields.description, paths)}>{section.fields.description.value}</ServiceDetailText>
+                  <ServiceDetailText onClick={() => action(section.fields.description)}>{section.fields.description.value}</ServiceDetailText>
                 </ServiceBody>
               </ServiceRoot>
             </ResponsiveListItem>

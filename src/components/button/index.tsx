@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ComponentProps, Button as ButtonNode, DESKTOP_MIN_WIDTH, TABLET_MIN_WIDTH } from '../props'
-import { useRouting, useExistLink } from '../hooks'
+import { useAction, useExistAction } from '../hooks'
 import { useMediaQuery } from 'react-responsive'
 
 const Button = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const button = node as ButtonNode
-  const onClick = useRouting(push)
-  const onCheckExistLink = useExistLink()
+  const action = useAction(button, push, paths)
+  const existAction = useExistAction(button, paths)
 
   const useIsDesktop = () => {
     const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
@@ -25,9 +25,9 @@ const Button = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
     <React.Fragment>
       <Wrapper style={button.styleMode === 'common' || isDesktop ? button.containerStyle : isTablet ? button.containerStyleTb : button.containerStyleMb}>
         <BaseButton
-          data-existlink={onCheckExistLink(button, paths)}
+          data-existlink={existAction}
           style={button.styleMode === 'common' ? button.style : isDesktop ? button.style : isTablet ? button.styleTb : button.styleMb}
-          onClick={() => onClick(button, paths)}
+          onClick={action}
         >
           <BaseText
             style={button.styleMode === 'common' ? button.textStyle : isDesktop ? button.textStyle : isTablet ? button.textStyleTb : button.textStyleMb}

@@ -2,13 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import Spacer from '../../core/spacer'
 import { ComponentProps, ComponentSet, TABLET_MIN_WIDTH } from '../props'
-import { useRouting, useExistLink } from '../hooks'
+import { useActionForItem, useExistActionForItem } from '../hooks'
 import { useMediaQuery } from 'react-responsive'
 
 const Footer = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
-  const onClick = useRouting(push)
-  const onCheckExistLink = useExistLink()
+  const action = useActionForItem(push, paths)
+  const existAction = useExistActionForItem(paths)
 
   const useIsTablet = () => {
     const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
@@ -25,7 +25,7 @@ const Footer = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
             {componentSet.sections.map((section, index) => (
               <React.Fragment key={index}>
                 <Spacer layout="vertical" size="l" />
-                <ListItem data-existlink={onCheckExistLink(section.fields.text, paths)} onClick={() => onClick(section.fields.text, paths)}>
+                <ListItem data-existlink={existAction(section.fields.text)} onClick={() => action(section.fields.text)}>
                   <ListItemText style={isTablet ? { fontSize: '12px' } : { fontSize: '9px' }} is-tablet={isTablet}>
                     {section.fields.text.value}
                   </ListItemText>

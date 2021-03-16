@@ -18,7 +18,7 @@ const initialForm: Form = {
   message: '',
 }
 
-const Contact = ({ node, preview = false, onSend, artboardSize }: ComponentProps) => {
+const Contact = ({ node, preview = false, onSend, artboardSize = 'desktop' }: ComponentProps) => {
   const componentSet = node as ComponentSet
   const [fetching, setFetching] = useState<boolean>(false)
   const [success, setSuccess] = useState<boolean>(false)
@@ -100,7 +100,7 @@ const Contact = ({ node, preview = false, onSend, artboardSize }: ComponentProps
                 value={form[`item${index}`] || ''}
                 onChangeText={(text) => onChangeFormData(`item${index}`, text)}
                 disabled={fetching || preview}
-                artboardSize={artboardSize!}
+                artboardSize={artboardSize}
               />
             )
           })}
@@ -114,7 +114,7 @@ const Contact = ({ node, preview = false, onSend, artboardSize }: ComponentProps
             multiple={true}
             rows={6}
             disabled={fetching || preview}
-            artboardSize={artboardSize!}
+            artboardSize={artboardSize}
           />
         </ContactList>
         <Spacer size="xl" />
@@ -129,7 +129,7 @@ const Contact = ({ node, preview = false, onSend, artboardSize }: ComponentProps
         fetching={fetching}
         success={success}
         error={errorMessage}
-        artboardSize={artboardSize!}
+        artboardSize={artboardSize}
       />
     </GroupContainer>
   )

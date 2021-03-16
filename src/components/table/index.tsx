@@ -1,16 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ComponentProps, ComponentSet } from '../props'
-import { useRouting } from '../hooks'
+import { useActionForItem } from '../hooks'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
 import BorderList from '../../core/borderList'
 import BorderListItem from '../../core/borderListItem'
 
-const Table = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
+const Table = ({ node, push, paths = [], artboardSize = 'desktop' }: ComponentProps) => {
   const componentSet = node as ComponentSet
-  const onClick = useRouting(push)
+  const action = useActionForItem(push, paths)
 
   return (
     <GroupContainer>
@@ -21,8 +21,8 @@ const Table = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
             <BorderListItem
               label={section.fields.label.value}
               value={section.fields.value.value}
-              artboardSize={artboardSize!}
-              onClick={() => onClick(section.fields.value, paths)}
+              artboardSize={artboardSize}
+              onClick={() => action(section.fields.value)}
             />
           </BorderList>
         ))}
