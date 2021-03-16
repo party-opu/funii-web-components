@@ -1,9 +1,6 @@
 {
   "name": "@party-opu/funii-assist-web-components",
-  "version": "0.2.6",
-  "engines": {
-    "node": "14.x"
-  },
+  "version": "0.2.7",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -88,9 +85,5 @@
   },
   "dependencies": {
     "react-responsive": "^8.2.0"
-  },
-  "volta": {
-    "node": "14.16.0",
-    "yarn": "1.22.10"
   }
 }
