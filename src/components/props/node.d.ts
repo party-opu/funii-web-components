@@ -1,13 +1,5 @@
 /// <reference types="react" />
-export interface BaseAction {
-    trigger: 'click';
-    type: 'externalLink' | 'internalLink';
-}
-export interface LinkAction extends BaseAction {
-    type: 'externalLink' | 'internalLink';
-    value: string;
-}
-export declare type Action = LinkAction;
+import { Action } from './action';
 export interface BaseNode {
     id: string;
     label: string;
@@ -90,7 +82,7 @@ export interface Frame extends BaseNode {
 export declare type Node = Frame | ComponentSet | BasicNode;
 export declare type ComponentProps = {
     node: Node;
-    push?: (internal: boolean, href: string) => void;
+    push?: (url: string) => void;
     paths?: string[];
     preview?: boolean;
     onSend?: (value: CreateContact) => Promise<void>;
@@ -112,4 +104,4 @@ export declare type CreateContact = {
     value: string;
     order: number;
 }[];
-//# sourceMappingURL=props.d.ts.map
+//# sourceMappingURL=node.d.ts.map

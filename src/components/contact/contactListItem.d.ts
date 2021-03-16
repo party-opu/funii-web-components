@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { ArtboardSize } from '../props';
 declare type ContractListItem = {
     label: string;

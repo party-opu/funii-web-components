@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { ComponentProps } from '../props';
 declare const Service: ({ node, push, paths, artboardSize }: ComponentProps) => JSX.Element;
 export default Service;

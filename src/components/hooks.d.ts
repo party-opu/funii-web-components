@@ -1,4 +1,8 @@
 import { Text, Image, Button, FieldItem } from './props';
-export declare const useRouting: (push?: ((internal: boolean, href: string) => void) | undefined) => (node: FieldItem | Text | Image | Button, paths: string[]) => void;
-export declare const useExistLink: () => (node: FieldItem | Text | Image | Button, paths: string[]) => boolean;
+declare type Push = (url: string) => Promise<void> | void;
+export declare const useActionForItem: (push: Push | undefined, paths: string[]) => (item: FieldItem) => Promise<void>;
+export declare const useExistActionForItem: (paths: string[]) => (item: FieldItem) => boolean;
+export declare const useAction: (node: Text | Image | Button, push: Push | undefined, paths: string[]) => () => Promise<void>;
+export declare const useExistAction: (node: Text | Image | Button, paths: string[]) => boolean;
+export {};
 //# sourceMappingURL=hooks.d.ts.map

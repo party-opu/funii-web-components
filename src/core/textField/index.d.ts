@@ -1,4 +1,3 @@
-/// <reference types="react" />
 declare type TextFieldProps = {
     disabled?: boolean;
     value?: string;
