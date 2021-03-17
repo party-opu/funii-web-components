@@ -1,139 +1,36 @@
-import { Action } from './action'
-
-// BaseNode
-// --------------------------------
-export interface BaseNode {
-  id: string
-  label: string
+import { FrameMap, TextMap, ImageMap, SpaceMap, ButtonMap, ComponentSetMap } from './nodeMap'
+import { NodeTreeType } from './nodeTree'
+export interface Frame extends FrameMap {
+  children: Node[]
   order: number
-  type: string
-  thumbnailURL: string
+  nodeTreeType: NodeTreeType
 }
 
-export type ArtboardSize = 'desktop' | 'tablet' | 'mobile'
-
-// ComponentSet
-// --------------------------------
-export interface ComponentSet extends BaseNode {
-  sections: Section[]
-}
-
-export type Section = {
-  fields: {
-    [key: string]: FieldItem
-  }
-}
-
-export type FieldItem = {
-  label: string
-  type: 'text' | 'image'
-  value: string
+export interface Text extends TextMap {
   order: number
-  actions: Action[]
-  style?: React.CSSProperties
+  nodeTreeType: NodeTreeType
 }
 
-// Image
-// --------------------------------
-export interface Image extends BaseNode {
-  imageURL: string
-  styleMode: StyleMode
-  style: React.CSSProperties
-  styleMb: React.CSSProperties
-  styleTb: React.CSSProperties
-  containerStyle: React.CSSProperties
-  containerStyleMb: React.CSSProperties
-  containerStyleTb: React.CSSProperties
-  imageSizeType: ImageSizeType
-  actions: Action[]
-}
-export type ImageSizeType = 'percentage' | 'pixel'
-
-export type StyleMode = 'common' | 'responsive'
-export const DESKTOP_MIN_WIDTH = 1200
-export const TABLET_MIN_WIDTH = 700
-
-// Text
-// --------------------------------
-export interface Text extends BaseNode {
-  value: string
-  styleMode: StyleMode
-  style: React.CSSProperties
-  styleMb: React.CSSProperties
-  styleTb: React.CSSProperties
-  actions: Action[]
+export interface Image extends ImageMap {
+  order: number
+  nodeTreeType: NodeTreeType
 }
 
-// Space
-// --------------------------------
-export interface Space extends BaseNode {
-  styleMode: StyleMode
-  style: React.CSSProperties
-  styleMb: React.CSSProperties
-  styleTb: React.CSSProperties
+export interface Space extends SpaceMap {
+  order: number
+  nodeTreeType: NodeTreeType
 }
 
-// Button
-// --------------------------------
-export interface Button extends BaseNode {
-  value: string
-  buttonSizeType: ButtonSizeType
-  styleMode: StyleMode
-  style: React.CSSProperties
-  styleMb: React.CSSProperties
-  styleTb: React.CSSProperties
-  textStyle: React.CSSProperties
-  textStyleMb: React.CSSProperties
-  textStyleTb: React.CSSProperties
-  containerStyle: React.CSSProperties
-  containerStyleMb: React.CSSProperties
-  containerStyleTb: React.CSSProperties
-  actions: Action[]
+export interface Button extends ButtonMap {
+  order: number
+  nodeTreeType: NodeTreeType
 }
-export type ButtonSizeType = 'percentage' | 'pixel'
 
-// BasicNode
-// --------------------------------
+export interface ComponentSet extends ComponentSetMap {
+  order: number
+  nodeTreeType: NodeTreeType
+}
+
 export type BasicNode = Image | Text | Space | Button
 
-// Frame
-// --------------------------------
-export interface Frame extends BaseNode {
-  type: 'frame'
-  styleMode: StyleMode
-  style: React.CSSProperties
-  styleMb: React.CSSProperties
-  styleTb: React.CSSProperties
-  children: Node[]
-}
-
-// Node
-// --------------------------------
 export type Node = Frame | ComponentSet | BasicNode
-
-export type ComponentProps = {
-  node: Node
-  push?: (url: string) => void
-  paths?: string[]
-  preview?: boolean
-  onSend?: (value: CreateContact) => Promise<void>
-  artboardSize?: ArtboardSize
-}
-
-export type Contact = {
-  id: string
-  tableName: string | null
-  department: string | null
-  name: string
-  email: string
-  phoneNumber: string
-  message: string
-  createdAt: Date
-  updatedAt: Date
-}
-
-export type CreateContact = {
-  label: string
-  value: string
-  order: number
-}[]

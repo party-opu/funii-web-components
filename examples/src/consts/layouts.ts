@@ -5,6 +5,7 @@ export const frame: Node = {
   label: 'フレーム',
   order: 10,
   type: 'frame',
+  nodeTreeType: 'layout',
   thumbnailURL:
     'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2Fframe%402x.png?alt=media&token=9fd765d2-abad-4c05-b8f1-7b2acd83cb6a',
   styleMode: 'responsive',
@@ -47,6 +48,7 @@ export const frame: Node = {
       label: 'イメージ',
       order: 10,
       type: 'image',
+      nodeTreeType: 'unit',
       thumbnailURL:
         'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2Fimage%402x.png?alt=media&token=a99e979e-50a4-4171-a832-f41a791a5068',
       imageURL: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
@@ -101,6 +103,7 @@ export const frame: Node = {
       label: 'イメージ',
       order: 10,
       type: 'image',
+      nodeTreeType: 'unit',
       thumbnailURL:
         'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2Fimage%402x.png?alt=media&token=a99e979e-50a4-4171-a832-f41a791a5068',
       imageURL: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
@@ -155,6 +158,7 @@ export const frame: Node = {
       label: 'イメージ',
       order: 10,
       type: 'image',
+      nodeTreeType: 'unit',
       thumbnailURL:
         'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2Fimage%402x.png?alt=media&token=a99e979e-50a4-4171-a832-f41a791a5068',
       imageURL: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
