@@ -7,6 +7,7 @@ export const text: Node = {
   thumbnailURL:
     'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2Ftext%402x.png?alt=media&token=c653bd5e-6277-4d7f-8fef-7aeb7ffd7578',
   type: 'text',
+  nodeTreeType: 'unit',
   value: 'hello world',
   styleMode: 'common',
   style: {
@@ -31,6 +32,7 @@ export const text2: Node = {
   thumbnailURL:
     'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2Ftext%402x.png?alt=media&token=c653bd5e-6277-4d7f-8fef-7aeb7ffd7578',
   type: 'text',
+  nodeTreeType: 'unit',
   value: 'link text',
   styleMode: 'common',
   style: {
@@ -65,6 +67,7 @@ export const text3: Node = {
   label: 'テキスト',
   order: 10,
   type: 'text',
+  nodeTreeType: 'unit',
   thumbnailURL:
     'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2Ftext%402x.png?alt=media&token=c653bd5e-6277-4d7f-8fef-7aeb7ffd7578',
   value: 'styling text',
@@ -92,6 +95,7 @@ export const image: Node = {
   label: 'イメージ',
   order: 10,
   type: 'image',
+  nodeTreeType: 'unit',
   thumbnailURL:
     'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2Fimage%402x.png?alt=media&token=a99e979e-50a4-4171-a832-f41a791a5068',
   imageURL: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
@@ -147,6 +151,7 @@ export const image2: Node = {
   label: 'イメージ',
   order: 10,
   type: 'image',
+  nodeTreeType: 'unit',
   thumbnailURL:
     'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2Fimage%402x.png?alt=media&token=a99e979e-50a4-4171-a832-f41a791a5068',
   imageURL: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
@@ -214,6 +219,7 @@ export const space: Node = {
   label: 'スペース',
   order: 15,
   type: 'space',
+  nodeTreeType: 'unit',
   thumbnailURL:
     'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2Fservice%402x.png?alt=media&token=c58c9c6b-9b74-4634-aecf-d227085c937f',
   styleMode: 'common',
@@ -236,6 +242,7 @@ export const button: Node = {
   label: 'ボタン',
   order: 20,
   type: 'button',
+  nodeTreeType: 'unit',
   thumbnailURL:
     'https://firebasestorage.googleapis.com/v0/b/funii-assist-dev.appspot.com/o/templates%2Fbutton%402x.png?alt=media&token=e9ad4bb3-97e4-4277-9e72-cc7bd762889f',
   value: 'ボタン',
