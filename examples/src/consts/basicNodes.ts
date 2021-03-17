@@ -50,6 +50,12 @@ export const text2: Node = {
       trigger: 'click',
       type: 'externalLink',
       value: 'https://iganin.hatenablog.com/entry/2019/12/12/084419',
+      input: {
+        variables: [],
+      },
+      output: {
+        variables: [],
+      },
     },
   ],
 }
@@ -193,6 +199,12 @@ export const image2: Node = {
       trigger: 'click',
       type: 'externalLink',
       value: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
+      input: {
+        variables: [],
+      },
+      output: {
+        variables: [],
+      },
     },
   ],
 }
@@ -306,15 +318,27 @@ export const button: Node = {
       trigger: 'click',
       type: 'externalLink',
       value: 'https://www.nintendo.co.jp/switch/ampna/material/img/top/mv.jpg',
+      input: {
+        variables: [],
+      },
+      output: {
+        variables: [],
+      },
     },
     {
       trigger: 'click',
       type: 'api',
       method: 'get',
-      authorization: null,
+      authorization: [],
       headers: [],
       endpoint: 'https://endpoint.jp',
       queryParams: [],
+      input: {
+        variables: [],
+      },
+      output: {
+        variables: [],
+      },
     },
   ],
 }
