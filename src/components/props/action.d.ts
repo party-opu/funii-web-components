@@ -1,6 +1,20 @@
+declare type FlexibleString = {
+    type: 'text' | 'variable';
+    value: string;
+}[];
+declare type Variable = {
+    key: string;
+    value: string;
+};
 interface BaseAction {
     trigger: 'click';
     type: 'externalLink' | 'internalLink' | 'api';
+    input: {
+        variables: Variable[];
+    };
+    output: {
+        variables: Variable[];
+    };
 }
 interface LinkAction extends BaseAction {
     type: 'externalLink' | 'internalLink';
@@ -10,17 +24,17 @@ interface BaseAPIAction extends BaseAction {
     type: 'api';
     method: 'get' | 'post';
     endpoint: `http://${string}` | `https://${string}`;
-    authorization: string | null;
+    authorization: FlexibleString;
     headers: {
         key: string;
-        value: string;
+        value: FlexibleString;
     }[];
 }
 interface GetAPIAction extends BaseAPIAction {
     method: 'get';
     queryParams: {
         key: string;
-        value: string;
+        value: FlexibleString;
     }[];
 }
 interface PostAPIAction extends BaseAPIAction {
@@ -28,7 +42,7 @@ interface PostAPIAction extends BaseAPIAction {
     payloadType: 'form' | 'json' | 'xml' | 'row';
     data: {
         key: string;
-        value: string;
+        value: FlexibleString;
     }[];
     file: any;
 }
