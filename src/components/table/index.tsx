@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ComponentProps, ComponentSet } from '../props'
+import { ComponentSet } from '@party-opu/funii-assist-types'
+import { ComponentProps } from '../props'
 import { useActionForItem } from '../hooks'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'

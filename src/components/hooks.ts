@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Text, Image, Button, FieldItem } from './props'
+import { Text, Image, Button, FieldItem } from '@party-opu/funii-assist-types'
 
 type Push = (url: string) => Promise<void> | void
 

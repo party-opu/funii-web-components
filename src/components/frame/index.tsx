@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ComponentProps, Frame as FrameNode, DESKTOP_MIN_WIDTH, TABLET_MIN_WIDTH } from '../props'
+import { Frame as FrameNode } from '@party-opu/funii-assist-types'
+import { ComponentProps, DESKTOP_MIN_WIDTH, TABLET_MIN_WIDTH } from '../props'
 import { useMediaQuery } from 'react-responsive'
 
 const Frame: React.FC<ComponentProps> = ({ node, children, artboardSize }) => {
