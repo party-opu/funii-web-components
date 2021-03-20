@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ComponentProps, Space as SpaceNode, DESKTOP_MIN_WIDTH, TABLET_MIN_WIDTH } from '../props'
+import { Space as SpaceNode } from '@party-opu/funii-assist-types'
+import { ComponentProps, DESKTOP_MIN_WIDTH, TABLET_MIN_WIDTH } from '../props'
 import { useMediaQuery } from 'react-responsive'
 
 const Space = ({ node, artboardSize }: ComponentProps) => {

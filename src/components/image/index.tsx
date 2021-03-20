@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ComponentProps, Image as ImageNode, DESKTOP_MIN_WIDTH, TABLET_MIN_WIDTH } from '../props'
+import { Image as ImageNode } from '@party-opu/funii-assist-types'
+import { ComponentProps, DESKTOP_MIN_WIDTH, TABLET_MIN_WIDTH } from '../props'
 import { useAction, useExistAction } from '../hooks'
 import { useMediaQuery } from 'react-responsive'
 

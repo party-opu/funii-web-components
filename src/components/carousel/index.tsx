@@ -2,7 +2,8 @@
 import React from 'react'
 import ReactCarousel from 'react-multi-carousel'
 import styled from 'styled-components'
-import { ComponentProps, ComponentSet } from '../props'
+import { ComponentSet } from '@party-opu/funii-assist-types'
+import { ComponentProps } from '../props'
 import { useActionForItem } from '../hooks'
 
 const responsive = {

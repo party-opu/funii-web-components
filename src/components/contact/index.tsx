@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { ComponentProps, ComponentSet } from '../props'
+import { ComponentSet } from '@party-opu/funii-assist-types'
+import { ComponentProps } from '../props'
 import isEmpty from 'validator/lib/isEmpty'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'

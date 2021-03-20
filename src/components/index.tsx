@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
-import { ComponentProps, Frame as FrameNode } from './props'
+import { Frame as FrameNode } from '@party-opu/funii-assist-types'
+import { ComponentProps } from './props'
 import Frame, { FrameItemWrapper } from './frame'
 import Text from './text'
 import Image from './image'

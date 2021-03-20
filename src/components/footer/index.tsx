@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import { ComponentSet } from '@party-opu/funii-assist-types'
+import { ComponentProps, TABLET_MIN_WIDTH } from '../props'
 import Spacer from '../../core/spacer'
-import { ComponentProps, ComponentSet, TABLET_MIN_WIDTH } from '../props'
 import { useActionForItem, useExistActionForItem } from '../hooks'
 import { useMediaQuery } from 'react-responsive'
 

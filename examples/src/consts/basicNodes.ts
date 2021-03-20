@@ -1,4 +1,4 @@
-import { Node } from '../../../src/components/props'
+import { Node } from '@party-opu/funii-assist-types'
 
 export const text: Node = {
   id: '1',

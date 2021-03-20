@@ -1,4 +1,4 @@
-import { Node } from './node'
+import { Node } from '@party-opu/funii-assist-types'
 
 export type ArtboardSize = 'desktop' | 'tablet' | 'mobile'
 
