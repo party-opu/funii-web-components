@@ -1,4 +1,4 @@
-import { Node } from '../../../src/components/props';
+import { Node } from '@party-opu/funii-assist-types';
 export declare const text: Node;
 export declare const text2: Node;
 export declare const text3: Node;

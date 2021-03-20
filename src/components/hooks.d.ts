@@ -1,4 +1,4 @@
-import { Text, Image, Button, FieldItem } from './props';
+import { Text, Image, Button, FieldItem } from '@party-opu/funii-assist-types';
 declare type Push = (url: string) => Promise<void> | void;
 export declare const useActionForItem: (push: Push | undefined, paths: string[]) => (item: FieldItem) => Promise<void>;
 export declare const useExistActionForItem: (paths: string[]) => (item: FieldItem) => boolean;

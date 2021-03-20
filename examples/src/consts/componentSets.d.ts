@@ -1,4 +1,4 @@
-import { Node } from '../../../src/components/props';
+import { Node } from '@party-opu/funii-assist-types';
 export declare const header: Node;
 export declare const footer: Node;
 export declare const carousel: Node;
