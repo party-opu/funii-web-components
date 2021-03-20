@@ -14,8 +14,10 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
+          always-auth: true
           node-version: '14.x'
-
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@party-opu'
       - name: Cache dependencies
         uses: actions/cache@v1
         with:
@@ -23,10 +25,11 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-node-
-
-      - run: yarn
+      - name: install
+        run: yarn
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GIT_TOKEN }}
       - run: yarn build:page
-
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

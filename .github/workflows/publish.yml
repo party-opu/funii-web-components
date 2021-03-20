@@ -18,12 +18,14 @@ jobs:
       - name: setup Node
         uses: actions/setup-node@v1
         with:
+          always-auth: true
           node-version: 14.x
           registry-url: 'https://npm.pkg.github.com'
+          scope: '@party-opu'
       - name: install
         run: yarn
-      # - name: build
-      #   run: yarn build:component
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GIT_TOKEN }}
       - name: publish
         run: |
           npx can-npm-publish --verbose && yarn publish || echo "Does not publish"
