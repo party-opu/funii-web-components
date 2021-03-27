@@ -1,6 +1,6 @@
 {
   "name": "@party-opu/funii-assist-web-components",
-  "version": "0.2.12",
+  "version": "0.2.13",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -85,6 +85,7 @@
   },
   "dependencies": {
     "@party-opu/funii-assist-types": "^0.2.6",
+    "lodash": "4.17.20",
     "react-responsive": "^8.2.0"
   }
 }
