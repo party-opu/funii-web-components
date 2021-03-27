@@ -1,0 +1,69 @@
+name: Update Packages
+env:
+  CI: true
+on:
+  repository_dispatch:
+    types: [update-packages] # with client_payload.packages
+  workflow_dispatch:
+    inputs:
+      packages:
+        description: ''
+        required: true
+        default: ''
+jobs:
+  update-packages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: setup Node
+        uses: actions/setup-node@v1
+        with:
+          always-auth: true
+          node-version: 14.x
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@party-opu'
+      - name: Restore Cache
+        uses: actions/cache@v2
+        with:
+          path: 'functions/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('functions/yarn.lock') }}
+      - name: Install
+        run: yarn
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GIT_TOKEN }}
+      - name: Update packages by workflow_dispatch
+        if: ${{ github.event.inputs.packages != null }}
+        run: yarn upgrade ${{ github.event.inputs.packages }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GIT_TOKEN }}
+      - name: Update packages by repository_dispatch
+        if: ${{ github.event.client_payload.packages != null }}
+        run: yarn upgrade ${{ github.event.client_payload.packages }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GIT_TOKEN }}
+      - name: Update patch version
+        run: yarn version --patch --no-commit-hooks --no-git-tag-version
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GIT_TOKEN }}
+          commit-message: 'Update packages'
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          signoff: false
+          branch: feature/update-package
+          branch-suffix: timestamp
+          delete-branch: true
+          title: 'Update Packages by CI'
+          body: |
+            @${{ github.actor }}
+            ```
+            ${{ github.event.inputs.packages }}
+            ${{ github.event.client_payload.packages }}
+            ```
+      - name: Check Pull Request
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
