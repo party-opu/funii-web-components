@@ -1006,9 +1006,9 @@
     fastq "^1.6.0"
 
 "@party-opu/funii-assist-types@^0.2.6":
-  version "0.2.9"
-  resolved "https://npm.pkg.github.com/download/@party-opu/funii-assist-types/0.2.9/27719240d5fe40dbfc39fd0000440098e77c032240f0999ebbaec94ad0e36646#2d0da6757110ad7740d1a32b08c6a5c602d08dbc"
-  integrity sha512-QAS5/q/CdLIiOserkRmfBqw+NanlLUasEVjw3KGwt53k2g+ERZEj524KR2NeiCXFvcMM9lf9A7ul+WUPcz9kyw==
+  version "0.2.10"
+  resolved "https://npm.pkg.github.com/download/@party-opu/funii-assist-types/0.2.10/839c1a6007c0fb9f2fe31da5eb6351c155c4c5808744301d490277a51c439f23#ec39a68b8eca1a8559e8f96d79d83c3b1ddf2456"
+  integrity sha512-4+2Du7nBFIh7cOIJSSeBiz/JeNESPunZIq2bXA1/FV2TgWqpNglAUVxsqI6FKbvE2M1oAM5Seyn52Hi61PYW2w==
 
 "@types/anymatch@*":
   version "1.3.1"
