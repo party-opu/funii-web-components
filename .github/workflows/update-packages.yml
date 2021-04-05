@@ -11,8 +11,8 @@ on:
         required: true
         default: ''
 jobs:
-  timeout-minutes: 10
   update-packages:
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
       - name: checkout

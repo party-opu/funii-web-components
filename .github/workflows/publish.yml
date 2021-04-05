@@ -9,10 +9,10 @@ on:
     tags:
       - "!*"
 jobs:
-  timeout-minutes: 10
   release:
     name: Setup
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: checkout
         uses: actions/checkout@v1
@@ -49,6 +49,7 @@ jobs:
       matrix:
         repo: ['kousaku-maron/funii-assist-web', 'party-opu/funii-assist-web-template']
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
