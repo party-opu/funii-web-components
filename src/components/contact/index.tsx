@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { ComponentSet } from '@party-opu/funii-assist-types'
 import { ComponentProps } from '../props'
 import isEmpty from 'validator/lib/isEmpty'
+import { CreateContact } from '../props/componentProps'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
@@ -68,12 +69,16 @@ const Contact = ({ node, preview = false, onSend, artboardSize = 'desktop' }: Co
         return
       }
 
-      const values = componentSet.sections.map((section, index) => {
+      const fields = componentSet.sections.map((section, index) => {
         const key = `item${index}`
         return { label: section.fields.label.value, value: form[key], order: index * 10 }
       })
 
-      values.push({ label: 'メッセージ', value: form.message, order: componentSet.sections.length * 10 })
+      fields.push({ label: 'メッセージ', value: form.message, order: componentSet.sections.length * 10 })
+
+      const values: CreateContact = {
+        fields,
+      }
 
       await onSend(values)
 

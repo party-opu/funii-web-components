@@ -16,18 +16,16 @@ export type ComponentProps = {
 
 export type Contact = {
   id: string
-  tableName: string | null
-  department: string | null
-  name: string
-  email: string
-  phoneNumber: string
-  message: string
+  fields: {
+    label: string
+    value: string
+    order: number
+  }[]
   createdAt: Date
   updatedAt: Date
 }
 
-export type CreateContact = {
-  label: string
-  value: string
-  order: number
-}[]
+export type CreateContact = Omit<Contact, 'id' | 'createdAt' | 'updatedAt'> & {
+  createdAt?: Date
+  updatedAt?: Date
+}
