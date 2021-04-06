@@ -12,18 +12,16 @@ export declare type ComponentProps = {
 };
 export declare type Contact = {
     id: string;
-    tableName: string | null;
-    department: string | null;
-    name: string;
-    email: string;
-    phoneNumber: string;
-    message: string;
+    fields: {
+        label: string;
+        value: string;
+        order: number;
+    }[];
     createdAt: Date;
     updatedAt: Date;
 };
-export declare type CreateContact = {
-    label: string;
-    value: string;
-    order: number;
-}[];
+export declare type CreateContact = Omit<Contact, 'id' | 'createdAt' | 'updatedAt'> & {
+    createdAt?: Date;
+    updatedAt?: Date;
+};
 //# sourceMappingURL=componentProps.d.ts.map
