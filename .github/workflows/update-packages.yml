@@ -40,7 +40,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GIT_TOKEN }}
       - name: Update packages by repository_dispatch
         if: ${{ github.event.client_payload.packages != null }}
-        run: yarn upgrade ${{ github.event.client_payload.packages }}
+        run: yarn upgrade ${{ github.event.client_payload.packages }} --latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GIT_TOKEN }}
       - name: Update patch version
