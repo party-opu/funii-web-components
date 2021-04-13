@@ -1,4 +1,4 @@
 import { ComponentProps } from '../props';
-declare const Text: ({ node, push, paths, artboardSize }: ComponentProps) => JSX.Element;
+declare const Text: ({ node, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler, paths, artboardSize }: ComponentProps) => JSX.Element;
 export default Text;
 //# sourceMappingURL=index.d.ts.map
