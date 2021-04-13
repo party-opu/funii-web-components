@@ -10,9 +10,9 @@ import Drawer from '../../core/drawer'
 import { useActionForItem, useExistActionForItem } from '../hooks'
 import { useMediaQuery } from 'react-responsive'
 
-const PCMenu = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
+const PCMenu = ({ node, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
-  const action = useActionForItem(push, paths)
+  const action = useActionForItem(paths, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler)
   const existAction = useExistActionForItem(paths)
 
   const useIsLargeDevice = () => {
@@ -69,10 +69,10 @@ const SMMenu = ({ onOpen }: SMMenuProps) => {
   )
 }
 
-const Header = ({ node, push, paths = [], artboardSize = 'desktop' }: ComponentProps) => {
+const Header = ({ node, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler, paths = [], artboardSize = 'desktop' }: ComponentProps) => {
   const componentSet = node as ComponentSet
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
-  const action = useActionForItem(push, paths)
+  const action = useActionForItem(paths, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler)
   const existAction = useExistActionForItem(paths)
 
   const useIsLargeDevice = () => {
@@ -85,7 +85,14 @@ const Header = ({ node, push, paths = [], artboardSize = 'desktop' }: ComponentP
   return (
     <Root>
       <Hidden smUp={false} artboardSize={artboardSize}>
-        <PCMenu node={node} push={push} paths={paths} artboardSize={artboardSize} />
+        <PCMenu
+          node={node}
+          internalLinkActionHandler={internalLinkActionHandler}
+          externalLinkActionHandler={externalLinkActionHandler}
+          apiActionHandler={apiActionHandler}
+          paths={paths}
+          artboardSize={artboardSize}
+        />
       </Hidden>
       <Hidden smUp={true} artboardSize={artboardSize}>
         <SMMenu onOpen={() => setOpenDrawer(true)} />

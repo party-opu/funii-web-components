@@ -1,30 +1,34 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Text, Image, Button, FieldItem } from '@party-opu/funii-assist-types'
+import { Text, Image, Button, FieldItem, Action } from '@party-opu/funii-assist-types'
 
-type Push = (url: string) => Promise<void> | void
+type ActionHandler = (action: Action) => Promise<void> | void
 
-export const useActionForItem = (push: Push = (url) => console.info(url), paths: string[]) => {
+export const useActionForItem = (
+  paths: string[],
+  internalLinkActionHandler: ActionHandler = () => console.info('internalLink-action'),
+  externalLinkActionHandler: ActionHandler = () => console.info('externalLink-action'),
+  apiActionHandler: ActionHandler = () => console.info('api-action')
+) => {
   const action = useCallback(
     async (item: FieldItem) => {
-      // MEMO: 直列に処理させるための、for文を使用している。
       for (let i = 0; i < item.actions.length; i++) {
         const action = item.actions[i]
         if (action.type === 'internalLink') {
           if (paths.includes(action.value)) {
-            await push(action.value)
+            await internalLinkActionHandler(action)
           }
         } else if (action.type === 'externalLink') {
           if (action.value) {
-            window.open(action.value, '_blank')
+            await externalLinkActionHandler(action)
           }
         } else if (action.type === 'api') {
           if (action.endpoint) {
-            console.info('fetch api', action)
+            await apiActionHandler(action)
           }
         }
       }
     },
-    [paths, push]
+    [apiActionHandler, externalLinkActionHandler, internalLinkActionHandler, paths]
   )
 
   return action
@@ -57,25 +61,31 @@ export const useExistActionForItem = (paths: string[]) => {
   return exist
 }
 
-export const useAction = (node: Text | Image | Button, push: Push = (url) => console.info(url), paths: string[]) => {
+export const useAction = (
+  node: Text | Image | Button,
+  paths: string[],
+  internalLinkActionHandler: ActionHandler = () => console.info('internalLink-action'),
+  externalLinkActionHandler: ActionHandler = () => console.info('externalLink-action'),
+  apiActionHandler: ActionHandler = () => console.info('api-action')
+) => {
   const action = useCallback(async () => {
     for (let i = 0; i < node.actions.length; i++) {
       const action = node.actions[i]
       if (action.type === 'internalLink') {
         if (paths.includes(action.value)) {
-          await push(action.value)
+          await internalLinkActionHandler(action)
         }
       } else if (action.type === 'externalLink') {
         if (action.value) {
-          window.open(action.value, '_blank')
+          await externalLinkActionHandler(action)
         }
       } else if (action.type === 'api') {
         if (action.endpoint) {
-          console.info('fetch api', action)
+          await apiActionHandler(action)
         }
       }
     }
-  }, [node, paths, push])
+  }, [apiActionHandler, externalLinkActionHandler, internalLinkActionHandler, node.actions, paths])
 
   return action
 }

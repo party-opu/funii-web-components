@@ -1,4 +1,4 @@
-import { Node } from '@party-opu/funii-assist-types'
+import { Node, Action } from '@party-opu/funii-assist-types'
 
 export type ArtboardSize = 'desktop' | 'tablet' | 'mobile'
 
@@ -7,7 +7,9 @@ export const TABLET_MIN_WIDTH = 700
 
 export type ComponentProps = {
   node: Node
-  push?: (url: string) => void
+  internalLinkActionHandler?: (action: Action) => void | Promise<void>
+  externalLinkActionHandler?: (action: Action) => void | Promise<void>
+  apiActionHandler?: (action: Action) => void | Promise<void>
   paths?: string[]
   preview?: boolean
   onSend?: (value: CreateContact) => Promise<void>
