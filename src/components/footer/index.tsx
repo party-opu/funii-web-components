@@ -6,9 +6,9 @@ import Spacer from '../../core/spacer'
 import { useActionForItem, useExistActionForItem } from '../hooks'
 import { useMediaQuery } from 'react-responsive'
 
-const Footer = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
+const Footer = ({ node, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
-  const action = useActionForItem(push, paths)
+  const action = useActionForItem(paths, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler)
   const existAction = useExistActionForItem(paths)
 
   const useIsTablet = () => {

@@ -8,9 +8,9 @@ import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
 import { useMediaQuery } from 'react-responsive'
 
-const Mission = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
+const Mission = ({ node, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
-  const action = useActionForItem(push, paths)
+  const action = useActionForItem(paths, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler)
 
   const useIsLargeDevice = () => {
     const isLargeDevice = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })

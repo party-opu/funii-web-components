@@ -19,9 +19,9 @@ const responsive = {
   },
 }
 
-const Carousel = ({ node, push, paths = [] }: ComponentProps) => {
+const Carousel = ({ node, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler, paths = [] }: ComponentProps) => {
   const componentSet = node as ComponentSet
-  const action = useActionForItem(push, paths)
+  const action = useActionForItem(paths, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler)
 
   return (
     <ReactCarousel

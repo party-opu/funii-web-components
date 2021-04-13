@@ -9,9 +9,9 @@ import GroupInner from '../../core/groupInner'
 import BorderList from '../../core/borderList'
 import BorderListItem from '../../core/borderListItem'
 
-const Table = ({ node, push, paths = [], artboardSize = 'desktop' }: ComponentProps) => {
+const Table = ({ node, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler, paths = [], artboardSize = 'desktop' }: ComponentProps) => {
   const componentSet = node as ComponentSet
-  const action = useActionForItem(push, paths)
+  const action = useActionForItem(paths, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler)
 
   return (
     <GroupContainer>

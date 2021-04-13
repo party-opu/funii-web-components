@@ -10,9 +10,9 @@ import ResponsiveList from '../../core/responsiveList'
 import ResponsiveListItem from '../../core/responsiveListItem'
 import { useMediaQuery } from 'react-responsive'
 
-const Service = ({ node, push, paths = [], artboardSize = 'desktop' }: ComponentProps) => {
+const Service = ({ node, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler, paths = [], artboardSize = 'desktop' }: ComponentProps) => {
   const componentSet = node as ComponentSet
-  const action = useActionForItem(push, paths)
+  const action = useActionForItem(paths, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler)
 
   const useIsLargeDevice = () => {
     const isLargeDevice = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })

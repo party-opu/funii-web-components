@@ -5,9 +5,9 @@ import { ComponentProps, DESKTOP_MIN_WIDTH, TABLET_MIN_WIDTH } from '../props'
 import { useAction, useExistAction } from '../hooks'
 import { useMediaQuery } from 'react-responsive'
 
-const Text = ({ node, push, paths = [], artboardSize }: ComponentProps) => {
+const Text = ({ node, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler, paths = [], artboardSize }: ComponentProps) => {
   const text = node as TextNode
-  const action = useAction(text, push, paths)
+  const action = useAction(text, paths, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler)
   const existAction = useExistAction(text, paths)
 
   const useIsDesktop = () => {
