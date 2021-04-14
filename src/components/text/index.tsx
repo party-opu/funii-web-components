@@ -1,14 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useMediaQuery } from 'react-responsive'
 import { Text as TextNode } from '@party-opu/funii-assist-types'
 import { ComponentProps, DESKTOP_MIN_WIDTH, TABLET_MIN_WIDTH } from '../props'
-import { useAction, useExistAction } from '../hooks'
-import { useMediaQuery } from 'react-responsive'
+import { useCallableActions, useExistValidActions } from '../hooks'
 
-const Text = ({ node, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler, paths = [], artboardSize }: ComponentProps) => {
+const Text = ({ node, actionHandler, paths = [], artboardSize }: ComponentProps) => {
   const text = node as TextNode
-  const action = useAction(text, paths, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler)
-  const existAction = useExistAction(text, paths)
+
+  const onCall = useCallableActions(actionHandler)
+  const exist = useExistValidActions(paths)
 
   const useIsDesktop = () => {
     const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
@@ -26,9 +27,9 @@ const Text = ({ node, internalLinkActionHandler, externalLinkActionHandler, apiA
     <React.Fragment>
       <Wrapper>
         <BaseText
-          data-existlink={existAction}
+          data-existlink={exist(text.actions)}
           style={text.styleMode === 'common' ? text.style : isDesktop ? text.style : isTablet ? text.styleTb : text.styleMb}
-          onClick={action}
+          onClick={() => onCall(text.actions)}
         >
           {text.value}
         </BaseText>

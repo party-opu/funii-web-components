@@ -2,13 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button as ButtonNode } from '@party-opu/funii-assist-types'
 import { ComponentProps, DESKTOP_MIN_WIDTH, TABLET_MIN_WIDTH } from '../props'
-import { useAction, useExistAction } from '../hooks'
+import { useCallableActions, useExistValidActions } from '../hooks'
 import { useMediaQuery } from 'react-responsive'
 
-const Button = ({ node, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler, paths = [], artboardSize }: ComponentProps) => {
+const Button = ({ node, actionHandler, paths = [], artboardSize }: ComponentProps) => {
   const button = node as ButtonNode
-  const action = useAction(button, paths, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler)
-  const existAction = useExistAction(button, paths)
+
+  const onCall = useCallableActions(actionHandler)
+  const exist = useExistValidActions(paths)
 
   const useIsDesktop = () => {
     const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
@@ -26,9 +27,9 @@ const Button = ({ node, internalLinkActionHandler, externalLinkActionHandler, ap
     <React.Fragment>
       <Wrapper style={button.styleMode === 'common' || isDesktop ? button.containerStyle : isTablet ? button.containerStyleTb : button.containerStyleMb}>
         <BaseButton
-          data-existlink={existAction}
+          data-existlink={exist(button.actions)}
           style={button.styleMode === 'common' ? button.style : isDesktop ? button.style : isTablet ? button.styleTb : button.styleMb}
-          onClick={action}
+          onClick={() => onCall(button.actions)}
         >
           <BaseText
             style={button.styleMode === 'common' ? button.textStyle : isDesktop ? button.textStyle : isTablet ? button.textStyleTb : button.textStyleMb}

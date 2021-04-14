@@ -6,11 +6,23 @@ import { useMediaQuery } from 'react-responsive'
 type BorderListItemProps = {
   label?: string
   value?: string
-  onClick?: (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => void
+  onClickLabel?: (event: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => void
+  onClickValue?: (event: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => void
+  existLabelLink?: boolean
+  existValueLink?: boolean
   artboardSize: ArtboardSize
 }
 
-const BorderListItem: React.FC<BorderListItemProps> = ({ label, value, children, onClick, artboardSize }) => {
+const BorderListItem: React.FC<BorderListItemProps> = ({
+  label,
+  value,
+  children,
+  onClickLabel,
+  onClickValue,
+  existLabelLink = false,
+  existValueLink = false,
+  artboardSize,
+}) => {
   const useIsLargeDevice = () => {
     const isLargeDevice = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
     return artboardSize ? (artboardSize === 'tablet' || artboardSize === 'desktop' ? true : false) : isLargeDevice
@@ -19,14 +31,20 @@ const BorderListItem: React.FC<BorderListItemProps> = ({ label, value, children,
   const isLargeDevice = useIsLargeDevice()
 
   return (
-    <ListItem onClick={onClick}>
+    <ListItem>
       <Inner>
         {label && (
           <LabelWrapper>
-            <LabelText style={isLargeDevice ? { fontSize: '18px' } : { fontSize: '16px' }}>{label}</LabelText>
+            <LabelText style={isLargeDevice ? { fontSize: '18px' } : { fontSize: '16px' }} data-existlink={existLabelLink} onClick={onClickLabel}>
+              {label}
+            </LabelText>
           </LabelWrapper>
         )}
-        {value && <ValueText style={isLargeDevice ? { fontSize: '18px' } : { fontSize: '16px' }}>{value}</ValueText>}
+        {value && (
+          <ValueText style={isLargeDevice ? { fontSize: '18px' } : { fontSize: '16px' }} data-existlink={existValueLink} onClick={onClickValue}>
+            {value}
+          </ValueText>
+        )}
         {children}
       </Inner>
     </ListItem>
@@ -53,6 +71,10 @@ const LabelText = styled.p`
   font-weight: bold;
   color: ${(props) => props.theme.foregrounds.secondary};
   white-space: pre-wrap;
+
+  &[data-existlink='true'] {
+    cursor: pointer;
+  }
 `
 
 LabelText.defaultProps = {
@@ -67,6 +89,10 @@ const ValueText = styled.p`
   font-weight: bold;
   color: ${(props) => props.theme.foregrounds.primary};
   white-space: pre-wrap;
+
+  &[data-existlink='true'] {
+    cursor: pointer;
+  }
 `
 
 ValueText.defaultProps = {

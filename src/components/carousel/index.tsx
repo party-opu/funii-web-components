@@ -1,10 +1,9 @@
-// import 'react-multi-carousel/lib/styles.css'
 import React from 'react'
 import ReactCarousel from 'react-multi-carousel'
 import styled from 'styled-components'
 import { ComponentSet } from '@party-opu/funii-assist-types'
 import { ComponentProps } from '../props'
-import { useActionForItem } from '../hooks'
+import { useCallableActions, useExistValidActions } from '../hooks'
 
 const responsive = {
   desktop: {
@@ -19,9 +18,11 @@ const responsive = {
   },
 }
 
-const Carousel = ({ node, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler, paths = [] }: ComponentProps) => {
+const Carousel = ({ node, actionHandler, paths = [] }: ComponentProps) => {
   const componentSet = node as ComponentSet
-  const action = useActionForItem(paths, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler)
+
+  const onCall = useCallableActions(actionHandler)
+  const exist = useExistValidActions(paths)
 
   return (
     <ReactCarousel
@@ -44,7 +45,8 @@ const Carousel = ({ node, internalLinkActionHandler, externalLinkActionHandler, 
           draggable={false}
           src={section.fields.imageURL.value}
           alt={section.fields.imageURL.label}
-          onClick={() => action(section.fields.imageURL)}
+          data-existlink={exist(section.fields.imageURL.actions)}
+          onClick={() => onCall(section.fields.imageURL.actions)}
         />
       ))}
     </ReactCarousel>
@@ -54,6 +56,10 @@ const Carousel = ({ node, internalLinkActionHandler, externalLinkActionHandler, 
 const Image = styled.img`
   object-fit: cover;
   width: 100%;
+
+  &[data-existlink='true'] {
+    cursor: pointer;
+  }
 `
 
 export default Carousel

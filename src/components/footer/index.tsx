@@ -1,15 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useMediaQuery } from 'react-responsive'
 import { ComponentSet } from '@party-opu/funii-assist-types'
 import { ComponentProps, TABLET_MIN_WIDTH } from '../props'
+import { useCallableActions, useExistValidActions } from '../hooks'
 import Spacer from '../../core/spacer'
-import { useActionForItem, useExistActionForItem } from '../hooks'
-import { useMediaQuery } from 'react-responsive'
 
-const Footer = ({ node, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler, paths = [], artboardSize }: ComponentProps) => {
+const Footer = ({ node, actionHandler, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
-  const action = useActionForItem(paths, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler)
-  const existAction = useExistActionForItem(paths)
+
+  const onCall = useCallableActions(actionHandler)
+  const exist = useExistValidActions(paths)
 
   const useIsTablet = () => {
     const isTablet = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
@@ -26,7 +27,7 @@ const Footer = ({ node, internalLinkActionHandler, externalLinkActionHandler, ap
             {componentSet.sections.map((section, index) => (
               <React.Fragment key={index}>
                 <Spacer layout="vertical" size="l" />
-                <ListItem data-existlink={existAction(section.fields.text)} onClick={() => action(section.fields.text)}>
+                <ListItem data-existlink={exist(section.fields.text.actions)} onClick={() => onCall(section.fields.text.actions)}>
                   <ListItemText style={isTablet ? { fontSize: '12px' } : { fontSize: '9px' }} is-tablet={isTablet}>
                     {section.fields.text.value}
                   </ListItemText>
