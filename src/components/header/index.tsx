@@ -1,19 +1,20 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { BiMenu } from 'react-icons/bi'
+import { useMediaQuery } from 'react-responsive'
 import { ComponentSet } from '@party-opu/funii-assist-types'
 import { ComponentProps, TABLET_MIN_WIDTH } from '../props'
+import { useCallableActions, useExistValidActions } from '../hooks'
 import Spacer from '../../core/spacer'
 import Hidden from '../../core/hidden'
 import IconButton from '../../core/iconButton'
 import Drawer from '../../core/drawer'
-import { useActionForItem, useExistActionForItem } from '../hooks'
-import { useMediaQuery } from 'react-responsive'
 
-const PCMenu = ({ node, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler, paths = [], artboardSize }: ComponentProps) => {
+const PCMenu = ({ node, actionHandler, paths = [], artboardSize }: ComponentProps) => {
   const componentSet = node as ComponentSet
-  const action = useActionForItem(paths, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler)
-  const existAction = useExistActionForItem(paths)
+
+  const onCall = useCallableActions(actionHandler)
+  const exist = useExistValidActions(paths)
 
   const useIsLargeDevice = () => {
     const isLargeDevice = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
@@ -30,7 +31,7 @@ const PCMenu = ({ node, internalLinkActionHandler, externalLinkActionHandler, ap
             if (section.fields.text) {
               return (
                 <React.Fragment key={index}>
-                  <ListItem data-existlink={existAction(section.fields.text)} onClick={() => action(section.fields.text)}>
+                  <ListItem data-existlink={exist(section.fields.text.actions)} onClick={() => onCall(section.fields.text.actions)}>
                     <ListItemText style={isLargeDevice ? { fontSize: '14px' } : { fontSize: '12px' }}>{section.fields.text.value}</ListItemText>
                   </ListItem>
                   <Spacer layout="vertical" size="l" />
@@ -41,7 +42,7 @@ const PCMenu = ({ node, internalLinkActionHandler, externalLinkActionHandler, ap
             if (section.fields.imageURL) {
               return (
                 <React.Fragment key={index}>
-                  <ListItem data-existlink={existAction(section.fields.imageURL)} onClick={() => action(section.fields.imageURL)}>
+                  <ListItem data-existlink={exist(section.fields.imageURL.actions)} onClick={() => onCall(section.fields.imageURL.actions)}>
                     <ListItemImage src={section.fields.imageURL.value} />
                   </ListItem>
                   <Spacer layout="vertical" size="l" />
@@ -69,11 +70,12 @@ const SMMenu = ({ onOpen }: SMMenuProps) => {
   )
 }
 
-const Header = ({ node, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler, paths = [], artboardSize = 'desktop' }: ComponentProps) => {
+const Header = ({ node, actionHandler, paths = [], artboardSize = 'desktop' }: ComponentProps) => {
   const componentSet = node as ComponentSet
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
-  const action = useActionForItem(paths, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler)
-  const existAction = useExistActionForItem(paths)
+
+  const onCall = useCallableActions(actionHandler)
+  const exist = useExistValidActions(paths)
 
   const useIsLargeDevice = () => {
     const isLargeDevice = useMediaQuery({ minWidth: TABLET_MIN_WIDTH })
@@ -85,14 +87,7 @@ const Header = ({ node, internalLinkActionHandler, externalLinkActionHandler, ap
   return (
     <Root>
       <Hidden smUp={false} artboardSize={artboardSize}>
-        <PCMenu
-          node={node}
-          internalLinkActionHandler={internalLinkActionHandler}
-          externalLinkActionHandler={externalLinkActionHandler}
-          apiActionHandler={apiActionHandler}
-          paths={paths}
-          artboardSize={artboardSize}
-        />
+        <PCMenu node={node} actionHandler={actionHandler} paths={paths} artboardSize={artboardSize} />
       </Hidden>
       <Hidden smUp={true} artboardSize={artboardSize}>
         <SMMenu onOpen={() => setOpenDrawer(true)} />
@@ -104,10 +99,10 @@ const Header = ({ node, internalLinkActionHandler, externalLinkActionHandler, ap
                   return (
                     <React.Fragment key={index}>
                       <ListItem
-                        data-existlink={existAction(section.fields.text)}
+                        data-existlink={exist(section.fields.text.actions)}
                         onClick={() => {
-                          action(section.fields.text)
-                          if (existAction(section.fields.text)) {
+                          onCall(section.fields.text.actions)
+                          if (exist(section.fields.text.actions)) {
                             setOpenDrawer(false)
                           }
                         }}
@@ -123,10 +118,10 @@ const Header = ({ node, internalLinkActionHandler, externalLinkActionHandler, ap
                   return (
                     <React.Fragment key={index}>
                       <ListItem
-                        data-existlink={existAction(section.fields.imageURL)}
+                        data-existlink={exist(section.fields.imageURL.actions)}
                         onClick={() => {
-                          action(section.fields.imageURL)
-                          if (existAction(section.fields.imageURL)) {
+                          onCall(section.fields.imageURL.actions)
+                          if (exist(section.fields.imageURL.actions)) {
                             setOpenDrawer(false)
                           }
                         }}

@@ -1,14 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useMediaQuery } from 'react-responsive'
 import { Image as ImageNode } from '@party-opu/funii-assist-types'
 import { ComponentProps, DESKTOP_MIN_WIDTH, TABLET_MIN_WIDTH } from '../props'
-import { useAction, useExistAction } from '../hooks'
-import { useMediaQuery } from 'react-responsive'
+import { useCallableActions, useExistValidActions } from '../hooks'
 
-const Image = ({ node, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler, paths = [], artboardSize }: ComponentProps) => {
+const Image = ({ node, actionHandler, paths = [], artboardSize }: ComponentProps) => {
   const image = node as ImageNode
-  const action = useAction(image, paths, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler)
-  const existAction = useExistAction(image, paths)
+
+  const onCall = useCallableActions(actionHandler)
+  const exist = useExistValidActions(paths)
 
   const useIsDesktop = () => {
     const isDesktop = useMediaQuery({ minWidth: DESKTOP_MIN_WIDTH })
@@ -31,9 +32,9 @@ const Image = ({ node, internalLinkActionHandler, externalLinkActionHandler, api
       >
         <BaseImage
           src={image.imageURL}
-          data-existlink={existAction}
+          data-existlink={exist(image.actions)}
           style={image.styleMode === 'common' ? image.style : isDesktop ? image.style : isTablet ? image.styleTb : image.styleMb}
-          onClick={action}
+          onClick={() => onCall(image.actions)}
         />
       </Wrapper>
     </React.Fragment>

@@ -2,16 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 import { ComponentSet } from '@party-opu/funii-assist-types'
 import { ComponentProps } from '../props'
-import { useActionForItem } from '../hooks'
+import { useCallableActions, useExistValidActions } from '../hooks'
 import Spacer from '../../core/spacer'
 import GroupContainer from '../../core/groupContainer'
 import GroupInner from '../../core/groupInner'
 import BorderList from '../../core/borderList'
 import BorderListItem from '../../core/borderListItem'
 
-const Table = ({ node, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler, paths = [], artboardSize = 'desktop' }: ComponentProps) => {
+const Table = ({ node, actionHandler, paths = [], artboardSize = 'desktop' }: ComponentProps) => {
   const componentSet = node as ComponentSet
-  const action = useActionForItem(paths, internalLinkActionHandler, externalLinkActionHandler, apiActionHandler)
+
+  const onCall = useCallableActions(actionHandler)
+  const exist = useExistValidActions(paths)
 
   return (
     <GroupContainer>
@@ -20,10 +22,13 @@ const Table = ({ node, internalLinkActionHandler, externalLinkActionHandler, api
         {componentSet.sections.map((section, index) => (
           <BorderList key={`table-item-${index}`}>
             <BorderListItem
-              label={section.fields.label.value}
-              value={section.fields.value.value}
               artboardSize={artboardSize}
-              onClick={() => action(section.fields.value)}
+              label={section.fields.label.value}
+              existLabelLink={exist(section.fields.label.actions)}
+              onClickLabel={() => onCall(section.fields.label.actions)}
+              value={section.fields.value.value}
+              existValueLink={exist(section.fields.value.actions)}
+              onClickValue={() => onCall(section.fields.value.actions)}
             />
           </BorderList>
         ))}
