@@ -2,11 +2,10 @@ import { Node, Action } from '@party-opu/funii-assist-types';
 export declare type ArtboardSize = 'desktop' | 'tablet' | 'mobile';
 export declare const DESKTOP_MIN_WIDTH = 1200;
 export declare const TABLET_MIN_WIDTH = 700;
+export declare type ActionHandler = (action: Action) => Promise<void> | void;
 export declare type ComponentProps = {
     node: Node;
-    internalLinkActionHandler?: (action: Action) => void | Promise<void>;
-    externalLinkActionHandler?: (action: Action) => void | Promise<void>;
-    apiActionHandler?: (action: Action) => void | Promise<void>;
+    actionHandler?: ActionHandler;
     paths?: string[];
     preview?: boolean;
     onSend?: (value: CreateContact) => Promise<void>;
