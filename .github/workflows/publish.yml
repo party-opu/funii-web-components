@@ -47,7 +47,7 @@ jobs:
     needs: release
     strategy:
       matrix:
-        repo: ['kousaku-maron/funii-assist-web', 'party-opu/funii-assist-web-template']
+        repo: ['party-opu/funii-assist-web', 'party-opu/funii-assist-web-template']
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
