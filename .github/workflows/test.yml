@@ -4,6 +4,8 @@ on:
     paths:
       - src/**
       - examples/**
+      - package.json
+      - yarn.lock
       - webpack.config.json
       - tsconfig.json
       - tsconfig.component.json
