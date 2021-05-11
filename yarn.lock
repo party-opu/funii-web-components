@@ -1005,10 +1005,10 @@
     "@nodelib/fs.scandir" "2.1.4"
     fastq "^1.6.0"
 
-"@party-opu/funii-assist-types@^0.2.14":
-  version "0.2.14"
-  resolved "https://npm.pkg.github.com/download/@party-opu/funii-assist-types/0.2.14/f5c14b4449ffe673bc07a60846bca4e485578838be7fd005e3e8bb317e50ab69#0b0359ff0c80bc03d70b250749f4ce4fc31b3245"
-  integrity sha512-t3hEUCsQbdQuhDUf5O8/LjJlUhP25sNH3GNQDfzgy83P4syrfrxd1xJu2w44asl9sGm9mQmETgKWD9Twa2TExQ==
+"@party-opu/funii-assist-types@^0.2.15":
+  version "0.2.15"
+  resolved "https://npm.pkg.github.com/download/@party-opu/funii-assist-types/0.2.15/3746868e067de92e959654f3f387e5312af7265efc974a23babbd8a3ab6e7c81#50e6262114ff7d41d3d3713ce61b649c084e9535"
+  integrity sha512-tWAY2pGT01ggAtc5IsbCXtTgdYccSBy99jNTzvJVCZPeD3fHkBKyWql7g+DBrZqoospapehYvHN0lE+8+PY3qQ==
 
 "@types/anymatch@*":
   version "1.3.1"
